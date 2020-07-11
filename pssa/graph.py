@@ -6,12 +6,17 @@ from networkx import Graph
 class FastMutableGraph:
     """
     This graph supports fast swapping of nodes by relabelling them.
-    Networkx does not provide an efficient or in-place method of relabelling nodes.
+    Networkx does not provide an efficient, in-place method of relabelling nodes.
     """
 
     def __init__(self, input_graph: Graph):
+        """
+        Converts networkx graph into a new format
+
+        :param input_graph: Assume nodes are labelled 0...n, the graph is
+        undirected and there are no self-linked edges
+        """
         self.nodes = [_Node(i) for i in range(len(input_graph))]
-        # Assume nodes in input graph are 0....n
         for node_val, adj_dict in input_graph.adjacency():
             for adj_val in [*adj_dict]:
                 self.nodes[node_val].neighbours.add(self.nodes[adj_val])
@@ -21,7 +26,6 @@ class FastMutableGraph:
     @property
     def edges(self):
         if self._dirty:
-            self._dirty = False
             self._edges = set()
             for n1 in self.nodes:
                 for n2 in n1.neighbours:
@@ -29,6 +33,7 @@ class FastMutableGraph:
                         self._edges.add((n1.val, n2.val))
                     else:
                         self._edges.add((n2.val, n1.val))
+            self._dirty = False
             return self._edges
         else:
             return self._edges
@@ -38,7 +43,14 @@ class FastMutableGraph:
         self.nodes[n1], self.nodes[n2] = self.nodes[n2], self.nodes[n1]
         self._dirty = True
 
+    def contains_edge(self, n1: int, n2: int) -> bool:
+        e1 = self.nodes[n1] in self.nodes[n2].neighbours
+        e2 = self.nodes[n2] in self.nodes[n1].neighbours
+        assert e1 == e2
+        return e1
+
     def add_edge(self, n1: int, n2: int):
+        assert n1 != n2
         self.nodes[n1].neighbours.add(self.nodes[n2])
         self.nodes[n2].neighbours.add(self.nodes[n1])
         self._dirty = True
@@ -51,7 +63,7 @@ class FastMutableGraph:
     def __str__(self):
         ret = ""
         for n in self.nodes:
-            ret += n.__str__() + "\n"
+            ret += str(n) + "\n"
         return ret
 
 
@@ -66,6 +78,3 @@ class _Node:
 
     def __str__(self):
         return "Val: {}, Neighbours: {}".format(self.val, [n.val for n in self.neighbours])
-
-
-class _Edge:

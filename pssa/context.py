@@ -1,20 +1,20 @@
 import dwave_networkx as dnx
 from networkx import Graph
 
+from pssa.graph import FastMutableGraph
 from pssa.types import *
 
 
 class OptimizationContext:
     """
-    Data class that stores immutable constants during the optimization process
+    Data class that stores constants prior to optimization
     """
 
     def __init__(self, m: int, l: int, input_graph: Graph, guiding_pattern: Dwave_Embedding):
-        # Not sure about complexity of networkx.edge_view, so converting to python set
-        self.input_edge_set = {e for e in input_graph.edges}
+        self.input_graph = FastMutableGraph(input_graph)
 
         # Subscriptable for random selection
-        self.input_edge_list = list(self.input_edge_set)
+        self.input_edge_list = list(self.input_graph.edges)
 
         # Target chimera graph
         self.chimera_graph = dnx.chimera_graph(m, m, l)
