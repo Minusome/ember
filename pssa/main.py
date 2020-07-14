@@ -1,7 +1,9 @@
+# embed = find_clique_embedding(k=12, m=3)
+# from pssa.initializer import triangle_semi_clique_embed, divide_guiding_pattern
+#
 import dwave_networkx as dnx
 import matplotlib.pyplot as plt
 
-# embed = find_clique_embedding(k=12, m=3)
 from pssa.initializer import triangle_semi_clique_embed, divide_guiding_pattern
 
 embed = triangle_semi_clique_embed(10, 4)
@@ -15,7 +17,11 @@ embed = divide_guiding_pattern(embed, 100, strategy="balanced")
 #
 # pprint(guide)
 
+# a = dnx.chimera_graph(2,2,4)
+
+
 # input = nx.generators.complete_graph(5)
+# input.add_edge(5, 6, weight=4)
 #
 # input.edges
 # input.remove_edge(0, 1)
@@ -84,11 +90,20 @@ G = dnx.chimera_graph(10, 10, 4)
 #
 # pprint(G[0])
 #
+
+# target = nx.empty_graph(6)
+# target.add_edge(0, 1)
+# target.add_edge(0, 2)
+# target.add_edge(1, 3)
+# target.add_edge(2, 3)
+# target.add_edge(2, 4)
+# target.add_edge(3, 5)
+# target.add_edge(4, 5)
 plt.ion()
 plt.figure(figsize=(20, 20))
 dnx.draw_chimera_embedding(G, embed)
 # dnx.draw_chimera(G, with_labels=True)
-# nx.draw(input)
+# nx.draw(target, with_labels=True)
 
 # small = dnx.chimera_graph(3, 3, 4)
 # print(list(small.edges))

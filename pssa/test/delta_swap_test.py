@@ -29,18 +29,18 @@ def delta_swap_naive(input_graph: FastMutableGraph, contact_graph: FastMutableGr
                      n2: int):
     delta = 0
     for n1_nb in contact_graph.nodes[n1].neighbours:
-        if input_graph.contains_edge(n1, n1_nb.val):
+        if input_graph.has_edge(n1, n1_nb.val):
             delta -= 1
     for n2_nb in contact_graph.nodes[n2].neighbours:
-        if input_graph.contains_edge(n2, n2_nb.val):
+        if input_graph.has_edge(n2, n2_nb.val):
             delta -= 1
     for n1_nb in contact_graph.nodes[n1].neighbours:
         to = n1_nb.val if n1_nb.val != n2 else n1
-        if input_graph.contains_edge(n2, to):
+        if input_graph.has_edge(n2, to):
             delta += 1
     for n2_nb in contact_graph.nodes[n2].neighbours:
         to = n2_nb.val if n2_nb.val != n1 else n2
-        if input_graph.contains_edge(n1, to):
+        if input_graph.has_edge(n1, to):
             delta += 1
     return delta
 

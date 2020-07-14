@@ -1,4 +1,4 @@
-from typing import Set
+from typing import Dict
 
 from networkx import Graph
 
@@ -9,17 +9,18 @@ class FastMutableGraph:
     Networkx does not provide an efficient, in-place method of relabelling nodes.
     """
 
-    def __init__(self, input_graph: Graph):
+    def __init__(self, input_graph: Graph, include_edges: bool = True):
         """
-        Converts networkx graph into a new format
+        Converts networkx graph into a (better?) format
 
         :param input_graph: Assume nodes are labelled 0...n, the graph is
         undirected and there are no self-linked edges
         """
         self.nodes = [_Node(i) for i in range(len(input_graph))]
-        for node_val, adj_dict in input_graph.adjacency():
-            for adj_val in [*adj_dict]:
-                self.nodes[node_val].neighbours.add(self.nodes[adj_val])
+        if include_edges:
+            for node_val, adj_dict in input_graph.adjacency():
+                for adj_val in [*adj_dict]:
+                    self.nodes[node_val].neighbours[self.nodes[adj_val]] = 0
         self._dirty = True
         self._edges = self.edges
 
@@ -43,21 +44,27 @@ class FastMutableGraph:
         self.nodes[n1], self.nodes[n2] = self.nodes[n2], self.nodes[n1]
         self._dirty = True
 
-    def contains_edge(self, n1: int, n2: int) -> bool:
+    def has_edge(self, n1: int, n2: int) -> bool:
         e1 = self.nodes[n1] in self.nodes[n2].neighbours
         e2 = self.nodes[n2] in self.nodes[n1].neighbours
         assert e1 == e2
         return e1
 
-    def add_edge(self, n1: int, n2: int):
+    def edge_weight(self, n1: int, n2: int) -> int:
+        w1 = self.nodes[n1].neighbours[self.nodes[n2]]
+        w2 = self.nodes[n2].neighbours[self.nodes[n1]]
+        assert w1 == w2
+        return w1
+
+    def add_edge(self, n1: int, n2: int, weight: int = 0):
         assert n1 != n2
-        self.nodes[n1].neighbours.add(self.nodes[n2])
-        self.nodes[n2].neighbours.add(self.nodes[n1])
+        self.nodes[n1].neighbours[self.nodes[n2]] = weight
+        self.nodes[n2].neighbours[self.nodes[n1]] = weight
         self._dirty = True
 
     def remove_edge(self, n1: int, n2: int):
-        self.nodes[n1].neighbours.remove(self.nodes[n2])
-        self.nodes[n2].neighbours.remove(self.nodes[n1])
+        del self.nodes[n1].neighbours[self.nodes[n2]]
+        del self.nodes[n2].neighbours[self.nodes[n1]]
         self._dirty = True
 
     def __str__(self):
@@ -72,9 +79,10 @@ class _Node:
     Internal node representation
     """
 
-    def __init__(self, val: int, neighbours: Set["_Node"] = None):
+    def __init__(self, val: int, neighbours: Dict["_Node", int] = None):
         self.val = val
-        self.neighbours = neighbours if neighbours is not None else set()
+        self.neighbours = neighbours if neighbours is not None else {}
 
     def __str__(self):
-        return "Val: {}, Neighbours: {}".format(self.val, [n.val for n in self.neighbours])
+        return "Val: {}, Neighbours: {}".format(self.val, [(nk.val, nv) for nk, nv in
+                                                           self.neighbours.items()])
