@@ -1,7 +1,9 @@
+import random
 from collections import defaultdict
 
 from pssa.context import OptimizationContext
 from pssa.graph import FastMutableGraph
+from pssa.schedule import T_MAX, move_params
 from pssa.types import *
 
 
@@ -11,23 +13,21 @@ def run_simulated_annealing(context: OptimizationContext, initial_embed: Embeddi
     reverse_embed = {l: k for k, ll in initial_embed.items() for l in ll}
 
     # Need to initialize the contact graph
-    contact_graph = FastMutableGraph()
+    contact_graph, cost = context.create_contact_graph(initial_embed)
 
     # Best solution found
     cost_best = 0
     forward_embed_best = initial_embed
 
+    for step in range(T_MAX):
+        temperature, shift, any_dir = move_params(step)
+        # swap
+        if not shift:
+            i, k = random.choice(context.input_edge_list)
+            j = random.choice(tuple(contact_graph.nodes[k].neighbours)).val
+            delta = delta_swap(context.input_graph)
 
-#
-#     for step in range(T_MAX):
-#         temperature, shift, any_dir = move_params(step)
-#         # swap
-#         if not shift:
-#             i,k = random.choice(context.input_edge_list)
-#             j = random.choice(tuple(contact_graph.nodes[k].neighbours)).val
-#
-#         # shift
-#         else:
+        # shift
 
 
 def delta_swap(input_graph: FastMutableGraph, contact_graph: FastMutableGraph, n1: int, n2: int):
@@ -64,6 +64,8 @@ def delta_shift(input_graph, contact_graph, chimera_graph, inverse_embed, g_from
     n_to = inverse_embed[g_to]
     n_nb_count = defaultdict(int)
     delta = 0
+
+    # Consider neighbours of g_to, increment delta for new segments added to n_from
     for g_to_nb in iter(chimera_graph[g_to]):
         n_to_nb = inverse_embed[g_to_nb]
         if n_to_nb == n_from or n_to_nb == n_to or n_to_nb in n_nb_count:
@@ -72,6 +74,8 @@ def delta_shift(input_graph, contact_graph, chimera_graph, inverse_embed, g_from
                 and input_graph.has_edge(n_from, n_to_nb):
             delta += 1
         n_nb_count[n_to_nb] += 1
+
+    # If n_to is in all edges connecting n_to to n_to_nb then decrement delta
     for n_to_nb, count in n_nb_count.items():
         assert contact_graph.edge_weight(n_to_nb, n_to) >= count  # Debug
         if contact_graph.edge_weight(n_to_nb, n_to) == count \
@@ -80,7 +84,7 @@ def delta_shift(input_graph, contact_graph, chimera_graph, inverse_embed, g_from
     return delta
 
 
-def shift(input_graph, contact_graph, chimera_graph, forward_embed, inverse_embed, g_from, g_to):
+def shift(contact_graph, chimera_graph, forward_embed, inverse_embed, g_from, g_to):
     n_from = inverse_embed[g_from]
     n_to = inverse_embed[g_to]
 
@@ -98,3 +102,12 @@ def shift(input_graph, contact_graph, chimera_graph, forward_embed, inverse_embe
     inverse_embed[g_to] = n_from
 
     # Update contact graph
+    for g_to_nb in iter(chimera_graph[g_to]):
+        n_to_nb = inverse_embed[g_to_nb]
+        if n_to_nb == n_from:
+            contact_graph.decrement_edge_weight(n_from, n_to)
+        elif n_to_nb == n_to:
+            contact_graph.increment_edge_weight(n_from, n_to)
+        else:
+            contact_graph.increment_edge_weight(n_from, n_to_nb)
+            contact_graph.decrement_edge_weight(n_to, n_to_nb)

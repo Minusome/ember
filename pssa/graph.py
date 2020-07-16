@@ -56,7 +56,31 @@ class FastMutableGraph:
         assert w1 == w2
         return w1
 
-    def add_edge(self, n1: int, n2: int, weight: int = 0):
+    def increment_edge_weight(self, n1: int, n2: int):
+        e1 = self.nodes[n1] in self.nodes[n2].neighbours
+        e2 = self.nodes[n2] in self.nodes[n1].neighbours
+        assert e1 == e2
+        if e1:
+            self.nodes[n1].neighbours[self.nodes[n2]] += 1
+            self.nodes[n2].neighbours[self.nodes[n1]] += 1
+        else:
+            self.nodes[n1].neighbours[self.nodes[n2]] = 1
+            self.nodes[n2].neighbours[self.nodes[n1]] = 1
+            self._dirty = True
+
+    def decrement_edge_weight(self, n1: int, n2: int):
+        w1 = self.nodes[n1].neighbours[self.nodes[n2]]
+        w2 = self.nodes[n2].neighbours[self.nodes[n2]]
+        assert w1 == w2
+        if w1 == 1:
+            del self.nodes[n1].neighbours[self.nodes[n2]]
+            del self.nodes[n2].neighbours[self.nodes[n1]]
+            self._dirty = True
+        else:
+            self.nodes[n1].neighbours[self.nodes[n2]] = w1 - 1
+            self.nodes[n2].neighbours[self.nodes[n1]] = w1 - 1
+
+    def add_edge(self, n1: int, n2: int, weight: int = 1):
         assert n1 != n2
         self.nodes[n1].neighbours[self.nodes[n2]] = weight
         self.nodes[n2].neighbours[self.nodes[n1]] = weight

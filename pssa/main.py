@@ -2,12 +2,13 @@
 # from pssa.initializer import triangle_semi_clique_embed, divide_guiding_pattern
 #
 import dwave_networkx as dnx
+import networkx as nx
 import matplotlib.pyplot as plt
 
-from pssa.initializer import triangle_semi_clique_embed, divide_guiding_pattern
+# from pssa.initializer import triangle_semi_clique_embed, divide_guiding_pattern
 
-embed = triangle_semi_clique_embed(10, 4)
-embed = divide_guiding_pattern(embed, 100, strategy="balanced")
+# embed = triangle_semi_clique_embed(10, 4)
+# embed = divide_guiding_pattern(embed, 100, strategy="balanced")
 # guide = {}
 # for k, ll in embed.items():
 #     for l in ll:
@@ -72,6 +73,41 @@ embed = divide_guiding_pattern(embed, 100, strategy="balanced")
 
 G = dnx.chimera_graph(10, 10, 4)
 
+
+def chimera_shortest_path_length(g1, g2):
+    if g1 == g2:
+        return 0
+    lc = dnx.chimera_coordinates(10, t=4).linear_to_chimera
+    (i1, j1, u1, k1) = lc(g1)
+    (i2, j2, u2, k2) = lc(g2)
+    dist = abs(i1 - i2) + abs(j1 - j2)
+    dist += 2 if u1 == u2 else 1
+    if u1 == 0 and u2 == 0 and (j1 - j2) == 0 and k1 == k2:
+        dist -= 2
+    if u1 == 1 and u2 == 1 and (i1 - i2) == 0 and k1 == k2:
+        dist -= 2
+    return dist
+
+length = {}
+
+for g1 in range(len(G)):
+    length[g1] = {}
+    for g2 in range(len(G)):
+        if g2 < g1:
+            length[g1][g2] = length[g2][g1]
+        else:
+            length[g1][g2] = chimera_shortest_path_length(g1, g2)
+
+length2 = dict(nx.algorithms.all_pairs_shortest_path_length(G))
+
+print(length == length2)
+
+for i in range(len(length[0])):
+    if length[0][i] != length2[0][i]:
+        print(i)
+        print(length[0][i])
+        print(length2[0][i])
+
 # pprint(G.is_directed())
 
 # def boundary_bfs(chimera, chain):
@@ -99,9 +135,9 @@ G = dnx.chimera_graph(10, 10, 4)
 # target.add_edge(2, 4)
 # target.add_edge(3, 5)
 # target.add_edge(4, 5)
-plt.ion()
-plt.figure(figsize=(20, 20))
-dnx.draw_chimera_embedding(G, embed)
+# plt.ion()
+# plt.figure(figsize=(20, 20))
+# dnx.draw_chimera_embedding(G, embed)
 # dnx.draw_chimera(G, with_labels=True)
 # nx.draw(target, with_labels=True)
 
