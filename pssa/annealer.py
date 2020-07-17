@@ -1,16 +1,18 @@
+import math
 import random
-from collections import defaultdict
+from collections import defaultdict, deque
+from typing import List, Dict
 
 from pssa.context import OptimizationContext
 from pssa.graph import FastMutableGraph
 from pssa.schedule import T_MAX, move_params
-from pssa.types import *
 
 
-def run_simulated_annealing(context: OptimizationContext, initial_embed: Embedding):
-    # Current solution + data helpers
-    forward_embed = initial_embed
-    reverse_embed = {l: k for k, ll in initial_embed.items() for l in ll}
+def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[int, List[int]]):
+    global g_from, g_to, n1, n2
+
+    forward_embed = [deque(initial_embed[i]) for i in range(len(initial_embed))]
+    inverse_embed = {l: k for k, ll in initial_embed.items() for l in ll}
 
     # Need to initialize the contact graph
     contact_graph, cost = context.create_contact_graph(initial_embed)
@@ -20,14 +22,43 @@ def run_simulated_annealing(context: OptimizationContext, initial_embed: Embeddi
     forward_embed_best = initial_embed
 
     for step in range(T_MAX):
-        temperature, shift, any_dir = move_params(step)
-        # swap
-        if not shift:
-            i, k = random.choice(context.input_edge_list)
-            j = random.choice(tuple(contact_graph.nodes[k].neighbours)).val
-            delta = delta_swap(context.input_graph)
+        temperature, shift_mode, any_dir = move_params(step)
+        if not shift_mode:  # swap
+            n1, n1_nb = random.choice(context.input_edge_list)
+            n2 = random.choice(tuple(contact_graph.nodes[n1_nb].neighbours)).val
+            delta = delta_swap(context.input_graph, contact_graph, n1, n2)
+        else:  # shift
+            n_to = random.randrange(context.input_graph.num_nodes)
+            if len(forward_embed[n_to]) < 2:
+                continue
+            g_to = forward_embed[n_to][0] if random.randrange(2) == 0 else forward_embed[n_to][-1]
+            cand = []
+            for g_to_nb in iter(context.chimera_graph[g_to]):
+                if inverse_embed[g_to] == inverse_embed[g_to_nb]:
+                    continue
+                if any_dir:
+                    cand.append(g_to_nb)
+                elif context.guiding_pattern_dict[g_to_nb] == context.guiding_pattern_dict[g_to]:
+                    cand.append(g_to_nb)
+            if len(cand) == 0:
+                continue
+            g_from = random.choice(cand)
+            delta = delta_shift(context.input_graph, contact_graph, context.chimera_graph,
+                                inverse_embed, g_from, g_to)
+        if math.exp(delta / temperature) > random.random():
+            if shift_mode:
+                shift(contact_graph, context.chimera_graph, forward_embed, inverse_embed, g_from,
+                      g_to)
+            else:
+                swap(contact_graph, forward_embed, inverse_embed, n1, n2)
+            cost += delta
+            if cost_best < cost:
+                cost_best = cost
+                forward_embed_best = forward_embed.copy()
+                if cost_best == context._input_graph_nx.number_of_edges():
+                    return forward_embed_best
 
-        # shift
+    return forward_embed_best
 
 
 def delta_swap(input_graph: FastMutableGraph, contact_graph: FastMutableGraph, n1: int, n2: int):
@@ -49,8 +80,7 @@ def delta_swap(input_graph: FastMutableGraph, contact_graph: FastMutableGraph, n
     return delta
 
 
-def swap(contact_graph: FastMutableGraph, forward_embed: Embedding,
-         inverse_embed: Inverse_Embedding, n1: int, n2: int):
+def swap(contact_graph: FastMutableGraph, forward_embed, inverse_embed, n1: int, n2: int):
     for g1 in forward_embed[n1]:
         inverse_embed[g1] = n2
     for g2 in forward_embed[n2]:

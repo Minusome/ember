@@ -16,7 +16,8 @@ class FastMutableGraph:
         :param input_graph: Assume nodes are labelled 0...n, the graph is
         undirected and there are no self-linked edges
         """
-        self.nodes = [_Node(i) for i in range(len(input_graph))]
+        self.num_nodes = len(input_graph)
+        self.nodes = [_Node(i) for i in range(self.num_nodes)]
         if include_edges:
             for node_val, adj_dict in input_graph.adjacency():
                 for adj_val in [*adj_dict]:

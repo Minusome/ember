@@ -1,14 +1,13 @@
 import math
 import random
+from typing import List, Dict
 
 import dwave_networkx as dnx
 import numpy as np
 
-from pssa.types import *
 
-
-def divide_guiding_pattern(guiding_pattern: Dwave_Embedding,
-                           vertex_count: int, strategy: str = "balanced") -> Dwave_Embedding:
+def divide_guiding_pattern(guiding_pattern: Dict[int, List[int]],
+                           vertex_count: int, strategy: str = "balanced") -> Dict[int, List[int]]:
     """
     Randomly splits the vertex sets in the guiding pattern to create an initial embedding of the
     input graph into the hardware graph.
@@ -49,7 +48,7 @@ def divide_guiding_pattern(guiding_pattern: Dwave_Embedding,
     return {i: vertex_sets[i] for i in range(vertex_count)}
 
 
-def triangle_semi_clique_embed(m: int, l: int) -> Dwave_Embedding:
+def triangle_semi_clique_embed(m: int, l: int) -> Dict[int, List[int]]:
     """
     Performs a double-sided triangle embedding in a similar fashion as described by the PSSA paper.
     'Graph Minors from Simulated Annealing for Annealing Machines with Sparse Connectivity' by 
@@ -96,7 +95,7 @@ def triangle_semi_clique_embed(m: int, l: int) -> Dwave_Embedding:
     return {i: combined[i] for i in range(len(combined))}
 
 
-def max_clique_embed(m: int, l: int) -> Dwave_Embedding:
+def max_clique_embed(m: int, l: int) -> Dict[int, List[int]]:
     """
     Algorithm adapted from 'Adiabatic Quantum Computing: Minor Embedding with Hard Faults' by
     Klymko, Sullivan and Humble. source: https://arxiv.org/pdf/1210.8395.pdf

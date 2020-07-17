@@ -1,9 +1,10 @@
+from typing import List, Dict
+
 import dwave_networkx as dnx
 import networkx as nx
 import numpy as np
 
 from pssa.graph import FastMutableGraph
-from pssa.types import *
 
 
 class OptimizationContext:
@@ -11,7 +12,7 @@ class OptimizationContext:
     Primarily stores constants prior to optimization
     """
 
-    def __init__(self, m: int, l: int, input_graph: nx.Graph, guiding_pattern: Dwave_Embedding):
+    def __init__(self, m: int, l: int, input_graph: nx.Graph, guiding_pattern: Dict[int,List[int]]):
         self._m = m
         self._l = l
         self._input_graph_nx = input_graph
@@ -56,11 +57,11 @@ class OptimizationContext:
     def create_contact_graph(self, embed):
         # Perimeter BFS might be a bit more efficient
         contact_graph = FastMutableGraph(self._input_graph_nx, include_edges=False)
-        num_contact = 0
+        initial_cost = 0
 
         for n1 in range(len(embed)):
             e1 = embed[n1]
-            for n2 in range(e1):
+            for n2 in range(n1):
                 e2 = embed[n2]
                 weight = 0
                 for g1 in e1:
@@ -68,6 +69,6 @@ class OptimizationContext:
                         weight += 1 if self.chimera_distance[g1][g2] == 1 else 0
                 if weight > 0:
                     contact_graph.add_edge(n1, n2, weight)
-                    num_contact += 1
+                    initial_cost += 1 if self.input_graph.has_edge(n1, n2) else 0
 
-        return contact_graph, num_contact
+        return contact_graph, initial_cost
