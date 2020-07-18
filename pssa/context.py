@@ -43,7 +43,7 @@ class OptimizationContext:
     def _chimera_distance(self, g1: int, g2: int):
         if g1 == g2:
             return 0
-        lc = dnx.chimera_coordinates(10, t=4).linear_to_chimera
+        lc = dnx.chimera_coordinates(self._m, t=self._l).linear_to_chimera
         (i1, j1, u1, k1) = lc(g1)
         (i2, j2, u2, k2) = lc(g2)
         dist = abs(i1 - i2) + abs(j1 - j2)

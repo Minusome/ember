@@ -12,7 +12,9 @@ def divide_guiding_pattern(guiding_pattern: Dict[int, List[int]],
     Randomly splits the vertex sets in the guiding pattern to create an initial embedding of the
     input graph into the hardware graph.
 
-    :param guiding_pattern: A known clique (or near clique) embedding
+    :param guiding_pattern: A known clique (or near clique) embedding !NOTE: The vertex sets are
+    represented as lists but the ordering matters. The nodes should be ordered according to the
+    chain formed on the hardware graph.
     :param vertex_count: The number of vertices in the input graph (i.e. The number of vertex
     sets in the final embedding)
     :param strategy: Either 'random' (all vertex sets have equal chance of being divided) or

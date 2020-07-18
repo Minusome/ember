@@ -9,8 +9,6 @@ from pssa.schedule import T_MAX, move_params
 
 
 def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[int, List[int]]):
-    global g_from, g_to, n1, n2
-
     forward_embed = [deque(initial_embed[i]) for i in range(len(initial_embed))]
     inverse_embed = {l: k for k, ll in initial_embed.items() for l in ll}
 
@@ -34,7 +32,10 @@ def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[in
             g_to = forward_embed[n_to][0] if random.randrange(2) == 0 else forward_embed[n_to][-1]
             cand = []
             for g_to_nb in iter(context.chimera_graph[g_to]):
-                if inverse_embed[g_to] == inverse_embed[g_to_nb]:
+                n_to_nb = inverse_embed[g_to_nb]
+                if inverse_embed[g_to] == n_to_nb:
+                    continue
+                if forward_embed[n_to_nb][0] != g_to_nb and forward_embed[n_to_nb][-1] != g_to_nb:
                     continue
                 if any_dir:
                     cand.append(g_to_nb)
@@ -47,9 +48,11 @@ def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[in
                                 inverse_embed, g_from, g_to)
         if math.exp(delta / temperature) > random.random():
             if shift_mode:
+                # noinspection PyUnboundLocalVariable
                 shift(contact_graph, context.chimera_graph, forward_embed, inverse_embed, g_from,
                       g_to)
             else:
+                # noinspection PyUnboundLocalVariable
                 swap(contact_graph, forward_embed, inverse_embed, n1, n2)
             cost += delta
             if cost_best < cost:
