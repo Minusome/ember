@@ -13,8 +13,6 @@ class OptimizationContext:
     """
 
     def __init__(self, m: int, l: int, input_graph: nx.Graph, guiding_pattern: Dict[int,List[int]]):
-        self._m = m
-        self._l = l
         self._input_graph_nx = input_graph
 
         self.input_graph = FastMutableGraph(input_graph)
@@ -24,6 +22,7 @@ class OptimizationContext:
 
         # Target chimera graph
         self.chimera_graph = dnx.chimera_graph(m, m, l)
+        self.chimera_coords = dnx.chimera_coordinates(m, t=l).linear_to_chimera
         self.chimera_distance = np.empty((len(self.chimera_graph), len(self.chimera_graph)))
 
         assert len(self.chimera_graph) == m * m * l * 2
@@ -43,9 +42,8 @@ class OptimizationContext:
     def _chimera_distance(self, g1: int, g2: int):
         if g1 == g2:
             return 0
-        lc = dnx.chimera_coordinates(self._m, t=self._l).linear_to_chimera
-        (i1, j1, u1, k1) = lc(g1)
-        (i2, j2, u2, k2) = lc(g2)
+        (i1, j1, u1, k1) = self.chimera_coords(g1)
+        (i2, j2, u2, k2) = self.chimera_coords(g2)
         dist = abs(i1 - i2) + abs(j1 - j2)
         dist += 2 if u1 == u2 else 1
         if u1 == 0 and u2 == 0 and (j1 - j2) == 0 and k1 == k2:

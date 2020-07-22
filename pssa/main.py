@@ -3,9 +3,15 @@
 #
 import dwave_networkx as dnx
 import networkx as nx
+from dwave import embedding as de
 import matplotlib.pyplot as plt
+from minorminer import find_embedding
+import pickle
+import random
 
-# from pssa.initializer import triangle_semi_clique_embed, divide_guiding_pattern
+from pssa.annealer import run_simulated_annealing
+from pssa.context import OptimizationContext
+from pssa.initializer import triangle_semi_clique_embed, divide_guiding_pattern
 
 # embed = triangle_semi_clique_embed(10, 4)
 # embed = divide_guiding_pattern(embed, 100, strategy="balanced")
@@ -71,42 +77,68 @@ import matplotlib.pyplot as plt
 #
 # pprint(e)
 
-G = dnx.chimera_graph(10, 10, 4)
+# input = nx.readwrite.read_adjlist("../test_graphs/DWaveTwo.alist")
+
+# G = nx.readwrite.read_adjlist("")
+
+random.seed(1)
+
+G = dnx.chimera_graph(16, 16, 4)  # Dwave 2000q arch
+input = nx.generators.fast_gnp_random_graph(66, 0.2, seed=1)
+
+guiding_pattern = triangle_semi_clique_embed(16,4)
+
+print(len(guiding_pattern))
+print(len(input))
+
+initial = divide_guiding_pattern(guiding_pattern, len(input))
+
+print(len(initial))
+
+# print(initial)
+
+# context = OptimizationContext(16, 4, input, guiding_pattern)
+#
+# embed = run_simulated_annealing(context, initial)
+#
+# print(embed)
 
 
-def chimera_shortest_path_length(g1, g2):
-    if g1 == g2:
-        return 0
-    lc = dnx.chimera_coordinates(10, t=4).linear_to_chimera
-    (i1, j1, u1, k1) = lc(g1)
-    (i2, j2, u2, k2) = lc(g2)
-    dist = abs(i1 - i2) + abs(j1 - j2)
-    dist += 2 if u1 == u2 else 1
-    if u1 == 0 and u2 == 0 and (j1 - j2) == 0 and k1 == k2:
-        dist -= 2
-    if u1 == 1 and u2 == 1 and (i1 - i2) == 0 and k1 == k2:
-        dist -= 2
-    return dist
 
-length = {}
 
-for g1 in range(len(G)):
-    length[g1] = {}
-    for g2 in range(len(G)):
-        if g2 < g1:
-            length[g1][g2] = length[g2][g1]
-        else:
-            length[g1][g2] = chimera_shortest_path_length(g1, g2)
+# emb = find_embedding(input, G)
 
-length2 = dict(nx.algorithms.all_pairs_shortest_path_length(G))
 
-print(length == length2)
 
-for i in range(len(length[0])):
-    if length[0][i] != length2[0][i]:
-        print(i)
-        print(length[0][i])
-        print(length2[0][i])
+# with open("../emb", "rb") as file:
+#     emb = pickle.load(file)
+#
+# diag = de.diagnose_embedding(emb, input, G)
+
+
+
+
+# with open("../emb", "wb") as file:
+#     pickle.dump(emb, file)
+
+# def read_graph(infile):  # CS220 adjacency list format
+#     n=int(infile.readline().strip())
+#     G=nx.empty_graph(n,create_using=nx.Graph())
+#     for u in range(n):
+#         neighbors=infile.readline().split()
+#         for v in neighbors: G.add_edge(u,int(v))
+#     return G
+#
+# with open("../test_graphs/guests2/Q6.alist") as file:
+#     G = read_graph(file)
+
+# with open("../test_graphs/guests2/Ljubljana.alist", "r") as file:
+#     input = file.read()
+#     input = input.split("\n")[1:]
+#     input = [s for s in input if s]
+#     G = nx.readwrite.parse_adjlist(input)
+#
+
 
 # pprint(G.is_directed())
 
@@ -135,11 +167,11 @@ for i in range(len(length[0])):
 # target.add_edge(2, 4)
 # target.add_edge(3, 5)
 # target.add_edge(4, 5)
-# plt.ion()
-# plt.figure(figsize=(20, 20))
-# dnx.draw_chimera_embedding(G, embed)
+plt.ion()
+plt.figure(figsize=(20, 20))
+dnx.draw_chimera_embedding(G, initial)
 # dnx.draw_chimera(G, with_labels=True)
-# nx.draw(target, with_labels=True)
+# nx.draw(input, with_labels=True)
 
 # small = dnx.chimera_graph(3, 3, 4)
 # print(list(small.edges))

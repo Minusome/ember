@@ -17,7 +17,7 @@ def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[in
 
     # Best solution found
     cost_best = 0
-    forward_embed_best = initial_embed
+    forward_embed_best = initial_embed.copy()
 
     for step in range(T_MAX):
         temperature, shift_mode, any_dir = move_params(step)
