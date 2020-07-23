@@ -12,15 +12,21 @@ def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[in
     forward_embed = [deque(initial_embed[i]) for i in range(len(initial_embed))]
     inverse_embed = {l: k for k, ll in initial_embed.items() for l in ll}
 
-    # Need to initialize the contact graph
+    # Fill in -1 for unmapped G nodes
+    for i in range(len(context.chimera_graph)):
+        if i not in inverse_embed:
+            inverse_embed[i] = -1
+
+    # Initialize contact graph and cost
     contact_graph, cost = context.create_contact_graph(initial_embed)
 
     # Best solution found
     cost_best = 0
-    forward_embed_best = initial_embed.copy()
+    forward_embed_best = forward_embed.copy()
 
     for step in range(T_MAX):
         temperature, shift_mode, any_dir = move_params(step)
+        # print("temp: {}\tshift?: {}\tany_dir?: {}".format(temperature, shift_mode, any_dir))
         if not shift_mode:  # swap
             n1, n1_nb = random.choice(context.input_edge_list)
             n2 = random.choice(tuple(contact_graph.nodes[n1_nb].neighbours)).val
@@ -33,6 +39,8 @@ def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[in
             cand = []
             for g_to_nb in iter(context.chimera_graph[g_to]):
                 n_to_nb = inverse_embed[g_to_nb]
+                if n_to_nb == -1:
+                    continue
                 if inverse_embed[g_to] == n_to_nb:
                     continue
                 if forward_embed[n_to_nb][0] != g_to_nb and forward_embed[n_to_nb][-1] != g_to_nb:
@@ -46,19 +54,25 @@ def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[in
             g_from = random.choice(cand)
             delta = delta_shift(context.input_graph, contact_graph, context.chimera_graph,
                                 inverse_embed, g_from, g_to)
+        print("\tStep: {}\tCost: {}\tBest Cost: {}\tShift?: {}\tDelta: {}"
+              .format(step, cost, cost_best, shift_mode, delta))
         if math.exp(delta / temperature) > random.random():
             if shift_mode:
+                print("Accepted shift")
                 # noinspection PyUnboundLocalVariable
                 shift(contact_graph, context.chimera_graph, forward_embed, inverse_embed, g_from,
                       g_to)
             else:
+                print("Accepted swap")
                 # noinspection PyUnboundLocalVariable
                 swap(contact_graph, forward_embed, inverse_embed, n1, n2)
             cost += delta
             if cost_best < cost:
                 cost_best = cost
                 forward_embed_best = forward_embed.copy()
+                print("Updated best cost: {}".format(cost_best))
                 if cost_best == context._input_graph_nx.number_of_edges():
+                    print("Solution found")
                     return forward_embed_best
 
     return forward_embed_best
@@ -101,9 +115,11 @@ def delta_shift(input_graph, contact_graph, chimera_graph, inverse_embed, g_from
     # Consider neighbours of g_to, increment delta for new segments added to n_from
     for g_to_nb in iter(chimera_graph[g_to]):
         n_to_nb = inverse_embed[g_to_nb]
-        if n_to_nb == n_from or n_to_nb == n_to or n_to_nb in n_nb_count:
+        if n_to_nb == -1:
             continue
-        if not contact_graph.has_edge(n_from, n_to_nb) \
+        if n_to_nb == n_from or n_to_nb == n_to:
+            continue
+        if n_to_nb not in n_nb_count and not contact_graph.has_edge(n_from, n_to_nb) \
                 and input_graph.has_edge(n_from, n_to_nb):
             delta += 1
         n_nb_count[n_to_nb] += 1
@@ -125,7 +141,7 @@ def shift(contact_graph, chimera_graph, forward_embed, inverse_embed, g_from, g_
     if forward_embed[n_from][-1] == g_from:
         forward_embed[n_from].append(g_to)
     else:
-        forward_embed[n_from].append_left(g_to)
+        forward_embed[n_from].appendleft(g_to)
     if forward_embed[n_to][-1] == g_to:
         forward_embed[n_to].pop()
     else:
@@ -137,6 +153,8 @@ def shift(contact_graph, chimera_graph, forward_embed, inverse_embed, g_from, g_
     # Update contact graph
     for g_to_nb in iter(chimera_graph[g_to]):
         n_to_nb = inverse_embed[g_to_nb]
+        if n_to_nb == -1:
+            continue
         if n_to_nb == n_from:
             contact_graph.decrement_edge_weight(n_from, n_to)
         elif n_to_nb == n_to:
