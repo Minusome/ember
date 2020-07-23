@@ -71,7 +71,7 @@ class FastMutableGraph:
 
     def decrement_edge_weight(self, n1: int, n2: int):
         w1 = self.nodes[n1].neighbours[self.nodes[n2]]
-        w2 = self.nodes[n2].neighbours[self.nodes[n2]]
+        w2 = self.nodes[n2].neighbours[self.nodes[n1]]
         assert w1 == w2
         if w1 == 1:
             del self.nodes[n1].neighbours[self.nodes[n2]]
