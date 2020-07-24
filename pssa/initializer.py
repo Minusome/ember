@@ -92,7 +92,7 @@ def triangle_semi_clique_embed(m: int, l: int) -> Dict[int, List[int]]:
         for j in range(cell + 1, m - 1):
             bot_embed[i].append(to_linear((j + 1, cell, 0, unit)))
 
-    combined = top_embed + bot_embed
+    combined = top_embed
 
     return {i: combined[i] for i in range(len(combined))}
 

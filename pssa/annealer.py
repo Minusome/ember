@@ -1,5 +1,6 @@
 import math
 import random
+import copy
 from collections import defaultdict, deque
 from typing import List, Dict
 
@@ -35,7 +36,7 @@ def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[in
             n_to = random.randrange(context.input_graph.num_nodes)
             if len(forward_embed[n_to]) < 2:
                 continue
-            g_to = forward_embed[n_to][0] if random.randrange(2) == 0 else forward_embed[n_to][-1]
+            g_to = forward_embed[n_to][0] if random.getrandbits(1) == 0 else forward_embed[n_to][-1]
             cand = []
             for g_to_nb in iter(context.chimera_graph[g_to]):
                 n_to_nb = inverse_embed[g_to_nb]
@@ -69,7 +70,7 @@ def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[in
             cost += delta
             if cost_best < cost:
                 cost_best = cost
-                forward_embed_best = forward_embed.copy()
+                forward_embed_best = copy.deepcopy(forward_embed)
                 print("Updated best cost: {}".format(cost_best))
                 if cost_best == context._input_graph_nx.number_of_edges():
                     print("Solution found")
@@ -124,7 +125,7 @@ def delta_shift(input_graph, contact_graph, chimera_graph, inverse_embed, g_from
             delta += 1
         n_nb_count[n_to_nb] += 1
 
-    # If n_to is in all edges connecting n_to to n_to_nb then decrement delta
+    # If g_to is in all edges connecting n_to to n_to_nb then decrement delta
     for n_to_nb, count in n_nb_count.items():
         assert contact_graph.edge_weight(n_to_nb, n_to) >= count  # Debug
         if contact_graph.edge_weight(n_to_nb, n_to) == count \
