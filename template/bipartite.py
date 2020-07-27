@@ -5,7 +5,8 @@ M = 16
 L = 4
 
 # Clique graph as input
-G = nx.generators.complete_graph(M * L)
+# G = nx.generators.complete_graph(M * L)
+G = nx.generators.gnp_random_graph(80, 0.3, seed=10)
 
 K = [1, 2]
 I = range(len(G))
@@ -40,6 +41,8 @@ else:
 # Check embedding found
 if model.objective.value() == len(G):
     print("Found valid embedding")
+else:
+    print("Valid embedding not found")
 
 # Check clique
 for i in I:
