@@ -4,34 +4,38 @@ import networkx as nx
 M = 16
 L = 4
 
-# Clique graph as input
-# G = nx.generators.complete_graph(M * L)
-# G = nx.generators.gnp_random_graph(80, 0.3, seed=10)
 G = nx.Graph()
 G.add_edges_from([(0, 1), (0, 2), (1, 3), (2, 3), (2, 4), (3, 5), (4, 5)])
 
-K = [1, 2]
+# bipartite nodes
+K = range(2 * M * L)
+# problem nodes
 I = range(len(G))
+# bipartite edges
+L = [(a, b) for a in range(M * L) for b in range(M * L)]
+# problem edges
+E = G.edges
 
 model = pulp.LpProblem("MIP_Model", pulp.LpMaximize)
 
 # Decision variables
 y = pulp.LpVariable.dicts("y", (I, K), cat="Binary")
-y_prime = pulp.LpVariable.dict("y_prime", I, cat="Binary")
+y_edge = pulp.LpVariable.dicts("y", (E, L), cat="Binary")
+# y_prime = pulp.LpVariable.dict("y_prime", E, cat="Binary")
 
 # Objective
-model += pulp.lpSum(y_prime)
+model += pulp.lpSum(y_edge)
 
 # Constraints
+for e in E:
+    for l in L:
+        model += 2 * y_edge[e][l] <= y[e[0]][l[0]] + y[e[1]][l[1]] + y[e[0]][l[1]] + y[e[1]][l[0]]
+
 for i in I:
-    model += y_prime[i] <= y[i][1] + y[i][2]
+    model += pulp.lpSum([y[i][k] for k in K]) <= 1
 
 for k in K:
-    model += pulp.lpSum([y[i][k] for i in I]) <= M * L
-
-for i, j in G.edges:
-    model += y[i][1] + y[j][1] - y[i][2] - y[j][2] <= 1
-    model += y[i][2] + y[j][2] - y[i][1] - y[j][1] <= 1
+    model += pulp.lpSum([y[i][k] for i in I]) <= 1
 
 gurobi = pulp.apis.GUROBI()
 
@@ -40,7 +44,7 @@ if gurobi.available():
 else:
     model.solve()
 
-print(model.objective)
+print(model)
 
 # Check embedding found
 if model.objective.value() == len(G):
