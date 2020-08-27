@@ -576,6 +576,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
 content-hash = "5996b0f21737916257d1185927225e49dc15aa6c4737fd983471c26606cd6c48"
+lock-version = "1.0"
 python-versions = "^3.7"
 
 [metadata.files]

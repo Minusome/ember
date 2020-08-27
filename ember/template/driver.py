@@ -2,8 +2,8 @@ from random import seed
 
 import networkx as nx
 
-from template.faulty.bipartite_sat import BipartiteSAT
-from template.util import *
+from ember.template.faulty.bipartite_sat import BipartiteSAT
+from ember.template.util import *
 
 times = []
 found = 0
@@ -13,7 +13,7 @@ for i in range(0, 8):
     seed(10 + i)
 
     G = nx.generators.gnp_random_graph(64, 0.2, seed=i)
-    C = Chimera(16, 4).random_faulty(100)
+    C = D_WAVE_2000Q(k_rand_faulty=100)
 
     problems += 1
 

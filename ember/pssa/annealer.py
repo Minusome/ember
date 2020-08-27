@@ -3,9 +3,9 @@ import random
 from collections import defaultdict, deque
 from typing import List, Dict
 
-from pssa.context import OptimizationContext
-from pssa.graph import FastMutableGraph
-from pssa.schedule import T_MAX, move_params
+from ember.pssa.context import OptimizationContext
+from ember.pssa.graph import FastMutableGraph
+from ember.pssa.schedule import T_MAX, move_params
 
 
 def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[int, List[int]]):

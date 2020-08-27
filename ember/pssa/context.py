@@ -4,7 +4,7 @@ import dwave_networkx as dnx
 import networkx as nx
 import numpy as np
 
-from pssa.graph import FastMutableGraph
+from ember.pssa.graph import FastMutableGraph
 
 
 class OptimizationContext:

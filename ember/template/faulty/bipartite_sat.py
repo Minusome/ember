@@ -3,15 +3,16 @@ from collections import defaultdict
 import dwave_networkx as dnx
 import numpy as np
 from ortools.sat.python import cp_model
+from networkx import Graph
 
-from template.util import Chimera
+from ember.template.util import Chimera
 
 
 class BipartiteSAT:
 
-    def __init__(self, G, C: Chimera):
-        self.G = G
-        self.C = C
+    def __init__(self, guest: Graph, target: Chimera):
+        self.G = guest
+        self.C = target
         self.h_embed, self.v_embed = self._bipartite_embed()
         self.adj = self._construct_adj_matrix()
         self.h_embed, self.v_embed, self.adj = self._compress_to_unique()
@@ -62,11 +63,10 @@ class BipartiteSAT:
             return nb_nodes
 
         v_inverse = {v: i for i in range(len(self.v_embed)) for v in self.v_embed[i]}
-        chimera = self.C.graph
 
         adj = np.zeros((len(self.h_embed), len(self.v_embed)))
         for i, h_chain in enumerate(self.h_embed):
-            for nb in neighbours(chimera, h_chain):
+            for nb in neighbours(self.C, h_chain):
                 adj[i][v_inverse[nb]] = 1
 
         return adj

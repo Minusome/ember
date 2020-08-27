@@ -1,7 +1,7 @@
 import networkx as nx
 import pytest
 
-from pssa.context import OptimizationContext
+from ember.pssa.context import OptimizationContext
 
 
 def test_chimera_distance_dict():
