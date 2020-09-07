@@ -54,4 +54,4 @@ def check_embedding(em, G, C):
 def plot_chimera_embedding(em, C):
     plt.ion()
     plt.figure(figsize=(20, 20))
-    dnx.draw_chimera_embedding(C.graph, em, with_labels=True, unused_color=(1.0, 1.0, 1.0, 1.0))
+    dnx.draw_chimera_embedding(C, em, with_labels=True, unused_color=(1.0, 1.0, 1.0, 1.0))

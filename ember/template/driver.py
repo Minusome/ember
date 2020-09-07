@@ -4,6 +4,7 @@ import networkx as nx
 
 from ember.template.faulty.bipartite_sat import BipartiteSAT
 from ember.template.util import *
+# from minorminer import find_embedding
 
 times = []
 found = 0
@@ -22,6 +23,7 @@ for i in range(0, 8):
     # walltime = time.process_time() - start
 
     em, walltime = BipartiteSAT(G, C).solve(return_walltime=True)
+    print(walltime)
 
     if check_embedding(em, G, C):
         found += 1
