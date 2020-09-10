@@ -15,7 +15,7 @@ class Chimera:
         self.graph.remove_nodes_from(self.faulty)
 
     def random_faulty(self, k):
-        self.faulty = choices(list(range((self.M ** 2) * self.L * 2)), k=100)
+        self.faulty = choices(list(range((self.M ** 2) * self.L * 2)), k=k)
         self.graph = dnx.chimera_graph(m=self.M, t=self.L)
         self.graph.remove_nodes_from(self.faulty)
         return self
