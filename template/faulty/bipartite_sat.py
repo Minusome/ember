@@ -176,8 +176,8 @@ class BipartiteSAT:
             return emb
 
 
-G=nx.generators.complete_graph(10)
-C=Chimera(16, 4).random_faulty(0)
+G=nx.generators.complete_graph(4)
+C=Chimera(4, 4).random_faulty(1)
 
 q = BipartiteSAT(G, C)
 em=q.solve()

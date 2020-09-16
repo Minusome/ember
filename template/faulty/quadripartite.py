@@ -1,4 +1,5 @@
 from collections import defaultdict
+from random import seed
 
 import networkx as nx
 import dwave_networkx as dnx
@@ -14,12 +15,43 @@ class Quadripartite:
         self.G = G
         self.C = C
         self.U1, self.U2, self.U3, self.U4 = self._quadripartite_embed()
+        print(self.U1)
+        print(self.U2)
+        print(self.U3)
+        print(self.U4)
         self.adj12 = self._construct_adj_matrix(self.U1, self.U2)
         self.adj23 = self._construct_adj_matrix(self.U2, self.U3)
         self.adj34 = self._construct_adj_matrix(self.U3, self.U4)
-
+        print(self.adj12)
+        print(self.adj23)
+        print(self.adj34)
         self.U1, self.U2, self.U3, self.U4, self.adj12, self.adj23, self.adj34 = self._compress_to_unique()
+        print(self.U1)
+        print(self.U2)
+        print(self.U3)
+        print(self.U4)
+        print(self.adj12)
+        print(self.adj23)
+        print(self.adj34)
+        self.U23 = self._create_U2_U3_pairs()
+        # print(self.U23)
 
+    def _create_U2_U3_pairs(self):
+        index3, index2 = np.where(self.adj23 == 1)
+        U23 = defaultdict(list)
+        chimera = self.C.graph
+
+        for i in range(len(index2)):
+            u2 = self.U2[index2[i]]
+            u3 = self.U3[index3[i]]
+            for chain2 in u2:
+                for nb in self._neighbours(chimera, chain2):
+                    for chain3 in u3:
+                        if nb in chain3:
+                            U23[(index2[i], index3[i])].append((chain2, chain3))
+                            continue
+
+        return U23
 
     def _quadripartite_embed(self):
 
@@ -28,6 +60,7 @@ class Quadripartite:
                 super.append(sub)
 
         M, L, faulty = self.C.M, self.C.L, self.C.faulty
+        print(faulty)
         to_linear = dnx.chimera_coordinates(M, t=L).chimera_to_linear
 
         U1 = []
@@ -83,20 +116,20 @@ class Quadripartite:
             append_nonempty(U4, chain)
         return U1, U2, U3, U4
 
-    def _construct_adj_matrix(self, p1, p2):
+    def _neighbours(self, graph, chain):
+        chain = set(chain)
+        nb_nodes = {node for c in chain for node in graph[c]}
+        nb_nodes.difference_update(chain)
+        return nb_nodes
 
-        def neighbours(graph, chain):
-            chain = set(chain)
-            nb_nodes = {node for c in chain for node in graph[c]}
-            nb_nodes.difference_update(chain)
-            return nb_nodes
+    def _construct_adj_matrix(self, p1, p2):
 
         v_inverse = {v: i for i in range(len(p1)) for v in p1[i]}
         chimera = self.C.graph
 
         adj = np.zeros((len(p2), len(p1)))
         for i, h_chain in enumerate(p2):
-            for nb in neighbours(chimera, h_chain):
+            for nb in self._neighbours(chimera, h_chain):
                 try:
                     adj[i][v_inverse[nb]] = 1
                 except:
@@ -156,6 +189,7 @@ class Quadripartite:
         return u1_group, u2_group, u3_group, u4_group, adj12, adj23, adj34
 
     def solve(self, verbose=True, timeout=500, return_walltime=False):
+        print('-----------------------------start solving-----------------------------')
         N2, N1 = self.adj12.shape
         N3_, N2_ = self.adj23.shape
         N4, N3 = self.adj34.shape
@@ -176,10 +210,9 @@ class Quadripartite:
         y4 = np.array([[model.NewBoolVar(f"y4_{i}_{j}") for j in range(N4)] for i in range(I)])
 
         valid_edge12 = [(l, r) for l in range(N2) for r in range(N1) if self.adj12[l, r] == 1]
-        # valid_edge23 = [(l, r) for l in range(N3) for r in range(N2) if self.adj23[l, r] == 1]
         valid_edge34 = [(l, r) for l in range(N4) for r in range(N3) if self.adj34[l, r] == 1]
-
-
+        print(valid_edge12)
+        print(valid_edge34)
         # decision variable for every valid mapping of guest edge to node edge
         for u, v in self.G.edges:
             or_terms = []
@@ -193,7 +226,6 @@ class Quadripartite:
                 model.AddImplication(vu, y1[u, r])
 
                 or_terms.extend((uv, vu))
-            # assert at least one mapping exist per guest node
 
             for l, r in valid_edge34:
                 uv = model.NewBoolVar(f"34_({u},{v})_({l},{r})")
@@ -207,106 +239,59 @@ class Quadripartite:
                 or_terms.extend((uv, vu))
 
             model.AddBoolOr(or_terms)
-        #
-        # for u, v in self.G.edges:
-        #     or_terms = []
-        #     for l, r in valid_edge23:
-        #         uv = model.NewBoolVar(f"23_({u},{v})_({l},{r})")
-        #         model.AddImplication(uv, y3[u, l])
-        #         model.AddImplication(uv, y2[v, r])
-        #
-        #         vu = model.NewBoolVar(f"23_({v},{u})_({l},{r})")
-        #         model.AddImplication(vu, y3[v, l])
-        #         model.AddImplication(vu, y2[u, r])
-        #
-        #         or_terms.extend((uv, vu))
-        #     model.AddBoolOr(or_terms)
-        #
-        # for u, v in self.G.edges:
-        #     or_terms = []
-        #     for l, r in valid_edge34:
-        #         uv = model.NewBoolVar(f"34_({u},{v})_({l},{r})")
-        #         model.AddImplication(uv, y4[u, l])
-        #         model.AddImplication(uv, y3[v, r])
-        #
-        #         vu = model.NewBoolVar(f"34_({v},{u})_({l},{r})")
-        #         model.AddImplication(vu, y4[v, l])
-        #         model.AddImplication(vu, y3[u, r])
-        #
-        #         or_terms.extend((uv, vu))
-        #     model.AddBoolOr(or_terms)
-        # for i in range(I):
-        #     for n1 in range(N1):
-        #         for n2 in range(N2):
+
         for i in range(I):
             for n1 in range(N1):
                 for n2 in range(N2):
                     model.Add(y2[i, n2] + y1[i, n1] <= int(1 + self.adj12[n2, n1]))
 
-        for i in range(I):
             for n2 in range(N2):
                 for n3 in range(N3):
                     model.Add(y3[i, n3] + y2[i, n2] <= int(1 + self.adj23[n3, n2]))
 
-        for i in range(I):
             for n3 in range(N3):
                 for n4 in range(N4):
                     model.Add(y4[i, n4] + y3[i, n3] <= int(1 + self.adj34[n4, n3]))
 
-        for i in range(I):
-            for n2 in range(N2):
-                for n3 in range(N3):
-                    for n4 in range(N4):
-                        model.Add(y4[i, n4] + y2[i, n2] - y3[i, n3] <= int(self.adj23[n3, n2] * self.adj34[n4, n3]))
-
-        for i in range(I):
-            for n1 in range(N1):
-                for n2 in range(N2):
-                    for n3 in range(N3):
-                        model.Add(y3[i, n3] + y1[i, n1] - y2[i, n2] <= int(self.adj12[n2, n1] * self.adj23[n3, n2]))
-
-        for i in range(I):
-            for n1 in range(N1):
-                for n2 in range(N2):
-                    for n3 in range(N3):
-                        for n4 in range(N4):
-                            # model.Add(y4[i, n4] + y1[i, n1] - y2[i, n2] <= int(self.adj12[n2, n1] * self.adj23[n3, n2] * self.adj34[n4, n3]))
-                            # model.Add(y4[i, n4] + y1[i, n1] - y3[i, n3] <= int(self.adj12[n2, n1] * self.adj23[n3, n2] * self.adj34[n4, n3]))
-                            model.Add(y4[i, n4] + y1[i, n1] - y3[i, n3] - y2[i, n2] < int(self.adj12[n2, n1] * self.adj23[n3, n2] * self.adj34[n4, n3]))
+            model.Add(sum(y1[i, :]) + sum(y3[i, :]) - sum(y2[i, :]) <= 1)
+            model.Add(sum(y2[i, :]) + sum(y4[i, :]) - sum(y3[i, :]) <= 1)
+            model.Add(sum(y1[i, :]) + sum(y4[i, :]) - sum(y3[i, :]) - sum(y2[i, :]) < 1)
         #
         # for i in range(I):
-        #     for l in range(N2):
-        #         for r in range(N1):
-        #             model.Add(y2[i, l] + y1[i, r] <= int(1 + self.adj12[l, r]))
-        # for i in range(I):
-        #     for l in range(N4):
-        #         for r in range(N3):
-        #             model.Add(y4[i, l] + y3[i, r] <= int(1 + self.adj34[l, r]))
+        #     for n2 in range(N2):
+        #         for n3 in range(N3):
+        #             model.Add(y3[i, n3] + y2[i, n2] <= int(1 + self.adj23[n3, n2]))
         #
-        # # TODO: not only have connection but connection is assigned
         # for i in range(I):
-        #     for l in range(N3):
-        #         for r in range(N1):
-        #             x = self.adj12[:, r]
-        #             y = self.adj23[l]
-        #             assert len(x) == len(y)
-        #             model.Add(y3[i, l] + y1[i, r] <= int(1 + sum(x * y)))
+        #     for n3 in range(N3):
+        #         for n4 in range(N4):
+        #             model.Add(y4[i, n4] + y3[i, n3] <= int(1 + self.adj34[n4, n3]))
+        #
         # for i in range(I):
-        #     for l in range(N4):
-        #         for r in range(N2):
-        #             x = self.adj23[:, r]
-        #             y = self.adj34[l]
-        #             assert len(x) == len(y)
-        #             model.Add(y4[i, l] + y2[i, r] <= int(1 + sum(x * y)))
+        #     model.Add(sum(y1[i, :]) + sum(y3[i, :]) - sum(y2[i, :]) <= 1)
+        #     model.Add(sum(y2[i, :]) + sum(y4[i, :]) - sum(y3[i, :]) <= 1)
+        #     model.Add(sum(y1[i, :]) + sum(y4[i, :]) - sum(y3[i, :]) - sum(y2[i, :]) < 1)
+        #
         # for i in range(I):
-        #     for l in range(N4):
-        #         for r in range(N1):
-        #             x = self.adj12[:, r]
-        #             y = self.adj34[l]
-        #             z = self.adj23[:, np.where(x == 1)[0]]
-        #             z = [min([sum(item), 1]) for item in z]
-        #             assert len(z) == len(y)
-        #             model.Add(y4[i, l] + y2[i, r] <= int(1 + sum(z * y)))
+        #     for n2 in range(N2):
+        #         for n3 in range(N3):
+        #             for n4 in range(N4):
+        #                 print(i, n2, n3, n4, "matrix", self.adj23[n3, n2], self.adj34[n4, n3], int(self.adj23[n3, n2] * self.adj34[n4, n3]))
+        #                 model.Add(y4[i, n4] + y2[i, n2] - y3[i, n3] <= int(self.adj23[n3, n2] + self.adj34[n4, n3]))
+        #
+        # for i in range(I):
+        #     for n1 in range(N1):
+        #         for n2 in range(N2):
+        #             for n3 in range(N3):
+        #                 model.Add(y3[i, n3] + y1[i, n1] - y2[i, n2] <= int(self.adj12[n2, n1] * self.adj23[n3, n2]))
+        #
+        # for i in range(I):
+        #     for n1 in range(N1):
+        #         for n2 in range(N2):
+        #             for n3 in range(N3):
+        #                 for n4 in range(N4):
+        #                     model.Add(y4[i, n4] + y1[i, n1] - y3[i, n3] - y2[i, n2] < int(
+        #                         self.adj12[n2, n1] * self.adj23[n3, n2] * self.adj34[n4, n3]))
 
         # guest node should only be assigned once per partite
         for i in range(I):
@@ -328,7 +313,7 @@ class Quadripartite:
         solver = cp_model.CpSolver()
         solver.parameters.use_pb_resolution = True
         solver.parameters.log_search_progress = verbose
-        solver.parameters.max_time_in_seconds = timeout
+        # solver.parameters.max_time_in_seconds = timeout
         # solver.parameters.search_branching = cp_model.PORTFOLIO_SEARCH
         # solver.parameters.binary_minimization_algorithm = 2
         status = solver.Solve(model)
@@ -338,25 +323,28 @@ class Quadripartite:
         if status != cp_model.OPTIMAL:
             return emb
 
-        # print('-------------------------------')
-        # print(self.adj12)
-        # print(self.U1)
-        # print(N1)
-        # print(I)
-        # print(y1)
-        # print(solver.BooleanValue(y1[0, 0]))
-        # for i in range(I):
-        #     for p1 in range(N1):
-        #         print(i, p1)
-        #         print(solver.BooleanValue(y1[i, p1]))
-        # print('-------------------------------')
-        #
         for i in range(I):
             for p1 in range(N1):
                 if solver.BooleanValue(y1[i, p1]):
                     emb[i].extend(self.U1[p1].pop())
                     break
 
+            # for p2 in range(N2):
+            #     for p3 in range(N3):
+            #         print(self.U23[(p2, p3)])
+            #         if solver.BooleanValue(y2[i, p2]) & solver.BooleanValue(y3[i, p3]):
+            #             pair = self.U23[(p2, p3)].pop()
+            #             emb[i].extend(pair[0])
+            #             emb[i].extend(pair[1])
+            #             self.U2[p2].remove(pair[0])
+            #             self.U3[p3].remove(pair[1])
+            #         else:
+            #             if solver.BooleanValue(y2[i, p2]):
+            #                 emb[i].extend(self.U2[p2].pop())
+            #                 break
+            #             if solver.BooleanValue(y3[i, p3]):
+            #                 emb[i].extend(self.U3[p3].pop())
+            #                 break
             # todo: if i in p2 and p3, pop a pair instead of fifo ordering
             for p2 in range(N2):
                 if solver.BooleanValue(y2[i, p2]):
@@ -378,11 +366,13 @@ class Quadripartite:
         else:
             return emb
 
-G=nx.generators.complete_graph(10)
-C=Chimera(16, 4).random_faulty(0)
+
+seed(0)
+G = nx.generators.complete_graph(5)
+C = Chimera(16, 4).random_faulty(10)
 
 q = Quadripartite(G, C)
-em=q.solve()
+em = q.solve()
 print(em)
 if check_embedding(em, G, C):
     print("true")
