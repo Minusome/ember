@@ -4,7 +4,6 @@ from random import seed
 import networkx as nx
 import dwave_networkx as dnx
 import numpy as np
-import copy
 from ortools.sat.python import cp_model
 
 from template.util import Chimera, check_embedding
@@ -127,20 +126,19 @@ class Quadripartite:
             u4_group[idx].append(chain)
 
         [u3_ind, u2_ind] = np.where(self.adj23 == 1)
-
-        unconnected_u2 = list(set(range(self.adj23.shape[1])) - set(u2_ind))
-        unconnected_u3 = list(set(range(self.adj23.shape[0])) - set(u3_ind))
+        unconnected_u2 = [i for i in range(self.adj23.shape[1]) if i not in u2_ind]
+        unconnected_u3 = [i for i in range(self.adj23.shape[0]) if i not in u3_ind]
 
         adj1234 = np.concatenate([np.transpose(adj12[u2_ind, :]), adj34[:, u3_ind]])
         adj1234, adj1234_ind = np.unique(adj1234, return_inverse=True, axis=1)
 
         adj12_ind = np.array(adj1234_ind)
-        for broken in sorted(unconnected_u2):
-            adj12_ind = np.insert(adj12_ind, broken, max(adj12_ind) + 1)
+        for unconnected in unconnected_u2:
+            adj12_ind = np.insert(adj12_ind, unconnected, max(adj12_ind) + 1)
 
         adj34_ind = np.array(adj1234_ind)
-        for broken in sorted(unconnected_u3):
-            adj34_ind = np.insert(adj34_ind, broken, max(adj34_ind) + 1)
+        for unconnected in unconnected_u3:
+            adj34_ind = np.insert(adj34_ind, unconnected, max(adj34_ind) + 1)
 
         for idx, chain in zip(adj12_ind, self.U2):
             u2_group[idx].append(chain)
@@ -247,7 +245,7 @@ class Quadripartite:
         solver = cp_model.CpSolver()
         solver.parameters.use_pb_resolution = True
         solver.parameters.log_search_progress = verbose
-        # solver.parameters.max_time_in_seconds = timeout
+        solver.parameters.max_time_in_seconds = timeout
         # solver.parameters.search_branching = cp_model.PORTFOLIO_SEARCH
         # solver.parameters.binary_minimization_algorithm = 2
         status = solver.Solve(model)
@@ -271,20 +269,22 @@ class Quadripartite:
                 for p3 in range(N3):
                     if solver.BooleanValue(y2[i, p2]) and solver.BooleanValue(y3[i, p3]):
                         pairs[i] = (p2, p3)
+                        break
+
+            if i not in pairs.keys():
+                for p2 in range(N2):
+                    if solver.BooleanValue(y2[i, p2]):
+                        u2_emb[i] = p2
+                        break
+                for p3 in range(N3):
+                    if solver.BooleanValue(y3[i, p3]):
+                        u3_emb[i] = p3
+                        break
 
             for p4 in range(N4):
                 if solver.BooleanValue(y4[i, p4]):
                     emb[i].extend(self.U4[p4].pop())
                     break
-
-        for i in range(I):
-            if i not in pairs.keys():
-                for p2 in range(N2):
-                    if solver.BooleanValue(y2[i, p2]):
-                        u2_emb[i] = p2
-                for p3 in range(N3):
-                    if solver.BooleanValue(y3[i, p3]):
-                        u3_emb[i] = p3
 
         for i, pair in pairs.items():
             nodes = self.U23[pair].pop()
@@ -305,7 +305,7 @@ class Quadripartite:
 
 seed(0)
 G = nx.generators.complete_graph(10)
-C = Chimera(16, 4).random_faulty(10)
+C = Chimera(16, 4).random_faulty(20)
 
 q = Quadripartite(G, C)
 em = q.solve()
