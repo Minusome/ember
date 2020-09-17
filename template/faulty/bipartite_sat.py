@@ -15,13 +15,7 @@ class BipartiteSAT:
         self.C = C
         self.h_embed, self.v_embed = self._bipartite_embed()
         self.adj = self._construct_adj_matrix()
-        print(self.h_embed)
-        print(self.v_embed)
-        print(self.adj)
         self.h_embed, self.v_embed, self.adj = self._compress_to_unique()
-        print(self.h_embed)
-        print(self.v_embed)
-        print(self.adj)
 
     def _bipartite_embed(self):
 
@@ -158,8 +152,6 @@ class BipartiteSAT:
         if status == cp_model.UNKNOWN:
             return emb
 
-        print(solver.BooleanValue(yl[0, 0]))
-
         for i in range(I):
             for l in range(NL):
                 if solver.BooleanValue(yl[i, l]):
@@ -176,11 +168,11 @@ class BipartiteSAT:
             return emb
 
 
-G=nx.generators.complete_graph(4)
-C=Chimera(4, 4).random_faulty(1)
+G = nx.generators.complete_graph(20)
+C = Chimera(16, 4).random_faulty(40)
 
 q = BipartiteSAT(G, C)
-em=q.solve()
+em = q.solve()
 print(em)
 if check_embedding(em, G, C):
     print("true")

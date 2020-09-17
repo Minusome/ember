@@ -19,27 +19,22 @@ class Quadripartite:
         self.adj23 = self._construct_adj_matrix(self.U2, self.U3)
         self.adj34 = self._construct_adj_matrix(self.U3, self.U4)
         self.U1, self.U2, self.U3, self.U4, self.adj12, self.adj23, self.adj34 = self._compress_to_unique()
-        self.U23, self.U2_spare, self.U3_spare = self._create_U2_U3_pairs()
+        self.U23 = self._create_U2_U3_pairs()
 
     def _create_U2_U3_pairs(self):
         index3, index2 = np.where(self.adj23 == 1)
         U23 = defaultdict(list)
         chimera = self.C.graph
 
-        U2 = copy.deepcopy(self.U2)
-        U3 = copy.deepcopy(self.U3)
-
         for i in range(len(index2)):
-            u2 = U2[index2[i]]
-            u3 = U3[index3[i]]
+            u2 = self.U2[index2[i]]
+            u3 = self.U3[index3[i]]
             for chain2 in u2:
                 for nb in self._neighbours(chimera, chain2):
                     for chain3 in u3:
                         if nb in chain3:
                             U23[(index2[i], index3[i])].append((chain2, chain3))
-                            U2[index2[i]].remove(chain2)
-                            U3[index3[i]].remove(chain3)
-        return U23, U2, U3
+        return U23
 
     def _quadripartite_embed(self):
 
@@ -48,60 +43,54 @@ class Quadripartite:
                 super.append(sub)
 
         M, L, faulty = self.C.M, self.C.L, self.C.faulty
-        print(faulty)
         to_linear = dnx.chimera_coordinates(M, t=L).chimera_to_linear
 
         U1 = []
-        for i in range(int(M * L / 2)):
-            chain = []
+        U4 = []
+        for i in range(M * L):
+            chain1 = []
+            chain4 = []
             cell, unit = i // L, i % L
             for j in range(M):
                 ln = to_linear((cell, j, 1, unit))
                 if ln in faulty:
-                    append_nonempty(U1, chain)
-                    chain = []
+                    if i < M * L / 2:
+                        append_nonempty(U1, chain1)
+                        chain1 = []
+                    else:
+                        append_nonempty(U4, chain4)
+                        chain4 = []
                 else:
-                    chain.append(ln)
-            append_nonempty(U1, chain)
+                    if i < M * L / 2:
+                        chain1.append(ln)
+                    else:
+                        chain4.append(ln)
+            append_nonempty(U1, chain1)
+            append_nonempty(U4, chain4)
 
         U2 = []
-        for i in range(M * L):
-            chain = []
-            cell, unit = i // L, i % L
-            for j in range(int(M / 2)):
-                ln = to_linear((j, cell, 0, unit))
-                if ln in faulty:
-                    append_nonempty(U2, chain)
-                    chain = []
-                else:
-                    chain.append(ln)
-            append_nonempty(U2, chain)
-
         U3 = []
         for i in range(M * L):
-            chain = []
-            cell, unit = i // L, i % L
-            for j in range(int(M / 2), M):
-                ln = to_linear((j, cell, 0, unit))
-                if ln in faulty:
-                    append_nonempty(U3, chain)
-                    chain = []
-                else:
-                    chain.append(ln)
-            append_nonempty(U3, chain)
-
-        U4 = []
-        for i in range(int(M * L / 2), M * L):
-            chain = []
+            chain2 = []
+            chain3 = []
             cell, unit = i // L, i % L
             for j in range(M):
-                ln = to_linear((cell, j, 1, unit))
+                ln = to_linear((j, cell, 0, unit))
                 if ln in faulty:
-                    append_nonempty(U4, chain)
-                    chain = []
+                    if j < M / 2:
+                        append_nonempty(U2, chain2)
+                        chain2 = []
+                    else:
+                        append_nonempty(U3, chain3)
+                        chain3 = []
                 else:
-                    chain.append(ln)
-            append_nonempty(U4, chain)
+                    if j < M / 2:
+                        chain2.append(ln)
+                    else:
+                        chain3.append(ln)
+            append_nonempty(U2, chain2)
+            append_nonempty(U3, chain3)
+
         return U1, U2, U3, U4
 
     def _neighbours(self, graph, chain):
@@ -128,7 +117,6 @@ class Quadripartite:
         u1_group, u2_group, u3_group, u4_group = defaultdict(list), defaultdict(list), defaultdict(list), defaultdict(
             list)
 
-        # compress 1 and 4
         adj12, u1_inv = np.unique(self.adj12, return_inverse=True, axis=1)
         adj34, u4_inv = np.unique(self.adj34, return_inverse=True, axis=0)
 
@@ -138,26 +126,20 @@ class Quadripartite:
         for idx, chain in zip(u4_inv, self.U4):
             u4_group[idx].append(chain)
 
-        u2_ind, u3_ind = np.where(self.adj23 == 1)[1], np.where(self.adj23 == 1)[0]
-        adj12_connected = np.array(copy.deepcopy(adj12[u2_ind, :]))
-        adj34_connected = np.array(copy.deepcopy(adj34[:, u3_ind]))
+        [u3_ind, u2_ind] = np.where(self.adj23 == 1)
 
-        adj12_broken_ind = list(set(range(self.adj23.shape[1])) - set(u2_ind))
-        adj12_broken = np.delete(adj12, u2_ind, axis=0)
+        unconnected_u2 = list(set(range(self.adj23.shape[1])) - set(u2_ind))
+        unconnected_u3 = list(set(range(self.adj23.shape[0])) - set(u3_ind))
 
-        adj34_broken_ind = list(set(range(self.adj23.shape[0])) - set(u3_ind))
-        adj34_broken = np.delete(adj34, u3_ind, axis=1)
+        adj1234 = np.concatenate([np.transpose(adj12[u2_ind, :]), adj34[:, u3_ind]])
+        adj1234, adj1234_ind = np.unique(adj1234, return_inverse=True, axis=1)
 
-        adj1234 = np.concatenate([np.transpose(adj12_connected), adj34_connected])
-        adj1234_unique, adj1234_ind = np.unique(adj1234, return_inverse=True, axis=1)
-
-        # TODO: sometimes raises index out of bound exception
-        adj12_ind = np.array(copy.deepcopy(adj1234_ind))
-        for broken in adj12_broken_ind:
+        adj12_ind = np.array(adj1234_ind)
+        for broken in sorted(unconnected_u2):
             adj12_ind = np.insert(adj12_ind, broken, max(adj12_ind) + 1)
 
-        adj34_ind = copy.deepcopy(adj1234_ind)
-        for broken in adj34_broken_ind:
+        adj34_ind = np.array(adj1234_ind)
+        for broken in sorted(unconnected_u3):
             adj34_ind = np.insert(adj34_ind, broken, max(adj34_ind) + 1)
 
         for idx, chain in zip(adj12_ind, self.U2):
@@ -166,15 +148,10 @@ class Quadripartite:
         for idx, chain in zip(adj34_ind, self.U3):
             u3_group[idx].append(chain)
 
-        adj12_unique = adj1234_unique[0:len(np.transpose(adj12_connected)), :]
-        adj12 = np.concatenate([np.transpose(adj12_unique), adj12_broken])
-        adj34_unique = adj1234_unique[len(np.transpose(adj12_connected)):, :]
-        adj34 = np.concatenate([adj34_unique, adj34_broken], axis=1)
         new_u1 = [item[0] for item in list(u1_group.values())]
         new_u2 = [item[0] for item in list(u2_group.values())]
         new_u3 = [item[0] for item in list(u3_group.values())]
         new_u4 = [item[0] for item in list(u4_group.values())]
-        # this is wrong
         adj12 = self._construct_adj_matrix(new_u1, new_u2)
         adj23 = self._construct_adj_matrix(new_u2, new_u3)
         adj34 = self._construct_adj_matrix(new_u3, new_u4)
@@ -182,14 +159,7 @@ class Quadripartite:
         final_u2 = {list(u2_group.values()).index(item): item for item in list(u2_group.values())}
         final_u3 = {list(u3_group.values()).index(item): item for item in list(u3_group.values())}
         final_u4 = {list(u4_group.values()).index(item): item for item in list(u4_group.values())}
-        print(self.adj23)
-        print(self.U1)
-        print(self.U2)
-        print(self.U3)
-        print(self.U4)
-        print(adj23)
-        print(final_u2)
-        print(final_u3)
+
         return final_u1, final_u2, final_u3, final_u4, adj12, adj23, adj34
 
     def solve(self, verbose=True, timeout=500, return_walltime=False):
@@ -287,8 +257,6 @@ class Quadripartite:
         if status != cp_model.OPTIMAL:
             return emb
 
-        spare_u2 = defaultdict(list)
-        spare_u3 = defaultdict(list)
         pairs = defaultdict(tuple)
         u2_emb = defaultdict(int)
         u3_emb = defaultdict(int)
