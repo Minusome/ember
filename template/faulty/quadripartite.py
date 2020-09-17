@@ -170,19 +170,27 @@ class Quadripartite:
         adj12 = np.concatenate([np.transpose(adj12_unique), adj12_broken])
         adj34_unique = adj1234_unique[len(np.transpose(adj12_connected)):, :]
         adj34 = np.concatenate([adj34_unique, adj34_broken], axis=1)
+        new_u1 = [item[0] for item in list(u1_group.values())]
         new_u2 = [item[0] for item in list(u2_group.values())]
         new_u3 = [item[0] for item in list(u3_group.values())]
+        new_u4 = [item[0] for item in list(u4_group.values())]
         # this is wrong
+        adj12 = self._construct_adj_matrix(new_u1, new_u2)
         adj23 = self._construct_adj_matrix(new_u2, new_u3)
+        adj34 = self._construct_adj_matrix(new_u3, new_u4)
+        final_u1 = {list(u1_group.values()).index(item): item for item in list(u1_group.values())}
         final_u2 = {list(u2_group.values()).index(item): item for item in list(u2_group.values())}
         final_u3 = {list(u3_group.values()).index(item): item for item in list(u3_group.values())}
+        final_u4 = {list(u4_group.values()).index(item): item for item in list(u4_group.values())}
         print(self.adj23)
+        print(self.U1)
         print(self.U2)
         print(self.U3)
+        print(self.U4)
         print(adj23)
         print(final_u2)
         print(final_u3)
-        return u1_group, final_u2, final_u3, u4_group, adj12, adj23, adj34
+        return final_u1, final_u2, final_u3, final_u4, adj12, adj23, adj34
 
     def solve(self, verbose=True, timeout=500, return_walltime=False):
         N2, N1 = self.adj12.shape
@@ -290,92 +298,36 @@ class Quadripartite:
                 if solver.BooleanValue(y1[i, p1]):
                     emb[i].extend(self.U1[p1].pop())
                     break
-            # for p2 in range(N2):
-            #     for p3 in range(N3):
-            #         if solver.BooleanValue(y2[i, p2]) & solver.BooleanValue(y3[i, p3]):
-            #             pair = self.U23[(p2, p3)].pop()
-            #             emb[i].extend(pair[0])
-            #             emb[i].extend(pair[1])
-            #         else:
-            #             if solver.BooleanValue(y2[i, p2]):
-            #                 if len(spare_u2[p2]) > 0:
-            #                     emb[i].extend(spare_u2[p2].pop())
-            #                 elif len(self.U2_spare[p2]) > 0:
-            #                     emb[i].extend(self.U2_spare[p2].pop())
-            #                 else:
-            #                     pair = self.U23[(p2, p3)].pop()
-            #                     emb[i].extend(pair[0])
-            #                     spare_u3[p3].extend(pair[1])
-            #             if solver.BooleanValue(y3[i, p3]):
-            #                 if len(spare_u3[p3]) > 0:
-            #                     emb[i].extend(spare_u3[p3].pop())
-            #                 elif len(self.U3_spare[p3]) > 0:
-            #                     emb[i].extend(self.U3_spare[p3].pop())
-            #                 else:
-            #                     pair = self.U23[(p2, p3)].pop()
-            #                     emb[i].extend(pair[1])
-            #                     spare_u2[p2].extend(pair[0])
-            # for p2 in range(N2):
-            #     for p3 in range(N3):
-            #         print(self.U23[(p2, p3)])
-            #         if solver.BooleanValue(y2[i, p2]) & solver.BooleanValue(y3[i, p3]):
-            #             pair = self.U23[(p2, p3)].pop()
-            #             emb[i].extend(pair[0])
-            #             emb[i].extend(pair[1])
-            #             self.U2[p2].remove(pair[0])
-            #             self.U3[p3].remove(pair[1])
-            #         else:
-            #             if solver.BooleanValue(y2[i, p2]):
-            #                 emb[i].extend(self.U2[p2].pop())
-            #                 break
-            #             if solver.BooleanValue(y3[i, p3]):
-            #                 emb[i].extend(self.U3[p3].pop())
-            #                 break
-            # todo: if i in p2 and p3, pop a pair instead of fifo ordering
-
-            # for p2 in range(N2):
-            #     for p3 in range(N3):
-            #         if solver.BooleanValue(y2[i, p2]) and solver.BooleanValue(y3[i, p3]):
-            #             pairs[i] = (p2, p3)
 
             for p2 in range(N2):
-                if solver.BooleanValue(y2[i, p2]):
-                    emb[i].extend(self.U2[p2].pop())
-                    break
-            for p3 in range(N3):
-                if solver.BooleanValue(y3[i, p3]):
-                    emb[i].extend(self.U3[p3].pop())
-                    break
+                for p3 in range(N3):
+                    if solver.BooleanValue(y2[i, p2]) and solver.BooleanValue(y3[i, p3]):
+                        pairs[i] = (p2, p3)
 
             for p4 in range(N4):
                 if solver.BooleanValue(y4[i, p4]):
                     emb[i].extend(self.U4[p4].pop())
                     break
-        # for i in range(I):
-        #     if i not in pairs.keys():
-        #         for p2 in range(N2):
-        #             if solver.BooleanValue(y2[i, p2]):
-        #                 u2_emb[i] = p2
-        #         for p3 in range(N3):
-        #             if solver.BooleanValue(y3[i, p3]):
-        #                 u3_emb[i] = p3
 
-        # print(pairs)
-        # print(u2_emb)
-        # print(u3_emb)
-        # for i, pair in pairs.items():
-        #     nodes = self.U23[pair].pop()
-        #     emb[i].extend(nodes[0])
-        #     emb[i].extend(nodes[1])
-        #     self.U2[pair[0]].remove(nodes[0])
-        #     self.U3[pair[1]].remove(nodes[1])
-        # print(self.U2)
-        # for i, u2 in u2_emb.items():
-        #     print(i, u2)
-        #     emb[i].extend(self.U2[u2].pop())
-        # for i, u3 in u3_emb.items():
-        #     print(i, u3)
-        #     emb[i].extend(self.U3[u3].pop())
+        for i in range(I):
+            if i not in pairs.keys():
+                for p2 in range(N2):
+                    if solver.BooleanValue(y2[i, p2]):
+                        u2_emb[i] = p2
+                for p3 in range(N3):
+                    if solver.BooleanValue(y3[i, p3]):
+                        u3_emb[i] = p3
+
+        for i, pair in pairs.items():
+            nodes = self.U23[pair].pop()
+            emb[i].extend(nodes[0])
+            emb[i].extend(nodes[1])
+            self.U2[pair[0]].remove(nodes[0])
+            self.U3[pair[1]].remove(nodes[1])
+        for i, u2 in u2_emb.items():
+            emb[i].extend(self.U2[u2].pop())
+        for i, u3 in u3_emb.items():
+            emb[i].extend(self.U3[u3].pop())
 
         if return_walltime:
             return emb, solver.WallTime()
@@ -384,8 +336,8 @@ class Quadripartite:
 
 
 seed(0)
-G = nx.generators.complete_graph(5)
-C = Chimera(4, 4).random_faulty(5)
+G = nx.generators.complete_graph(10)
+C = Chimera(16, 4).random_faulty(10)
 
 q = Quadripartite(G, C)
 em = q.solve()
