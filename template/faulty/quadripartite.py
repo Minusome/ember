@@ -15,43 +15,31 @@ class Quadripartite:
         self.G = G
         self.C = C
         self.U1, self.U2, self.U3, self.U4 = self._quadripartite_embed()
-        print(self.U1)
-        print(self.U2)
-        print(self.U3)
-        print(self.U4)
         self.adj12 = self._construct_adj_matrix(self.U1, self.U2)
         self.adj23 = self._construct_adj_matrix(self.U2, self.U3)
         self.adj34 = self._construct_adj_matrix(self.U3, self.U4)
-        print(self.adj12)
-        print(self.adj23)
-        print(self.adj34)
         self.U1, self.U2, self.U3, self.U4, self.adj12, self.adj23, self.adj34 = self._compress_to_unique()
-        print(self.U1)
-        print(self.U2)
-        print(self.U3)
-        print(self.U4)
-        print(self.adj12)
-        print(self.adj23)
-        print(self.adj34)
-        self.U23 = self._create_U2_U3_pairs()
-        # print(self.U23)
+        self.U23, self.U2_spare, self.U3_spare = self._create_U2_U3_pairs()
 
     def _create_U2_U3_pairs(self):
         index3, index2 = np.where(self.adj23 == 1)
         U23 = defaultdict(list)
         chimera = self.C.graph
 
+        U2 = copy.deepcopy(self.U2)
+        U3 = copy.deepcopy(self.U3)
+
         for i in range(len(index2)):
-            u2 = self.U2[index2[i]]
-            u3 = self.U3[index3[i]]
+            u2 = U2[index2[i]]
+            u3 = U3[index3[i]]
             for chain2 in u2:
                 for nb in self._neighbours(chimera, chain2):
                     for chain3 in u3:
                         if nb in chain3:
                             U23[(index2[i], index3[i])].append((chain2, chain3))
-                            continue
-
-        return U23
+                            U2[index2[i]].remove(chain2)
+                            U3[index3[i]].remove(chain3)
+        return U23, U2, U3
 
     def _quadripartite_embed(self):
 
@@ -184,20 +172,25 @@ class Quadripartite:
         adj34 = np.concatenate([adj34_unique, adj34_broken], axis=1)
         new_u2 = [item[0] for item in list(u2_group.values())]
         new_u3 = [item[0] for item in list(u3_group.values())]
+        # this is wrong
         adj23 = self._construct_adj_matrix(new_u2, new_u3)
-
-        return u1_group, u2_group, u3_group, u4_group, adj12, adj23, adj34
+        final_u2 = {list(u2_group.values()).index(item): item for item in list(u2_group.values())}
+        final_u3 = {list(u3_group.values()).index(item): item for item in list(u3_group.values())}
+        print(self.adj23)
+        print(self.U2)
+        print(self.U3)
+        print(adj23)
+        print(final_u2)
+        print(final_u3)
+        return u1_group, final_u2, final_u3, u4_group, adj12, adj23, adj34
 
     def solve(self, verbose=True, timeout=500, return_walltime=False):
-        print('-----------------------------start solving-----------------------------')
         N2, N1 = self.adj12.shape
         N3_, N2_ = self.adj23.shape
         N4, N3 = self.adj34.shape
         assert N1 == len(self.U1)
-        assert N2 == len(self.U2)
-        assert N2_ == len(self.U2)
-        assert N3 == len(self.U3)
-        assert N3_ == len(self.U3)
+        assert N2_ == N2 == len(self.U2)
+        assert N3_ == N3 == len(self.U3)
         assert N4 == len(self.U4)
 
         I = len(self.G)
@@ -211,8 +204,7 @@ class Quadripartite:
 
         valid_edge12 = [(l, r) for l in range(N2) for r in range(N1) if self.adj12[l, r] == 1]
         valid_edge34 = [(l, r) for l in range(N4) for r in range(N3) if self.adj34[l, r] == 1]
-        print(valid_edge12)
-        print(valid_edge34)
+
         # decision variable for every valid mapping of guest edge to node edge
         for u, v in self.G.edges:
             or_terms = []
@@ -256,42 +248,6 @@ class Quadripartite:
             model.Add(sum(y1[i, :]) + sum(y3[i, :]) - sum(y2[i, :]) <= 1)
             model.Add(sum(y2[i, :]) + sum(y4[i, :]) - sum(y3[i, :]) <= 1)
             model.Add(sum(y1[i, :]) + sum(y4[i, :]) - sum(y3[i, :]) - sum(y2[i, :]) < 1)
-        #
-        # for i in range(I):
-        #     for n2 in range(N2):
-        #         for n3 in range(N3):
-        #             model.Add(y3[i, n3] + y2[i, n2] <= int(1 + self.adj23[n3, n2]))
-        #
-        # for i in range(I):
-        #     for n3 in range(N3):
-        #         for n4 in range(N4):
-        #             model.Add(y4[i, n4] + y3[i, n3] <= int(1 + self.adj34[n4, n3]))
-        #
-        # for i in range(I):
-        #     model.Add(sum(y1[i, :]) + sum(y3[i, :]) - sum(y2[i, :]) <= 1)
-        #     model.Add(sum(y2[i, :]) + sum(y4[i, :]) - sum(y3[i, :]) <= 1)
-        #     model.Add(sum(y1[i, :]) + sum(y4[i, :]) - sum(y3[i, :]) - sum(y2[i, :]) < 1)
-        #
-        # for i in range(I):
-        #     for n2 in range(N2):
-        #         for n3 in range(N3):
-        #             for n4 in range(N4):
-        #                 print(i, n2, n3, n4, "matrix", self.adj23[n3, n2], self.adj34[n4, n3], int(self.adj23[n3, n2] * self.adj34[n4, n3]))
-        #                 model.Add(y4[i, n4] + y2[i, n2] - y3[i, n3] <= int(self.adj23[n3, n2] + self.adj34[n4, n3]))
-        #
-        # for i in range(I):
-        #     for n1 in range(N1):
-        #         for n2 in range(N2):
-        #             for n3 in range(N3):
-        #                 model.Add(y3[i, n3] + y1[i, n1] - y2[i, n2] <= int(self.adj12[n2, n1] * self.adj23[n3, n2]))
-        #
-        # for i in range(I):
-        #     for n1 in range(N1):
-        #         for n2 in range(N2):
-        #             for n3 in range(N3):
-        #                 for n4 in range(N4):
-        #                     model.Add(y4[i, n4] + y1[i, n1] - y3[i, n3] - y2[i, n2] < int(
-        #                         self.adj12[n2, n1] * self.adj23[n3, n2] * self.adj34[n4, n3]))
 
         # guest node should only be assigned once per partite
         for i in range(I):
@@ -323,12 +279,42 @@ class Quadripartite:
         if status != cp_model.OPTIMAL:
             return emb
 
+        spare_u2 = defaultdict(list)
+        spare_u3 = defaultdict(list)
+        pairs = defaultdict(tuple)
+        u2_emb = defaultdict(int)
+        u3_emb = defaultdict(int)
+
         for i in range(I):
             for p1 in range(N1):
                 if solver.BooleanValue(y1[i, p1]):
                     emb[i].extend(self.U1[p1].pop())
                     break
-
+            # for p2 in range(N2):
+            #     for p3 in range(N3):
+            #         if solver.BooleanValue(y2[i, p2]) & solver.BooleanValue(y3[i, p3]):
+            #             pair = self.U23[(p2, p3)].pop()
+            #             emb[i].extend(pair[0])
+            #             emb[i].extend(pair[1])
+            #         else:
+            #             if solver.BooleanValue(y2[i, p2]):
+            #                 if len(spare_u2[p2]) > 0:
+            #                     emb[i].extend(spare_u2[p2].pop())
+            #                 elif len(self.U2_spare[p2]) > 0:
+            #                     emb[i].extend(self.U2_spare[p2].pop())
+            #                 else:
+            #                     pair = self.U23[(p2, p3)].pop()
+            #                     emb[i].extend(pair[0])
+            #                     spare_u3[p3].extend(pair[1])
+            #             if solver.BooleanValue(y3[i, p3]):
+            #                 if len(spare_u3[p3]) > 0:
+            #                     emb[i].extend(spare_u3[p3].pop())
+            #                 elif len(self.U3_spare[p3]) > 0:
+            #                     emb[i].extend(self.U3_spare[p3].pop())
+            #                 else:
+            #                     pair = self.U23[(p2, p3)].pop()
+            #                     emb[i].extend(pair[1])
+            #                     spare_u2[p2].extend(pair[0])
             # for p2 in range(N2):
             #     for p3 in range(N3):
             #         print(self.U23[(p2, p3)])
@@ -346,6 +332,12 @@ class Quadripartite:
             #                 emb[i].extend(self.U3[p3].pop())
             #                 break
             # todo: if i in p2 and p3, pop a pair instead of fifo ordering
+
+            # for p2 in range(N2):
+            #     for p3 in range(N3):
+            #         if solver.BooleanValue(y2[i, p2]) and solver.BooleanValue(y3[i, p3]):
+            #             pairs[i] = (p2, p3)
+
             for p2 in range(N2):
                 if solver.BooleanValue(y2[i, p2]):
                     emb[i].extend(self.U2[p2].pop())
@@ -354,12 +346,36 @@ class Quadripartite:
                 if solver.BooleanValue(y3[i, p3]):
                     emb[i].extend(self.U3[p3].pop())
                     break
+
             for p4 in range(N4):
                 if solver.BooleanValue(y4[i, p4]):
                     emb[i].extend(self.U4[p4].pop())
                     break
-        print('----------------------------------')
-        print(status)
+        # for i in range(I):
+        #     if i not in pairs.keys():
+        #         for p2 in range(N2):
+        #             if solver.BooleanValue(y2[i, p2]):
+        #                 u2_emb[i] = p2
+        #         for p3 in range(N3):
+        #             if solver.BooleanValue(y3[i, p3]):
+        #                 u3_emb[i] = p3
+
+        # print(pairs)
+        # print(u2_emb)
+        # print(u3_emb)
+        # for i, pair in pairs.items():
+        #     nodes = self.U23[pair].pop()
+        #     emb[i].extend(nodes[0])
+        #     emb[i].extend(nodes[1])
+        #     self.U2[pair[0]].remove(nodes[0])
+        #     self.U3[pair[1]].remove(nodes[1])
+        # print(self.U2)
+        # for i, u2 in u2_emb.items():
+        #     print(i, u2)
+        #     emb[i].extend(self.U2[u2].pop())
+        # for i, u3 in u3_emb.items():
+        #     print(i, u3)
+        #     emb[i].extend(self.U3[u3].pop())
 
         if return_walltime:
             return emb, solver.WallTime()
@@ -369,7 +385,7 @@ class Quadripartite:
 
 seed(0)
 G = nx.generators.complete_graph(5)
-C = Chimera(16, 4).random_faulty(10)
+C = Chimera(4, 4).random_faulty(5)
 
 q = Quadripartite(G, C)
 em = q.solve()
