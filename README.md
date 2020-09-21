@@ -1,7 +1,7 @@
-# Ember
+## Ember
 A toolkit for experimenting with novel heuristic algorithms to minor embed QUBO graphs for quantum annealing
 
-## Setup Instructions (Not tested on windows)
+### Setup Instructions (Not tested on windows)
 
 1. Install [OR-Tools C++](https://developers.google.com/optimization/install/cpp) for your operating system. Then export the installation directory as:
 
