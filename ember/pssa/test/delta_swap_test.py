@@ -1,8 +1,8 @@
 import networkx as nx
 import pytest
 
-from pssa.annealer import delta_swap
-from pssa.graph import FastMutableGraph
+from ember.pssa.annealer import delta_swap
+from ember.pssa.graph import FastMutableGraph
 
 # Setup input graphs for test
 input_builder = nx.empty_graph(4)

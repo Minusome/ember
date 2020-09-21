@@ -3,15 +3,10 @@
 #
 import dwave_networkx as dnx
 import networkx as nx
-from dwave import embedding as de
 import matplotlib.pyplot as plt
-from minorminer import find_embedding
-import pickle
 import random
 
-from pssa.annealer import run_simulated_annealing
-from pssa.context import OptimizationContext
-from pssa.initializer import triangle_semi_clique_embed, divide_guiding_pattern
+from ember.pssa.initializer import triangle_semi_clique_embed, divide_guiding_pattern
 
 # embed = triangle_semi_clique_embed(10, 4)
 # embed = divide_guiding_pattern(embed, 100, strategy="balanced")

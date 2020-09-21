@@ -1,8 +1,8 @@
 import networkx as nx
 import pytest
 
-from pssa.annealer import delta_shift
-from pssa.graph import FastMutableGraph
+from ember.pssa.annealer import delta_shift
+from ember.pssa.graph import FastMutableGraph
 
 # Small grid graph for testing
 target = nx.empty_graph(6)
