@@ -2,8 +2,10 @@ from random import seed
 
 import networkx as nx
 
+from ember.graph.chimera import D_WAVE_2000Q
 from ember.template.faulty.bipartite_sat import BipartiteSAT
 from ember.template.util import *
+
 # from minorminer import find_embedding
 
 times = []
@@ -14,7 +16,7 @@ for i in range(0, 8):
     seed(10 + i)
 
     G = nx.generators.gnp_random_graph(64, 0.2, seed=i)
-    C = D_WAVE_2000Q(k_rand_faulty=100)
+    C = D_WAVE_2000Q(node_faults=0.05)
 
     problems += 1
 

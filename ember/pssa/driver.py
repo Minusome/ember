@@ -1,14 +1,14 @@
 import random
 
 import dwave_networkx as dnx
-from dwave import embedding, system
 import networkx as nx
+from dwave import embedding
 from matplotlib import pyplot as plt
-from minorminer import find_embedding
 
-from pssa.annealer import run_simulated_annealing
-from pssa.context import OptimizationContext
-from pssa.initializer import triangle_semi_clique_embed, divide_guiding_pattern
+from ember.pssa.annealer import run_simulated_annealing
+from ember.pssa.context import OptimizationContext
+from ember.pssa.initializer import triangle_semi_clique_embed, divide_guiding_pattern
+from ember.template.util import plot_chimera_embedding
 
 random.seed(1)
 
@@ -20,6 +20,10 @@ print(input.number_of_edges())
 # embed = find_embedding(input, G, verbose=1)
 
 gp = triangle_semi_clique_embed(16, 4)
+
+plot_chimera_embedding(gp, G)
+exit()
+
 initial = divide_guiding_pattern(gp, len(input))
 
 context = OptimizationContext(16, 4, input, gp)

@@ -4,7 +4,7 @@ import dwave_networkx as dnx
 import numpy as np
 from networkx import Graph
 
-from ember.template.util import Chimera
+from ember.graph.chimera import ChimeraGraph
 
 __all__ = ["BipartiteSAT"]
 
@@ -92,7 +92,7 @@ def _run_bipartite_sat(I, input_edges, adj, h_count, v_count, verbose, timeout,
 
 class BipartiteSAT:
 
-    def __init__(self, guest: Graph, target: Chimera):
+    def __init__(self, guest: Graph, target: ChimeraGraph):
         self.G = guest
         self.C = target
         self.h_embed, self.v_embed = self._bipartite_embed()
@@ -105,7 +105,7 @@ class BipartiteSAT:
             if sub:
                 super.append(sub)
 
-        M, L, faulty = self.C.M, self.C.L, self.C.faulty
+        M, L, faulty = self.C.M, self.C.L, self.C.faulty_nodes
         to_linear = dnx.chimera_coordinates(M, t=L).chimera_to_linear
 
         h_embed = []

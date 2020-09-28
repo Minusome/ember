@@ -1,37 +1,6 @@
-from random import choices
-
+import dwave_networkx as dnx
 from dwave import embedding as de
 from matplotlib import pyplot as plt
-import dwave_networkx as dnx
-
-from networkx import Graph
-
-
-class Chimera(Graph):
-
-    def __init__(self, m, l, faulty=None, k_rand_faulty=0, **attr):
-        super().__init__(**attr)
-        chimera = dnx.chimera_graph(m=m, t=l)
-        faulty = set(faulty) if faulty is not None else set()
-        if k_rand_faulty > 0:
-            faulty = set(choices(range((m ** 2) * l * 2), k=k_rand_faulty))
-        if faulty:
-            chimera.remove_nodes_from(faulty)
-        self.__dict__.update(chimera.__dict__)
-        self.M, self.L = m, l
-        self.faulty = faulty
-        self.internal = chimera
-
-    def subgraph(self, nodes):
-        return self.internal.subgraph(nodes)
-
-
-def D_WAVE_2000Q(**kwargs):
-    return Chimera(16, 4, **kwargs)
-
-
-def D_WAVE_2X(**kwargs):
-    return Chimera(12, 4, **kwargs)
 
 
 def check_embedding(em, G, C):
