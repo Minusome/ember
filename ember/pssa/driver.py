@@ -37,7 +37,7 @@ for prob in diag:
     missing += 1
     print(prob)
 
-print("Double check cost: {}", input.number_of_edges() - missing)
+print(f"Double check cost: {input.number_of_edges() - missing}")
 
 _, cost = context.create_contact_graph(embed)
 

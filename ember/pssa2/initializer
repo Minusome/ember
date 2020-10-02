@@ -1,0 +1,51 @@
+import dwave_networkx as dnx
+import networkx as nx
+
+from ember.pssa.context import OptimizationContext
+from ember.pssa2.annealer import run_simulated_annealing
+from ember.template.util import plot_chimera_embedding
+# from ember.template.util import plot_chimera_embedding
+
+
+def triangle_semi_clique_embed(m: int, l: int):
+    to_linear = dnx.chimera_coordinates(m, t=l).chimera_to_linear
+
+    # Embed the clique major
+    top_embed = [[] for _ in range(m * l)]
+    for i in range(m * l):
+        cell, unit = i // l, i % l
+        # Add the nodes above diagonal cell
+        for j in range(cell):
+            top_embed[i].append(to_linear((j, cell, 0, unit)))
+        # Add the two nodes in the diagonal cell
+        top_embed[i].extend((to_linear((cell, cell, 0, unit)),
+                             to_linear((cell, cell, 1, unit))))
+        # Add the entire row
+        for j in range(0, m):
+            top_embed[i].append(to_linear((cell, j, 1, unit)))
+
+    # Embed the clique minor
+    bot_embed = [[] for _ in range((m - 1) * l)]
+    for i in range((m - 1) * l):
+        cell, unit = i // l, i % l
+        for j in range(cell, m - 1):
+            bot_embed[i].append(to_linear((j + 1, cell, 0, unit)))
+
+    combined = top_embed + bot_embed
+
+    return {i: combined[i] for i in range(len(combined))}
+
+
+if __name__ == '__main__':
+
+    input = nx.generators.fast_gnp_random_graph(70, 0.2, seed=1)
+
+    gp = triangle_semi_clique_embed(16, 4)
+    gp = {i: set(gp[i]) for i in range(len(input))}
+
+    # plot_chimera_embedding(gp, C)
+
+
+    context = OptimizationContext(16, 4, input, gp)
+
+    run_simulated_annealing(context, gp)
