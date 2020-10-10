@@ -161,12 +161,12 @@ py::object RunQuadripartite(
             coeffs1[n1] = 1;
         }
         for (int n3 = 0; n3 < N3; n3++){
-            vars1[n3] = y3[i][n3];
-            coeffs1[n3] = 1;
+            vars1[N1+n3] = y3[i][n3];
+            coeffs1[N1+n3] = 1;
         }
         for (int n2 = 0; n2 < N2; n2++){
-            vars1[n2] = y2[i][n2];
-            coeffs1[n2] = -1;
+            vars1[N1+N3+n2] = y2[i][n2];
+            coeffs1[N1+N3+n2] = -1;
         }
 
         std::vector<BoolVar> vars2(N2 + N3 + N4);
@@ -176,12 +176,12 @@ py::object RunQuadripartite(
             coeffs2[n2] = 1;
         }
         for (int n4 = 0; n4 < N4; n4++){
-            vars2[n4] = y4[i][n4];
-            coeffs2[n4] = 1;
+            vars2[N2+n4] = y4[i][n4];
+            coeffs2[N2+n4] = 1;
         }
         for (int n3 = 0; n3 < N3; n3++){
-            vars2[n3] = y3[i][n3];
-            coeffs2[n3] = -1;
+            vars2[N2+N4+n3] = y3[i][n3];
+            coeffs2[N2+N4+n3] = -1;
         }
 
         std::vector<BoolVar> vars3(N1 + N2 + N3 + N4);
@@ -191,16 +191,16 @@ py::object RunQuadripartite(
             coeffs3[n1] = 1;
         }
         for (int n4 = 0; n4 < N4; n4++){
-            vars2[n4] = y4[i][n4];
-            coeffs2[n4] = 1;
+            vars3[N1+n4] = y4[i][n4];
+            coeffs3[N1+n4] = 1;
         }
         for (int n3 = 0; n3 < N3; n3++){
-            vars3[n3] = y3[i][n3];
-            coeffs3[n3] = -1;
+            vars3[N1+N4+n3] = y3[i][n3];
+            coeffs3[N1+N4+n3] = -1;
         }
         for (int n2 = 0; n2 < N2; n2++){
-            vars3[n2] = y2[i][n2];
-            coeffs3[n2] = -1;
+            vars3[N1+N4+N3+n2] = y2[i][n2];
+            coeffs3[N1+N4+N3+n2] = -1;
         }
 
         cp_model.AddLessOrEqual(LinearExpr::BooleanScalProd(vars1, coeffs1), 1);

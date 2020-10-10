@@ -83,14 +83,14 @@ def _run_quadripartite(I, G, U1, U2, U3, U4, adj12, adj23, adj34, verbose, timeo
         model.Add(sum(y4[i, :]) <= 1)
 
     # number of nodes embedded per partite node not exceed number of duplicates
-    for i in range(N1):
-        model.Add(sum(y1[:, i]) <= U1[i])
-    for i in range(N2):
-        model.Add(sum(y2[:, i]) <= U2[i])
-    for i in range(N3):
-        model.Add(sum(y3[:, i]) <= U3[i])
-    for i in range(N4):
-        model.Add(sum(y4[:, i]) <= U4[i])
+    for n1 in range(N1):
+        model.Add(sum(y1[:, n1]) <= U1[n1])
+    for n2 in range(N2):
+        model.Add(sum(y2[:, n2]) <= U2[n2])
+    for n3 in range(N3):
+        model.Add(sum(y3[:, n3]) <= U3[n3])
+    for n4 in range(N4):
+        model.Add(sum(y4[:, n4]) <= U4[n4])
 
     solver = cp_model.CpSolver()
     solver.parameters.use_pb_resolution = True
@@ -279,23 +279,22 @@ class Quadripartite:
         U4_count = np.array([len(self.U4[u4]) for u4 in range(len(self.U4))])
         I = len(self.G)
 
-        # try:
-        #    import ember.template._native.embed as embed
-        #    print("Running C++")
-        #    run_quadripartite = embed.run_quadripartite
-        # except ImportError:
-        #    print("Running Python")
-        #    run_quadripartite = _run_quadripartite
-        print("trying to import CPP")
-        import ember.template._native.embed as embed
-        print("imported CPP")
-        run_quadripartite = embed.run_quadripartite
+        try:
+            import ember.template._native.embed as embed
+            print("Running C++")
+            run_quadripartite = embed.run_quadripartite
+        except ImportError:
+            print("Running Python")
+            run_quadripartite = _run_quadripartite
+        # print("trying to import CPP")
+        # import ember.template._native.embed as embed
+        # print("imported CPP")
+        # run_quadripartite = embed.run_quadripartite
 
         result = run_quadripartite(I, np.array(self.G.edges), U1_count, U2_count, U3_count, U4_count,
                                    self.adj12, self.adj23, self.adj34, verbose, timeout, return_walltime)
 
         emb = {i: [] for i in range(I)}
-
         if return_walltime:
             result, walltime = result
         print(result)
@@ -323,14 +322,3 @@ class Quadripartite:
             return emb, walltime
         else:
             return emb
-
-
-seed(12)
-G = nx.generators.gnp_random_graph(10, 0.2, seed=2)
-C = D_WAVE_2000Q(k_rand_faulty=10)
-em, walltime = Quadripartite(G, C).solve(return_walltime=True)
-print(em)
-
-if check_embedding(em, G, C):
-    print("found embedding")
-    plot_chimera_embedding(em, C)
