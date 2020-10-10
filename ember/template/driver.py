@@ -3,6 +3,7 @@ from random import seed
 import networkx as nx
 
 from ember.template.faulty.bipartite_sat import BipartiteSAT
+from ember.template.faulty.quadripartite import Quadripartite
 from ember.template.util import *
 # from minorminer import find_embedding
 
@@ -23,6 +24,7 @@ for i in range(0, 8):
     # walltime = time.process_time() - start
 
     em, walltime = BipartiteSAT(G, C).solve(return_walltime=True)
+    #em, walltime = Quadripartite(G, C).solve(return_walltime=True)
     print(walltime)
 
     if check_embedding(em, G, C):

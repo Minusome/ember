@@ -5,6 +5,7 @@ import networkx as nx
 import dwave_networkx as dnx
 import numpy as np
 from ortools.sat.python import cp_model
+from ember.template.util import *
 
 from ember.template.util import Chimera, check_embedding
 
@@ -278,17 +279,26 @@ class Quadripartite:
         U4_count = np.array([len(self.U4[u4]) for u4 in range(len(self.U4))])
         I = len(self.G)
 
-        try:
-            import ember.template._native.embed as embed
-            run_quadripartite = embed.run_quadripartite
-        except ImportError:
-            run_quadripartite = _run_quadripartite
+        #try:
+        #    import ember.template._native.embed as embed
+        #    print("Running C++")
+        #    run_quadripartite = embed.run_quadripartite
+        #except ImportError:
+        #    print("Running Python")
+        #    run_quadripartite = _run_quadripartite
+        print("trying to import CPP")
+        import ember.template._native.embed as embed
+	print("imported CPP")
+        run_quadripartite = embed.run_quadripartite
 
         result = run_quadripartite(I, np.array(self.G.edges), U1_count, U2_count, U3_count, U4_count,
                                    self.adj12, self.adj23, self.adj34, verbose, timeout, return_walltime)
 
         emb = {i: [] for i in range(I)}
 
+        if return_walltime:
+            result, walltime = result
+        print(result)
         for i in range(I):
             p1, p2, p3, p4 = result[i]
             if p1 != -1:
@@ -309,15 +319,18 @@ class Quadripartite:
             elif p3 != -1 & p2 == -1:
                 emb[i].extend(self.U3[p3].pop())
 
-        return emb
+        if return_walltime:
+            return emb, walltime
+        else:
+            return emb
 
 
-seed(1)
-G = nx.generators.complete_graph(9)
-C = Chimera(11, 4, k_rand_faulty=15)
-
-q = Quadripartite(G, C)
-em = q.solve()
+seed(12)
+G = nx.generators.gnp_random_graph(10, 0.2, seed=2)
+C = D_WAVE_2000Q(k_rand_faulty=10)
+em, walltime = Quadripartite(G, C).solve(return_walltime=True)
 print(em)
+
 if check_embedding(em, G, C):
-    print("true")
+    print("found embedding")
+    plot_chimera_embedding(em, C)
