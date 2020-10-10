@@ -154,9 +154,60 @@ py::object RunQuadripartite(
             }
         }
 
-        cp_model.AddLessOrEqual(LinearExpr::BooleanSum(y1[i] + y3[i] - y2[i]), 1);
-        cp_model.AddLessOrEqual(LinearExpr::BooleanSum(y2[i] + y4[i] - y3[i]), 1);
-        cp_model.AddLess(LinearExpr::BooleanSum(y1[i] + y4[i] - y2[i] - y3[i]), 1);
+        std::vector<BoolVar> vars1(N1 + N2 + N3);
+        std::vector<int64> coeffs1(N1 + N2 + N3);
+        for (int n1 = 0; n1 < N1; n1++){
+            vars1[n1] = y1[i][n1];
+            coeffs1[n1] = 1;
+        }
+        for (int n3 = 0; n3 < N3; n3++){
+            vars1[n3] = y3[i][n3];
+            coeffs1[n3] = 1;
+        }
+        for (int n2 = 0; n2 < N2; n2++){
+            vars1[n2] = y2[i][n2];
+            coeffs1[n2] = -1;
+        }
+
+        std::vector<BoolVar> vars2(N2 + N3 + N4);
+        std::vector<int64> coeffs2(N2 + N3 + N4);
+        for (int n2 = 0; n2 < N2; n2++){
+            vars2[n2] = y2[i][n2];
+            coeffs2[n2] = 1;
+        }
+        for (int n4 = 0; n4 < N4; n4++){
+            vars2[n4] = y4[i][n4];
+            coeffs2[n4] = 1;
+        }
+        for (int n3 = 0; n3 < N3; n3++){
+            vars2[n3] = y3[i][n3];
+            coeffs2[n3] = -1;
+        }
+
+        std::vector<BoolVar> vars3(N1 + N2 + N3 + N4);
+        std::vector<int64> coeffs3(N1 + N2 + N3 + N4);
+        for (int n1 = 0; n1 < N1; n1++){
+            vars3[n1] = y1[i][n1];
+            coeffs3[n1] = 1;
+        }
+        for (int n4 = 0; n4 < N4; n4++){
+            vars2[n4] = y4[i][n4];
+            coeffs2[n4] = 1;
+        }
+        for (int n3 = 0; n3 < N3; n3++){
+            vars3[n3] = y3[i][n3];
+            coeffs3[n3] = -1;
+        }
+        for (int n2 = 0; n2 < N2; n2++){
+            vars3[n2] = y2[i][n2];
+            coeffs3[n2] = -1;
+        }
+
+        cp_model.AddLessOrEqual(LinearExpr::BooleanScalProd(vars1, coeffs1), 1);
+        cp_model.AddLessOrEqual(LinearExpr::BooleanScalProd(vars2, coeffs2), 1);
+        cp_model.AddLessOrEqual(LinearExpr::BooleanScalProd(vars3, coeffs3), 1);
+//        cp_model.AddLessOrEqual(LinearExpr::BooleanSum(y2[i] + y4[i] - y3[i]), 1);
+//        cp_model.AddLess(LinearExpr::BooleanSum(y1[i] + y4[i] - y2[i] - y3[i]), 1);
     }
 
     for (int i = 0; i < num_input_nodes; i++) {

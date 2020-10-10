@@ -23,8 +23,8 @@ for i in range(0, 8):
     # em = find_embedding(G, C, verbose=True)
     # walltime = time.process_time() - start
 
-    em, walltime = BipartiteSAT(G, C).solve(return_walltime=True)
-    #em, walltime = Quadripartite(G, C).solve(return_walltime=True)
+    # em, walltime = BipartiteSAT(G, C).solve(return_walltime=True)
+    em, walltime = Quadripartite(G, C).solve(return_walltime=True)
     print(walltime)
 
     if check_embedding(em, G, C):

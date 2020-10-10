@@ -279,16 +279,16 @@ class Quadripartite:
         U4_count = np.array([len(self.U4[u4]) for u4 in range(len(self.U4))])
         I = len(self.G)
 
-        #try:
+        # try:
         #    import ember.template._native.embed as embed
         #    print("Running C++")
         #    run_quadripartite = embed.run_quadripartite
-        #except ImportError:
+        # except ImportError:
         #    print("Running Python")
         #    run_quadripartite = _run_quadripartite
         print("trying to import CPP")
         import ember.template._native.embed as embed
-	print("imported CPP")
+        print("imported CPP")
         run_quadripartite = embed.run_quadripartite
 
         result = run_quadripartite(I, np.array(self.G.edges), U1_count, U2_count, U3_count, U4_count,
