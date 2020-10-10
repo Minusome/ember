@@ -1,9 +1,10 @@
 import dwave_networkx as dnx
 import networkx as nx
+import random
 
 from ember.pssa.context import OptimizationContext
 from ember.pssa2.annealer import run_simulated_annealing
-from ember.template.util import plot_chimera_embedding
+from ember.template.util import plot_chimera_embedding,check_embedding
 # from ember.template.util import plot_chimera_embedding
 
 
@@ -38,14 +39,18 @@ def triangle_semi_clique_embed(m: int, l: int):
 
 if __name__ == '__main__':
 
-    input = nx.generators.fast_gnp_random_graph(70, 0.2, seed=1)
+    random.seed(1)
+
+    input = nx.generators.fast_gnp_random_graph(75, 0.4, seed=1)
 
     gp = triangle_semi_clique_embed(16, 4)
     gp = {i: set(gp[i]) for i in range(len(input))}
 
     # plot_chimera_embedding(gp, C)
 
-
     context = OptimizationContext(16, 4, input, gp)
+    # plot_chimera_embedding(gp, context.chimera_graph)
 
-    run_simulated_annealing(context, gp)
+    best = run_simulated_annealing(context, gp)
+    check_embedding(best, input, context.chimera_graph)
+

@@ -42,7 +42,7 @@ def run_simulated_annealing(context: OptimizationContext, initial_embed: Dict[in
             delta = delta_swap(context.input_graph, contact_graph, n1, n2)
         else:  # shift
             z_idx = random.randint(0,  len(context._input_graph_nx) - 64 - 1)
-            delta = delta_shift(context.input_graph, inverse_embed, z_idx)
+            delta = delta_shift(context.input_graph, contact_graph,  inverse_embed, z_idx)
         print("\tStep: {}\tCost: {}\tBest Cost: {}\tShift?: {}\tDelta: {}"
               .format(step, cost, cost_best, shift_mode, delta))
         if math.exp(delta / temperature) > random.random():
@@ -118,8 +118,7 @@ def get_overlap_state(inverse_embed, z_idx):
            inverse_embed[to_linear((1 + cell, 15, 1, unit))], \
            inverse_embed[to_linear((1 + cell, cell, 1, unit))]
 
-
-def delta_shift(input_graph, inverse_embed, z_idx):
+def delta_shift(input_graph, contact_graph, inverse_embed, z_idx):
     delta = 0
     n_minor, n_major, n_overlap = get_overlap_state(inverse_embed, z_idx)
 
@@ -130,13 +129,14 @@ def delta_shift(input_graph, inverse_embed, z_idx):
                 continue
             if input_graph.has_edge(n_major, n_nb):
                 delta -= 1
-            if input_graph.has_edge(n_minor, n_nb):
+            if input_graph.has_edge(n_minor, n_nb) and not contact_graph.has_edge(n_minor, n_nb):
                 delta += 1
     elif n_overlap == n_minor: # major gain, minor loss
         for n_nb in get_n_minors(z_idx, inverse_embed):
             if n_nb == n_minor:
                 continue
-            if input_graph.has_edge(n_minor, n_nb):
+            if input_graph.has_edge(n_minor, n_nb) \
+                    and contact_graph.edge_weight(n_minor, n_nb) == 1:
                 delta -= 1
             if input_graph.has_edge(n_major, n_nb):
                 delta += 1
@@ -157,8 +157,8 @@ def shift(contact_graph, forward_embed, inverse_embed, z_idx):
         for n_nb in get_n_minors(z_idx, inverse_embed):
             if n_nb == n_minor:
                 continue
-            contact_graph.remove_edge(n_major, n_nb)
-            contact_graph.add_edge(n_minor, n_nb)
+            contact_graph.decrement_edge_weight(n_major, n_nb)
+            contact_graph.increment_edge_weight(n_minor, n_nb)
     elif n_overlap == n_minor:  # major gain, minor loss
         for g_nb in get_g_minors(z_idx):
             forward_embed[n_major].add(g_nb)
@@ -167,8 +167,8 @@ def shift(contact_graph, forward_embed, inverse_embed, z_idx):
         for n_nb in get_n_minors(z_idx, inverse_embed):
             if n_nb == n_minor:
                 continue
-            contact_graph.add_edge(n_major, n_nb)
-            contact_graph.remove_edge(n_minor, n_nb)
+            contact_graph.increment_edge_weight(n_major, n_nb)
+            contact_graph.decrement_edge_weight(n_minor, n_nb)
     else:
         raise Exception("Bad state")
 
