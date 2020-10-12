@@ -2,7 +2,7 @@ from random import seed
 
 import networkx as nx
 
-from ember.graph.chimera import D_WAVE_2000Q
+from ember.hardware.chimera import D_WAVE_2000Q
 from ember.template.faulty.bipartite_sat import BipartiteSAT
 from ember.template.util import *
 

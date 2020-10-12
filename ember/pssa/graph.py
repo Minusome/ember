@@ -3,17 +3,17 @@ from typing import Dict
 from networkx import Graph
 
 
-class FastMutableGraph:
+class MutableGraph:
     """
-    This graph supports fast swapping of nodes by relabelling them.
+    This hardware supports fast swapping of nodes by relabelling them.
     Networkx does not provide an efficient, in-place method of relabelling nodes.
     """
 
     def __init__(self, input_graph: Graph, include_edges: bool = True):
         """
-        Converts networkx graph into a (better?) format
+        Converts networkx hardware into a (better?) format
 
-        :param input_graph: Assume nodes are labelled 0...n, the graph is
+        :param input_graph: Assume nodes are labelled 0...n, the hardware is
         undirected and there are no self-linked edges
         """
         self.num_nodes = len(input_graph)

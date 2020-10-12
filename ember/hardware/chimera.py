@@ -22,7 +22,7 @@ class ChimeraGraph(Graph):
         chimera.remove_edges_from(faulty_edges)
 
         self.__dict__.update(chimera.__dict__)
-        self.M, self.L = m, l
+        self.params = (m, l)
         self.faulty_nodes = faulty_nodes
         self.faulty_edges = faulty_edges
         self.internal = chimera

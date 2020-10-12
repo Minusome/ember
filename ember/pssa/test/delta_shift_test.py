@@ -4,7 +4,7 @@ import pytest
 from ember.pssa.annealer import delta_shift
 from ember.pssa.graph import FastMutableGraph
 
-# Small grid graph for testing
+# Small grid hardware for testing
 target = nx.empty_graph(6)
 target.add_edge(0, 1)
 target.add_edge(0, 2)

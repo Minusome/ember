@@ -4,7 +4,7 @@ import dwave_networkx as dnx
 import numpy as np
 from networkx import Graph
 
-from ember.graph.chimera import ChimeraGraph
+from ember.hardware.chimera import ChimeraGraph
 
 __all__ = ["BipartiteSAT"]
 
