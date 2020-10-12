@@ -240,10 +240,6 @@ class QuadripartiteSat:
         except ImportError:
             print("Running Python")
             run_quadripartite = _run_quadripartite
-        # print("trying to import CPP")
-        # import ember.template._native.embed as embed
-        # print("imported CPP")
-        # run_quadripartite = embed.run_quadripartite
 
         result = run_quadripartite(I, np.array(self.guest.edges), U1_count,
                                    U2_count, U3_count, U4_count, self.adj12,
