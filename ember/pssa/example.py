@@ -8,8 +8,7 @@ from ember.pssa.optimize import run_simulated_annealing
 
 if __name__ == '__main__':
 
-    T_MAX = 10 ** 6
-
+    T_MAX = 10**6
 
     def schedule(iter_count):
         progress_ratio = iter_count / T_MAX
@@ -38,7 +37,6 @@ if __name__ == '__main__':
             any_dir = False
 
         return temperature, shift, any_dir
-
 
     input = nx.generators.fast_gnp_random_graph(69, 0.2, seed=1)
     hardware = ChimeraGraph(16, 4)

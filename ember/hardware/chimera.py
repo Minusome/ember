@@ -17,8 +17,12 @@ class ChimeraGraph(Graph):
         chimera.remove_nodes_from(faulty_nodes)
 
         edges = set(chimera.edges)
-        faulty_edges = sample(edges, max(0, round(edge_fault_rate * len(edges)) - (
-                prev_edge_count - len(edges))))
+        faulty_edges = sample(
+            edges,
+            max(
+                0,
+                round(edge_fault_rate * len(edges)) -
+                (prev_edge_count - len(edges))))
         chimera.remove_edges_from(faulty_edges)
 
         self.__dict__.update(chimera.__dict__)

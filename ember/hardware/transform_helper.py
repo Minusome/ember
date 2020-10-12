@@ -3,7 +3,8 @@ from typing import Dict, List
 
 
 def divide_guiding_pattern(guiding_pattern: Dict[int, List[int]],
-                           vertex_count: int, strategy: str = "balanced") -> Dict[int, List[int]]:
+                           vertex_count: int,
+                           strategy: str = "balanced") -> Dict[int, List[int]]:
     """
     Randomly splits the vertex sets in the guiding pattern to create an initial embedding of the
     input hardware into the hardware hardware.

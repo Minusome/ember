@@ -25,8 +25,8 @@ def run_simulated_annealing(model: BaseModel,
                 continue
             delta = model.delta_shift(shift_move)
 
-        print("\tStep: {}\tCost: {}\tBest Cost: {}\tShift?: {}\tDelta: {}"
-              .format(step, cost, cost_best, shift_mode, delta))
+        print("\tStep: {}\tCost: {}\tBest Cost: {}\tShift?: {}\tDelta: {}".format(
+              step, cost, cost_best, shift_mode, delta))
 
         if math.exp(delta / temperature) > random.random():
             if shift_mode:
@@ -49,7 +49,8 @@ def run_simulated_annealing(model: BaseModel,
     return forward_embed_best
 
 
-def run_steepest_descent_with_kicks(model: BaseModel, kicks: int, max_iterations: int):
+def run_steepest_descent_with_kicks(model: BaseModel, kicks: int,
+                                    max_iterations: int):
     print(f"Optimal: {len(model.guest.edges)}")
 
     cost_best = cost = model.initial_cost
@@ -70,7 +71,7 @@ def run_steepest_descent_with_kicks(model: BaseModel, kicks: int, max_iterations
             if delta > best_delta:
                 best_delta, best_move, type = delta, move, "shift"
         if best_delta > 0:
-            print(f"\tStep: {step}\tCost: {cost}\tBest Cost: {cost_best}\tDelta: {best_delta}")
+            print( f"\tStep: {step}\tCost: {cost}\tBest Cost: {cost_best}\tDelta: {best_delta}")
             if type == "swap":
                 model.swap(best_move)
             elif type == "shift":
@@ -93,11 +94,13 @@ def run_steepest_descent_with_kicks(model: BaseModel, kicks: int, max_iterations
                 elif type == "shift":
                     delta = model.delta_shift(move)
                     model.shift(move)
+                # noinspection PyUnboundLocalVariable
                 cost += delta
             print(f"Performed random restart with new cost: {cost}")
 
 
-def run_next_descent_with_random_restarts(model: BaseModel, max_iterations: int):
+def run_next_descent_with_random_restarts(model: BaseModel,
+                                          max_iterations: int):
     print(f"Optimal: {len(model.guest.edges)}")
 
     cost_best = cost = model.initial_cost
@@ -135,5 +138,3 @@ def run_next_descent_with_random_restarts(model: BaseModel, max_iterations: int)
             model.randomize()
             cost = model.initial_cost
             print(f"Random restart with new cost: {cost}")
-
-

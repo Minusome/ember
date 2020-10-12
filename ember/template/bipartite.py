@@ -1,12 +1,12 @@
 from collections import defaultdict
 
-import dwave_networkx as dnx
 import numpy as np
 from networkx import Graph
 
 from ember.hardware.chimera import ChimeraGraph
+from ember.hardware.transform import bipartite_with_faults
 
-__all__ = ["BipartiteSAT"]
+__all__ = ["BipartiteSat"]
 
 
 def _run_bipartite_sat(I, input_edges, adj, h_count, v_count, verbose, timeout,
@@ -19,8 +19,12 @@ def _run_bipartite_sat(I, input_edges, adj, h_count, v_count, verbose, timeout,
 
     model = cp_model.CpModel()
 
-    yl = np.array([[model.NewBoolVar(f"yl_{i}_{j}") for j in range(NL)] for i in range(I)])
-    yr = np.array([[model.NewBoolVar(f"yr_{i}_{j}") for j in range(NR)] for i in range(I)])
+    yl = np.array([
+        [model.NewBoolVar(f"yl_{i}_{j}") for j in range(NL)] for i in range(I)
+    ])
+    yr = np.array([
+        [model.NewBoolVar(f"yr_{i}_{j}") for j in range(NR)] for i in range(I)
+    ])
 
     valid_edge = [(l, r) for l in range(NL) for r in range(NR) if adj[l, r] == 1]
 
@@ -66,8 +70,6 @@ def _run_bipartite_sat(I, input_edges, adj, h_count, v_count, verbose, timeout,
     solver.parameters.use_pb_resolution = True
     solver.parameters.log_search_progress = verbose
     solver.parameters.max_time_in_seconds = timeout
-    # solver.parameters.search_branching = cp_model.PORTFOLIO_SEARCH
-    # solver.parameters.binary_minimization_algorithm = 2
     status = solver.Solve(model)
 
     if status == cp_model.UNKNOWN:
@@ -90,51 +92,14 @@ def _run_bipartite_sat(I, input_edges, adj, h_count, v_count, verbose, timeout,
         return result
 
 
-class BipartiteSAT:
+class BipartiteSat:
 
-    def __init__(self, guest: Graph, target: ChimeraGraph):
-        self.G = guest
-        self.C = target
-        self.h_embed, self.v_embed = self._bipartite_embed()
+    def __init__(self, guest: Graph, host: ChimeraGraph):
+        self.guest = guest
+        self.host = host
+        self.h_embed, self.v_embed = bipartite_with_faults(host)
         self.adj = self._construct_adj_matrix()
         self.h_embed, self.v_embed, self.adj = self._compress_to_unique()
-
-    def _bipartite_embed(self):
-
-        def append_nonempty(super, sub):
-            if sub:
-                super.append(sub)
-
-        M, L, faulty = self.C.M, self.C.L, self.C.faulty_nodes
-        to_linear = dnx.chimera_coordinates(M, t=L).chimera_to_linear
-
-        h_embed = []
-        for i in range(M * L):
-            chain = []
-            cell, unit = i // L, i % L
-            for j in range(M):
-                ln = to_linear((cell, j, 1, unit))
-                if ln in faulty:
-                    append_nonempty(h_embed, chain)
-                    chain = []
-                else:
-                    chain.append(ln)
-            append_nonempty(h_embed, chain)
-
-        v_embed = []
-        for i in range(M * L):
-            chain = []
-            cell, unit = i // L, i % L
-            for j in range(M):
-                ln = to_linear((j, cell, 0, unit))
-                if ln in faulty:
-                    append_nonempty(v_embed, chain)
-                    chain = []
-                else:
-                    chain.append(ln)
-            append_nonempty(v_embed, chain)
-
-        return h_embed, v_embed
 
     def _construct_adj_matrix(self):
 
@@ -144,11 +109,13 @@ class BipartiteSAT:
             nb_nodes.difference_update(chain)
             return nb_nodes
 
-        v_inverse = {v: i for i in range(len(self.v_embed)) for v in self.v_embed[i]}
+        v_inverse = {
+            v: i for i in range(len(self.v_embed)) for v in self.v_embed[i]
+        }
 
         adj = np.zeros((len(self.h_embed), len(self.v_embed)))
         for i, h_chain in enumerate(self.h_embed):
-            for nb in neighbours(self.C, h_chain):
+            for nb in neighbours(self.host, h_chain):
                 adj[i][v_inverse[nb]] = 1
 
         return adj
@@ -164,17 +131,20 @@ class BipartiteSAT:
         return h_group, v_group, adj
 
     def solve(self, verbose=True, timeout=500, return_walltime=False):
-        h_count = np.array([len(self.h_embed[l]) for l in range(len(self.h_embed))])
-        v_count = np.array([len(self.v_embed[r]) for r in range(len(self.v_embed))])
-        I = len(self.G)
+        h_count = np.array(
+            [len(self.h_embed[l]) for l in range(len(self.h_embed))])
+        v_count = np.array(
+            [len(self.v_embed[r]) for r in range(len(self.v_embed))])
+        I = len(self.guest)
         try:
             import ember.template._native.embed as embed
             run_bipartite_sat = embed.run_bipartite_sat
         except ImportError:
             run_bipartite_sat = _run_bipartite_sat
 
-        result = run_bipartite_sat(I, np.array(self.G.edges), self.adj, h_count, v_count,
-                                   verbose, timeout, return_walltime)
+        result = run_bipartite_sat(I, np.array(self.guest.edges), self.adj,
+                                   h_count, v_count, verbose, timeout,
+                                   return_walltime)
 
         emb = {i: [] for i in range(I)}
 

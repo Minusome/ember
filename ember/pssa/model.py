@@ -2,6 +2,7 @@ import random
 from collections import deque, defaultdict
 from functools import lru_cache
 from itertools import combinations
+
 import dwave_networkx as dnx
 from networkx import Graph
 
@@ -12,20 +13,21 @@ from ember.pssa.graph import MutableGraph
 
 __all__ = ["ProbabilisticSwapShiftModel", "CliqueOverlapModel"]
 
-from ember.template.util import plot_chimera_embedding
-
 
 class BaseModel:
+
     def __init__(self, guest: Graph, host: ChimeraGraph):
         if host.faulty_nodes or host.faulty_edges:
-            raise NotImplementedError("Chimera graphs with faults are not supported by these algorithms")
-
+            raise NotImplementedError(
+                "Chimera graphs with faults are not supported by these algorithms"
+            )
         self.guest = guest
         self.host = host
         m, l = host.params
         dnx_coords = dnx.chimera_coordinates(m, t=l)
         self.linear_to_chimera = dnx_coords.linear_to_chimera
         self.chimera_to_linear = dnx_coords.chimera_to_linear
+        self.forward_embed = None
 
     def _chimera_distance(self, g1: int, g2: int):
         if g1 == g2:
@@ -56,8 +58,32 @@ class BaseModel:
                     self.contact_graph.add_edge(n1, n2, weight)
                     self.initial_cost += 1 if self.guest.has_edge(n1, n2) else 0
 
+    def all_moves(self):
+        pass
+
+    def random_swap_move(self):
+        pass
+
+    def random_shift_move(self, *args):
+        pass
+
+    def delta_swap(self, swap_move):
+        pass
+
+    def swap(self, swap_move):
+        pass
+
+    def delta_shift(self, swap_move):
+        pass
+
+    def shift(self, swap_move):
+        pass
+
+    def randomize(self):
+        pass
 
 class ProbabilisticSwapShiftModel(BaseModel):
+
     def __init__(self, guest, host: ChimeraGraph):
         super().__init__(guest, host)
 
@@ -66,7 +92,8 @@ class ProbabilisticSwapShiftModel(BaseModel):
 
         self.forward_embed = [deque(initial_emb[i]) for i in range(len(initial_emb))]
         self.inverse_embed = {l: k for k, ll in initial_emb.items() for l in ll}
-        self.inverse_guiding_pattern = {l: k for k, ll in guiding_pattern.items() for l in ll}
+        self.inverse_guiding_pattern = \
+            {l: k for k, ll in guiding_pattern.items() for l in ll}
 
         for i in range(len(host)):
             if i not in self.inverse_embed:
@@ -79,15 +106,16 @@ class ProbabilisticSwapShiftModel(BaseModel):
 
     def random_swap_move(self):
         n1, n1_nb = random.choice(tuple(self.guest.edges))
-        n2 = random.choice(tuple(self.contact_graph.nodes[n1_nb].neighbours)).val
+        n2 = random.choice(tuple(
+            self.contact_graph.nodes[n1_nb].neighbours)).val
         return n1, n2
 
     def random_shift_move(self, any_dir=False):
         n_to = random.randrange(len(self.guest))
         if len(self.forward_embed[n_to]) < 2:
             return None
-        g_to = self.forward_embed[n_to][0] if random.getrandbits(1) == 0 else self.forward_embed[
-            n_to][-1]
+        g_to = self.forward_embed[n_to][0] if random.getrandbits(1) == 0 \
+            else self.forward_embed[n_to][-1]
         cand = []
         for g_to_nb in iter(self.host[g_to]):
             n_to_nb = self.inverse_embed[g_to_nb]
@@ -95,12 +123,13 @@ class ProbabilisticSwapShiftModel(BaseModel):
                 continue
             if self.inverse_embed[g_to] == n_to_nb:
                 continue
-            if self.forward_embed[n_to_nb][0] != g_to_nb and self.forward_embed[n_to_nb][-1] != \
-                    g_to_nb:
+            if self.forward_embed[n_to_nb][0] != g_to_nb \
+                    and self.forward_embed[n_to_nb][-1] != g_to_nb:
                 continue
             if any_dir:
                 cand.append(g_to_nb)
-            elif self.inverse_guiding_pattern[g_to_nb] == self.inverse_guiding_pattern[g_to]:
+            elif self.inverse_guiding_pattern[g_to_nb] == \
+                    self.inverse_guiding_pattern[g_to]:
                 cand.append(g_to_nb)
         if len(cand) == 0:
             return None
@@ -132,7 +161,8 @@ class ProbabilisticSwapShiftModel(BaseModel):
             self.inverse_embed[g1] = n2
         for g2 in self.forward_embed[n2]:
             self.inverse_embed[g2] = n1
-        self.forward_embed[n1], self.forward_embed[n2] = self.forward_embed[n2], self.forward_embed[ n1]
+        self.forward_embed[n1], self.forward_embed[n2] = \
+            self.forward_embed[n2], self.forward_embed[n1]
         self.contact_graph.swap_node(n1, n2)
 
     def delta_shift(self, shift_move):
@@ -195,6 +225,7 @@ class ProbabilisticSwapShiftModel(BaseModel):
 
 
 class CliqueOverlapModel(BaseModel):
+
     def __init__(self, guest, host: ChimeraGraph):
         super().__init__(guest, host)
         initial_embed = overlap_clique(host)
@@ -206,7 +237,8 @@ class CliqueOverlapModel(BaseModel):
 
     def randomize(self):
         random.shuffle(self.forward_embed)
-        self.inverse_embed = {n: i for i in range(len(self.guest)) for n in self.forward_embed[i]}
+        self.inverse_embed = \
+            {n: i for i in range(len(self.guest)) for n in self.forward_embed[i]}
         self._create_contact_graph(self.forward_embed)
 
     @lru_cache
@@ -218,7 +250,8 @@ class CliqueOverlapModel(BaseModel):
 
     def random_swap_move(self):
         n1, n1_nb = random.choice(tuple(self.guest.edges))
-        n2 = random.choice(tuple(self.contact_graph.nodes[n1_nb].neighbours)).val
+        n2 = random.choice(tuple(
+            self.contact_graph.nodes[n1_nb].neighbours)).val
         return n1, n2
 
     def random_shift_move(self, *args):
@@ -251,7 +284,8 @@ class CliqueOverlapModel(BaseModel):
             self.inverse_embed[g1] = n2
         for g2 in self.forward_embed[n2]:
             self.inverse_embed[g2] = n1
-        self.forward_embed[n1], self.forward_embed[n2] = self.forward_embed[n2], self.forward_embed[ n1]
+        self.forward_embed[n1], self.forward_embed[n2] = \
+            self.forward_embed[n2], self.forward_embed[n1]
         self.contact_graph.swap_node(n1, n2)
 
     def delta_shift(self, shift_move):
@@ -259,15 +293,16 @@ class CliqueOverlapModel(BaseModel):
         n_minor, n_major, n_overlap = self._get_overlap_state(shift_move)
 
         # check ownership status
-        if n_overlap == n_major: # major loss, minor gain
+        if n_overlap == n_major:  # major loss, minor gain
             for n_nb in self._get_n_minors(shift_move):
                 if n_nb == n_minor:
                     continue
                 if self.guest.has_edge(n_major, n_nb):
                     delta -= 1
-                if self.guest.has_edge(n_minor, n_nb) and not self.contact_graph.has_edge(n_minor, n_nb):
+                if self.guest.has_edge(n_minor, n_nb) \
+                        and not self.contact_graph.has_edge(n_minor, n_nb):
                     delta += 1
-        elif n_overlap == n_minor: # major gain, minor loss
+        elif n_overlap == n_minor:  # major gain, minor loss
             for n_nb in self._get_n_minors(shift_move):
                 if n_nb == n_minor:
                     continue
@@ -280,7 +315,6 @@ class CliqueOverlapModel(BaseModel):
             raise Exception("Bad state")
 
         return delta
-
 
     def shift(self, shift_move):
         n_minor, n_major, n_overlap = self._get_overlap_state(shift_move)
@@ -321,7 +355,8 @@ class CliqueOverlapModel(BaseModel):
         try:
             for c in range(cell + 1):
                 for u in range(l):
-                    yield self.inverse_embed[self.chimera_to_linear((1 + cell, c, 0, u))]
+                    yield self.inverse_embed[
+                        self.chimera_to_linear((1 + cell, c, 0, u))]
         except KeyError:
             pass
 

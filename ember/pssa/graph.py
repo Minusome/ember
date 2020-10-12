@@ -41,7 +41,8 @@ class MutableGraph:
             return self._edges
 
     def swap_node(self, n1: int, n2: int):
-        self.nodes[n1].val, self.nodes[n2].val = self.nodes[n2].val, self.nodes[n1].val
+        self.nodes[n1].val, self.nodes[n2].val = self.nodes[n2].val, self.nodes[
+            n1].val
         self.nodes[n1], self.nodes[n2] = self.nodes[n2], self.nodes[n1]
         self._dirty = True
 
@@ -109,5 +110,5 @@ class _Node:
         self.neighbours = neighbours if neighbours is not None else {}
 
     def __str__(self):
-        return "Val: {}, Neighbours: {}".format(self.val, [(nk.val, nv) for nk, nv in
-                                                           self.neighbours.items()])
+        return "Val: {}, Neighbours: {}".format(
+            self.val, [(nk.val, nv) for nk, nv in self.neighbours.items()])

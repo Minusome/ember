@@ -7,8 +7,106 @@ import numpy as np
 from ember.hardware.chimera import ChimeraGraph
 
 
+def quadripartite_with_faults(chimera_graph: ChimeraGraph):
+
+    def append_nonempty(super, sub):
+        if sub:
+            super.append(sub)
+
+    m, l = chimera_graph.params
+    faulty = chimera_graph.faulty_nodes
+    to_linear = dnx.chimera_coordinates(m, t=l).chimera_to_linear
+
+    U1 = []
+    U4 = []
+    for i in range(m * l):
+        chain1 = []
+        chain4 = []
+        cell, unit = i // l, i % l
+        for j in range(m):
+            ln = to_linear((cell, j, 1, unit))
+            if ln in faulty:
+                if i < m * l / 2:
+                    append_nonempty(U1, chain1)
+                    chain1 = []
+                else:
+                    append_nonempty(U4, chain4)
+                    chain4 = []
+            else:
+                if i < m * l / 2:
+                    chain1.append(ln)
+                else:
+                    chain4.append(ln)
+        append_nonempty(U1, chain1)
+        append_nonempty(U4, chain4)
+
+    U2 = []
+    U3 = []
+    for i in range(m * l):
+        chain2 = []
+        chain3 = []
+        cell, unit = i // l, i % l
+        for j in range(m):
+            ln = to_linear((j, cell, 0, unit))
+            if ln in faulty:
+                if j < m / 2:
+                    append_nonempty(U2, chain2)
+                    chain2 = []
+                else:
+                    append_nonempty(U3, chain3)
+                    chain3 = []
+            else:
+                if j < m / 2:
+                    chain2.append(ln)
+                else:
+                    chain3.append(ln)
+        append_nonempty(U2, chain2)
+        append_nonempty(U3, chain3)
+
+    return U1, U2, U3, U4
+
+
+def bipartite_with_faults(chimera_graph: ChimeraGraph):
+
+    def append_nonempty(super, sub):
+        if sub:
+            super.append(sub)
+
+    m, l = chimera_graph.params
+    faulty = chimera_graph.faulty_nodes
+    to_linear = dnx.chimera_coordinates(m, t=l).chimera_to_linear
+
+    h_embed = []
+    for i in range(m * l):
+        chain = []
+        cell, unit = i // l, i % l
+        for j in range(m):
+            ln = to_linear((cell, j, 1, unit))
+            if ln in faulty:
+                append_nonempty(h_embed, chain)
+                chain = []
+            else:
+                chain.append(ln)
+        append_nonempty(h_embed, chain)
+
+    v_embed = []
+    for i in range(m * l):
+        chain = []
+        cell, unit = i // l, i % l
+        for j in range(m):
+            ln = to_linear((j, cell, 0, unit))
+            if ln in faulty:
+                append_nonempty(v_embed, chain)
+                chain = []
+            else:
+                chain.append(ln)
+        append_nonempty(v_embed, chain)
+
+    return h_embed, v_embed
+
+
 def overlap_clique(chimera_graph: ChimeraGraph):
-    m,l = chimera_graph.params
+    m, l = chimera_graph.params
     to_linear = dnx.chimera_coordinates(m, t=l).chimera_to_linear
 
     # Embed the clique major
@@ -19,8 +117,8 @@ def overlap_clique(chimera_graph: ChimeraGraph):
         for j in range(cell):
             top_embed[i].append(to_linear((j, cell, 0, unit)))
         # Add the two nodes in the diagonal cell
-        top_embed[i].extend((to_linear((cell, cell, 0, unit)),
-                             to_linear((cell, cell, 1, unit))))
+        top_embed[i].extend((to_linear(
+            (cell, cell, 0, unit)), to_linear((cell, cell, 1, unit))))
         # Add the entire row
         for j in range(0, m):
             top_embed[i].append(to_linear((cell, j, 1, unit)))
@@ -60,8 +158,8 @@ def double_triangle_clique(chimera_graph: ChimeraGraph) -> Dict[int, List[int]]:
         for j in range(cell):
             top_embed[i].append(to_linear((j, cell, 0, unit)))
         # Add the two nodes in the diagonal cell
-        top_embed[i].extend((to_linear((cell, cell, 0, unit)),
-                             to_linear((cell, cell, 1, unit))))
+        top_embed[i].extend((to_linear(
+            (cell, cell, 0, unit)), to_linear((cell, cell, 1, unit))))
         # Add the nodes to right of diagonal cell
         for j in range(cell + 1, m):
             top_embed[i].append(to_linear((cell, j, 1, unit)))
@@ -74,8 +172,8 @@ def double_triangle_clique(chimera_graph: ChimeraGraph) -> Dict[int, List[int]]:
         for j in range(cell):
             bot_embed[i].append(to_linear((cell + 1, j, 1, unit)))
         # Add the two nodes in the diagonal cell
-        bot_embed[i].extend((to_linear((cell + 1, cell, 1, unit)),
-                             to_linear((cell + 1, cell, 0, unit))))
+        bot_embed[i].extend((to_linear(
+            (cell + 1, cell, 1, unit)), to_linear((cell + 1, cell, 0, unit))))
         # Add the nodes below diagonal cell
         for j in range(cell + 1, m - 1):
             bot_embed[i].append(to_linear((j + 1, cell, 0, unit)))
