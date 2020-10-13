@@ -1,18 +1,17 @@
 from collections import defaultdict
-from random import seed
 
 import networkx as nx
-import dwave_networkx as dnx
 import numpy as np
 from ortools.sat.python import cp_model
-from ember.template.util import *
 
-from ember.template.util import Chimera, check_embedding
+from ember.hardware.chimera import ChimeraGraph
+from ember.hardware.transform import quadripartite_with_faults
 
-__all__ = ["Quadripartite"]
+__all__ = ["QuadripartiteSat"]
 
 
-def _run_quadripartite(I, G, U1, U2, U3, U4, adj12, adj23, adj34, verbose, timeout, return_walltime):
+def _run_quadripartite(I, G, U1, U2, U3, U4, adj12, adj23, adj34, verbose,
+                       timeout, return_walltime):
     N1, N2 = adj12.shape
     N2_, N3_ = adj23.shape
     N3, N4 = adj34.shape
@@ -23,13 +22,25 @@ def _run_quadripartite(I, G, U1, U2, U3, U4, adj12, adj23, adj34, verbose, timeo
 
     model = cp_model.CpModel()
 
-    y1 = np.array([[model.NewBoolVar(f"y1_{i}_{j}") for j in range(N1)] for i in range(I)])
-    y2 = np.array([[model.NewBoolVar(f"y2_{i}_{j}") for j in range(N2)] for i in range(I)])
-    y3 = np.array([[model.NewBoolVar(f"y3_{i}_{j}") for j in range(N3)] for i in range(I)])
-    y4 = np.array([[model.NewBoolVar(f"y4_{i}_{j}") for j in range(N4)] for i in range(I)])
+    y1 = np.array([
+        [model.NewBoolVar(f"y1_{i}_{j}") for j in range(N1)] for i in range(I)
+    ])
+    y2 = np.array([
+        [model.NewBoolVar(f"y2_{i}_{j}") for j in range(N2)] for i in range(I)
+    ])
+    y3 = np.array([
+        [model.NewBoolVar(f"y3_{i}_{j}") for j in range(N3)] for i in range(I)
+    ])
+    y4 = np.array([
+        [model.NewBoolVar(f"y4_{i}_{j}") for j in range(N4)] for i in range(I)
+    ])
 
-    valid_edge12 = [(n1, n2) for n2 in range(N2) for n1 in range(N1) if adj12[n1, n2] == 1]
-    valid_edge34 = [(n3, n4) for n4 in range(N4) for n3 in range(N3) if adj34[n3, n4] == 1]
+    valid_edge12 = [
+        (n1, n2) for n2 in range(N2) for n1 in range(N1) if adj12[n1, n2] == 1
+    ]
+    valid_edge34 = [
+        (n3, n4) for n4 in range(N4) for n3 in range(N3) if adj34[n3, n4] == 1
+    ]
 
     # decision variable for every valid mapping of guest edge to node edge
     for u, v in G:
@@ -73,7 +84,7 @@ def _run_quadripartite(I, G, U1, U2, U3, U4, adj12, adj23, adj34, verbose, timeo
 
         model.Add(sum(y1[i, :]) + sum(y3[i, :]) - sum(y2[i, :]) <= 1)
         model.Add(sum(y2[i, :]) + sum(y4[i, :]) - sum(y3[i, :]) <= 1)
-        model.Add(sum(y1[i, :]) + sum(y4[i, :]) - sum(y3[i, :]) - sum(y2[i, :]) < 1)
+        model.Add( sum(y1[i, :]) + sum(y4[i, :]) - sum(y3[i, :]) - sum(y2[i, :]) < 1)
 
     # guest node should only be assigned once per partite
     for i in range(I):
@@ -96,8 +107,6 @@ def _run_quadripartite(I, G, U1, U2, U3, U4, adj12, adj23, adj34, verbose, timeo
     solver.parameters.use_pb_resolution = True
     solver.parameters.log_search_progress = verbose
     solver.parameters.max_time_in_seconds = timeout
-    # solver.parameters.search_branching = cp_model.PORTFOLIO_SEARCH
-    # solver.parameters.binary_minimization_algorithm = 2
     status = solver.Solve(model)
 
     result = np.full((I, 4), -1)
@@ -129,73 +138,18 @@ def _run_quadripartite(I, G, U1, U2, U3, U4, adj12, adj23, adj34, verbose, timeo
         return result
 
 
-class Quadripartite:
-    def __init__(self, guest: nx.Graph, host: Chimera):
-        self.G = guest
-        self.C = host
-        self.U1, self.U2, self.U3, self.U4 = self._quadripartite_embed()
+class QuadripartiteSat:
+
+    def __init__(self, guest: nx.Graph, host: ChimeraGraph):
+        self.guest = guest
+        self.host = host
+        self.U1, self.U2, self.U3, self.U4 = quadripartite_with_faults(host)
         self.adj12 = self._construct_adj_matrix(self.U1, self.U2)
         self.adj23 = self._construct_adj_matrix(self.U2, self.U3)
         self.adj34 = self._construct_adj_matrix(self.U3, self.U4)
-        self.U1, self.U2, self.U3, self.U4, self.adj12, self.adj23, self.adj34 = self._compress_to_unique()
+        self.U1, self.U2, self.U3, self.U4, \
+            self.adj12, self.adj23, self.adj34 = self._compress_to_unique()
         self.U23 = self._create_U2_U3_pairs()
-
-    def _quadripartite_embed(self):
-
-        def append_nonempty(super, sub):
-            if sub:
-                super.append(sub)
-
-        M, L, faulty = self.C.M, self.C.L, self.C.faulty
-        to_linear = dnx.chimera_coordinates(M, t=L).chimera_to_linear
-
-        U1 = []
-        U4 = []
-        for i in range(M * L):
-            chain1 = []
-            chain4 = []
-            cell, unit = i // L, i % L
-            for j in range(M):
-                ln = to_linear((cell, j, 1, unit))
-                if ln in faulty:
-                    if i < M * L / 2:
-                        append_nonempty(U1, chain1)
-                        chain1 = []
-                    else:
-                        append_nonempty(U4, chain4)
-                        chain4 = []
-                else:
-                    if i < M * L / 2:
-                        chain1.append(ln)
-                    else:
-                        chain4.append(ln)
-            append_nonempty(U1, chain1)
-            append_nonempty(U4, chain4)
-
-        U2 = []
-        U3 = []
-        for i in range(M * L):
-            chain2 = []
-            chain3 = []
-            cell, unit = i // L, i % L
-            for j in range(M):
-                ln = to_linear((j, cell, 0, unit))
-                if ln in faulty:
-                    if j < M / 2:
-                        append_nonempty(U2, chain2)
-                        chain2 = []
-                    else:
-                        append_nonempty(U3, chain3)
-                        chain3 = []
-                else:
-                    if j < M / 2:
-                        chain2.append(ln)
-                    else:
-                        chain3.append(ln)
-            append_nonempty(U2, chain2)
-            append_nonempty(U3, chain3)
-
-        return U1, U2, U3, U4
 
     def _neighbours(self, graph, chain):
         chain = set(chain)
@@ -206,7 +160,7 @@ class Quadripartite:
     def _construct_adj_matrix(self, p1, p2):
 
         v_inverse = {v: i for i in range(len(p2)) for v in p2[i]}
-        chimera = self.C.internal
+        chimera = self.host.internal
 
         adj = np.zeros((len(p1), len(p2)))
         for i, h_chain in enumerate(p1):
@@ -218,8 +172,8 @@ class Quadripartite:
         return adj
 
     def _compress_to_unique(self):
-        u1_group, u2_group, u3_group, u4_group = defaultdict(list), defaultdict(list), defaultdict(list), defaultdict(
-            list)
+        u1_group, u2_group, u3_group, u4_group = \
+            defaultdict(list), defaultdict(list), defaultdict(list), defaultdict(list)
 
         u2_ind, u3_ind = np.where(self.adj23 == 1)
         adj1234 = np.concatenate([self.adj12[:, u2_ind], np.transpose(self.adj34[u3_ind, :])])
@@ -260,7 +214,7 @@ class Quadripartite:
     def _create_U2_U3_pairs(self):
         index2, index3 = np.where(self.adj23 == 1)
         U23 = defaultdict(list)
-        chimera = self.C.internal
+        chimera = self.host.internal
 
         for i in range(len(index2)):
             u2 = self.U2[index2[i]]
@@ -277,7 +231,7 @@ class Quadripartite:
         U2_count = np.array([len(self.U2[u2]) for u2 in range(len(self.U2))])
         U3_count = np.array([len(self.U3[u3]) for u3 in range(len(self.U3))])
         U4_count = np.array([len(self.U4[u4]) for u4 in range(len(self.U4))])
-        I = len(self.G)
+        I = len(self.guest)
 
         try:
             import ember.template._native.embed as embed
@@ -286,13 +240,11 @@ class Quadripartite:
         except ImportError:
             print("Running Python")
             run_quadripartite = _run_quadripartite
-        # print("trying to import CPP")
-        # import ember.template._native.embed as embed
-        # print("imported CPP")
-        # run_quadripartite = embed.run_quadripartite
 
-        result = run_quadripartite(I, np.array(self.G.edges), U1_count, U2_count, U3_count, U4_count,
-                                   self.adj12, self.adj23, self.adj34, verbose, timeout, return_walltime)
+        result = run_quadripartite(I, np.array(self.guest.edges), U1_count,
+                                   U2_count, U3_count, U4_count, self.adj12,
+                                   self.adj23, self.adj34, verbose, timeout,
+                                   return_walltime)
 
         emb = {i: [] for i in range(I)}
         if return_walltime:

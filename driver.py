@@ -3,8 +3,8 @@ from random import seed
 import networkx as nx
 
 # from ember.template.faulty.bipartite_sat import BipartiteSAT
-from ember.template.faulty.quadripartite import Quadripartite
-from ember.template.util import *
+from ember.template.quadripartite import Quadripartite
+from ember.util.dwave_tools import *
 # from minorminer import find_embedding
 
 times = []

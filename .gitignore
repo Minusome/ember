@@ -2,3 +2,9 @@
 .venv/
 *__pycache__*
 
+*.DS_Store
+var/
+test_graphs/
+build/
+ember.egg-info/
+

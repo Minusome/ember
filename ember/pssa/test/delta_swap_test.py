@@ -25,8 +25,8 @@ contact_builder.add_edge(1, 3)
 contact_graph_2 = FastMutableGraph(contact_builder)
 
 
-def delta_swap_naive(input_graph: FastMutableGraph, contact_graph: FastMutableGraph, n1: int,
-                     n2: int):
+def delta_swap_naive(input_graph: FastMutableGraph,
+                     contact_graph: FastMutableGraph, n1: int, n2: int):
     delta = 0
     for n1_nb in contact_graph.nodes[n1].neighbours:
         if input_graph.has_edge(n1, n1_nb.val):

@@ -138,19 +138,25 @@ py::object RunQuadripartite(
     for (int i = 0; i < num_input_nodes; i++) {
         for (int n1 = 0; n1 < N1; n1++) {
             for (int n2 = 0; n2 < N2; n2++) {
-                cp_model.AddLessOrEqual(LinearExpr::BooleanSum({y1[i][n1], y2[i][n2]}), 1 + adjacency_matrix_12_proxy(n1 ,n2));
+                cp_model.AddLessOrEqual(
+                    LinearExpr::BooleanSum({y1[i][n1], y2[i][n2]}),
+                    1 + adjacency_matrix_12_proxy(n1 ,n2));
             }
         }
 
         for (int n2 = 0; n2 < N2; n2++) {
             for (int n3 = 0; n3 < N3; n3++) {
-                cp_model.AddLessOrEqual(LinearExpr::BooleanSum({y2[i][n2], y3[i][n3]}), 1 + adjacency_matrix_23_proxy(n2 ,n3));
+                cp_model.AddLessOrEqual(
+                    LinearExpr::BooleanSum({y2[i][n2], y3[i][n3]}),
+                    1 + adjacency_matrix_23_proxy(n2 ,n3));
             }
         }
 
         for (int n3 = 0; n3 < N3; n3++) {
             for (int n4 = 0; n4 < N4; n4++) {
-                cp_model.AddLessOrEqual(LinearExpr::BooleanSum({y3[i][n3], y4[i][n4]}), 1 + adjacency_matrix_34_proxy(n3 ,n4));
+                cp_model.AddLessOrEqual(
+                    LinearExpr::BooleanSum({y3[i][n3], y4[i][n4]}),
+                    1 + adjacency_matrix_34_proxy(n3 ,n4));
             }
         }
 
@@ -206,8 +212,6 @@ py::object RunQuadripartite(
         cp_model.AddLessOrEqual(LinearExpr::BooleanScalProd(vars1, coeffs1), 1);
         cp_model.AddLessOrEqual(LinearExpr::BooleanScalProd(vars2, coeffs2), 1);
         cp_model.AddLessOrEqual(LinearExpr::BooleanScalProd(vars3, coeffs3), 1);
-//        cp_model.AddLessOrEqual(LinearExpr::BooleanSum(y2[i] + y4[i] - y3[i]), 1);
-//        cp_model.AddLess(LinearExpr::BooleanSum(y1[i] + y4[i] - y2[i] - y3[i]), 1);
     }
 
     for (int i = 0; i < num_input_nodes; i++) {
@@ -421,9 +425,6 @@ py::object RunBipartite(
     auto result_mut_proxy = result.mutable_unchecked<2>();
 
     for (int i = 0; i < num_input_nodes; i++) {
-        // result_mut_proxy(i, 0) = -1;
-        // result_mut_proxy(i, 1) = -1;
-
         for (int l = 0; l < num_left; l++) {
             if (SolutionBooleanValue(response, yl[i][l])) {
                 result_mut_proxy(i, 0) = l;
