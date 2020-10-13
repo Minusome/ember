@@ -27,9 +27,8 @@ class ChimeraGraph(Graph):
 
         edges = set(chimera.edges)
         faulty_edges = sample(edges,
-            max(0,
-                round(edge_fault_rate * len(edges)) -
-                (len(original_edge_set) - len(edges))))
+                              max(0, round(edge_fault_rate * len(edges)) -
+                                  (len(original_edge_set) - len(edges))))
         chimera.remove_edges_from(faulty_edges)
 
         self.__dict__.update(chimera.__dict__)
@@ -45,10 +44,12 @@ class ChimeraGraph(Graph):
 def D_WAVE_2000Q(**kwargs):
     return ChimeraGraph(16, 4, **kwargs)
 
+
 def D_WAVE_2000Q_2_1():
     return ChimeraGraph(16, 4,
                         node_faults=[215, 336, 577, 691, 1012,
                                      1105, 1276, 1730, 1776, 1858])
+
 
 def D_WAVE_2000Q_5():
     return ChimeraGraph(16, 4,
@@ -57,10 +58,12 @@ def D_WAVE_2000Q_5():
                                      1932, 1934, 1935, 1940, 1941,
                                      1942, 1943, 1977])
 
+
 def D_WAVE_2000Q_6():
     return ChimeraGraph(16, 4,
                         node_faults=[43, 46, 524, 548, 1723, 1735,
                                      1804])
+
 
 def D_WAVE_2000Q_QuAIL():
     return ChimeraGraph(16, 4,
@@ -69,11 +72,11 @@ def D_WAVE_2000Q_QuAIL():
                                      975, 992, 999, 1833, 1881])
 
 
-
 def D_WAVE_2X(**kwargs):
     return ChimeraGraph(12, 4, **kwargs)
 
+
 def D_WAVE_2X_LANL():
     return ChimeraGraph(12, 4,
-                        node_faults = [582, 590, 596, 801, 807, 810,
-                                       814, 815, 817, 897, 939])
+                        node_faults=[582, 590, 596, 801, 807, 810,
+                                     814, 815, 817, 897, 939])
