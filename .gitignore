@@ -7,4 +7,5 @@ var/
 test_graphs/
 build/
 ember.egg-info/
-
+*.ipynb_checkpoints*
+*.vscode*
