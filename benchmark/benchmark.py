@@ -4,7 +4,7 @@ import pickle
 
 edge_densities = ["low", "medium", "high"]
 
-graph_types = {
+guest_generators = {
     "barabasi_albert": barabasi_albert_graph,
     "d_regular": d_regular_graph,
     "erdos_reyni": erdos_reyni_graph,
@@ -14,7 +14,7 @@ seeds = [10, 20, 30, 40, 50]
 
 all_guests = {}
 
-for graph_type, generator in graph_types.items():
+for graph_type, generator in guest_generators.items():
     print(f"Graph type: {graph_type}")
     all_guests[graph_type] = {}
     for num_nodes in range(65, 96):
@@ -28,9 +28,15 @@ for graph_type, generator in graph_types.items():
                     num_nodes, edge_density, seed)
 
     with open(f'{graph_type}.pickle', 'wb') as handle:
-        pickle.dump(all_guests, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        pickle.dump(all_guests[graph_type], handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 # Store them into files
+for graph_type, _ in guest_generators.items():
+     with open(f'./benchmark/guests/{graph_type}.pickle', 'rb') as handle:
+            all_guests[graph_type] = pickle.load( handle)
+
+
+
 
 # Run the non faulty benchmarks
 
