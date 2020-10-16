@@ -9,3 +9,4 @@ build/
 ember.egg-info/
 *.ipynb_checkpoints*
 *.vscode*
+*.so
