@@ -149,7 +149,10 @@ class BipartiteSat:
         emb = {i: [] for i in range(I)}
 
         if result is None:
-            return emb
+            if return_walltime:
+                return emb, timeout
+            else:
+                return emb
 
         if return_walltime:
             result, walltime = result

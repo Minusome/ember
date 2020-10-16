@@ -19,8 +19,7 @@ class BaseModel:
     def __init__(self, guest: Graph, host: ChimeraGraph):
         if host.faulty_nodes or host.faulty_edges:
             raise NotImplementedError(
-                "Chimera graphs with faults are not supported by these algorithms"
-            )
+                "Chimera graphs with faults are not supported by these algorithms")
         self.guest = guest
         self.host = host
         m, l = host.params

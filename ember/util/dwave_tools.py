@@ -10,7 +10,7 @@ def check_embedding(em, G, C):
 
     for prob in diagnosis:
         is_valid = False
-        print(prob)
+        # print(prob)
 
     if is_valid:
         print("Embedding found")

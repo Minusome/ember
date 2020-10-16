@@ -260,7 +260,7 @@ py::object RunQuadripartite(
 
     CpSolverResponse response = SolveWithParameters(cp_model.Build(), parameters);
 
-    if (response.status() == CpSolverStatus::UNKNOWN) {
+    if (response.status() != CpSolverStatus::OPTIMAL) {
         return std::move(py::none());
     }
 
@@ -416,7 +416,7 @@ py::object RunBipartite(
 
     CpSolverResponse response = SolveWithParameters(cp_model.Build(), parameters);
 
-    if (response.status() == CpSolverStatus::UNKNOWN) {
+    if (response.status() != CpSolverStatus::OPTIMAL) {
         return std::move(py::none());
     }
 

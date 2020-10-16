@@ -247,9 +247,16 @@ class QuadripartiteSat:
                                    return_walltime)
 
         emb = {i: [] for i in range(I)}
+
+        if result is None:
+            if return_walltime:
+                return emb, timeout
+            else:
+                return emb
+
         if return_walltime:
             result, walltime = result
-        print(result)
+
         for i in range(I):
             p1, p2, p3, p4 = result[i]
             if p1 != -1:

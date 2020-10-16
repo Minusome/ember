@@ -12,7 +12,7 @@ def run_simulated_annealing(model: BaseModel,
                             max_iterations: int):
     print(f"Optimal: {len(model.guest.edges)}")
     cost_best = cost = model.initial_cost
-    forward_embed_best = copy.deepcopy(model.forward_embed)
+    # forward_embed_best = copy.deepcopy(model.forward_embed)
 
     for step in range(max_iterations):
         temperature, shift_mode, any_dir = schedule(step)
@@ -25,16 +25,21 @@ def run_simulated_annealing(model: BaseModel,
                 continue
             delta = model.delta_shift(shift_move)
 
-        print("\tStep: {}\tCost: {}\tBest Cost: {}\tShift?: {}\tDelta: {}".format(
-              step, cost, cost_best, shift_mode, delta))
+        # print("\tStep: {}\tCost: {}\tBest Cost: {}\tShift?: {}\tDelta: {}".format(
+        #       step, cost, cost_best, shift_mode, delta))
 
-        if math.exp(delta / temperature) > random.random():
+        try:
+            ans = math.exp(delta / temperature)
+        except:
+            ans = float("inf")
+
+        if ans > random.random():
             if shift_mode:
-                print("Accepted shift")
+                # print("Accepted shift")
                 # noinspection PyUnboundLocalVariable
                 model.shift(shift_move)
             else:
-                print("Accepted swap")
+                # print("Accepted swap")
                 # noinspection PyUnboundLocalVariable
                 model.swap(swap_move)
             cost += delta
@@ -44,9 +49,10 @@ def run_simulated_annealing(model: BaseModel,
                 print("Updated best cost: {}".format(cost_best))
                 if cost_best == len(model.guest.edges):
                     print("Solution found")
-                    return forward_embed_best
+                    return _to_dwave_embedding(forward_embed_best)
 
-    return forward_embed_best
+    print("No solution found")
+    return {i: [] for i in range(len(model.guest))}
 
 
 def run_steepest_descent_with_kicks(model: BaseModel, kicks: int,
@@ -83,8 +89,7 @@ def run_steepest_descent_with_kicks(model: BaseModel, kicks: int,
                 print(f"Updated best cost: {cost_best}")
                 if cost_best == len(model.guest.edges):
                     print("Solution found")
-                    return forward_embed_best
-
+                    return _to_dwave_embedding(forward_embed_best)
         else:
             for _ in range(kicks):
                 type, move = random.choice(moves)
@@ -97,6 +102,7 @@ def run_steepest_descent_with_kicks(model: BaseModel, kicks: int,
                 # noinspection PyUnboundLocalVariable
                 cost += delta
             print(f"Performed random restart with new cost: {cost}")
+    return _to_dwave_embedding(forward_embed_best)
 
 
 def run_next_descent_with_random_restarts(model: BaseModel,
@@ -131,10 +137,17 @@ def run_next_descent_with_random_restarts(model: BaseModel,
                 print(f"Updated best cost: {cost_best}")
                 if cost_best == len(model.guest.edges):
                     print("Solution found")
-                    return forward_embed_best
+                    return _to_dwave_embedding(forward_embed_best)
         else:
             iter += 1
         if iter == len(moves):
             model.randomize()
             cost = model.initial_cost
             print(f"Random restart with new cost: {cost}")
+
+    return _to_dwave_embedding(forward_embed_best)
+
+
+def _to_dwave_embedding(emb):
+    result = {i: list(emb[i]) for i in range(len(emb))}
+    return result
