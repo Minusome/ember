@@ -18,23 +18,19 @@ class ChimeraGraph(Graph):
         original_edge_set = set(chimera.edges)
 
         nodes = set(chimera.nodes)
-        if node_faults:
-            faulty_nodes = node_faults
-        else:
-            faulty_nodes = sample(nodes,
-                                  round(node_fault_rate * len(nodes)))
+        faulty_nodes = node_faults if node_faults \
+            else sample(nodes, round(node_fault_rate * len(nodes)))
         chimera.remove_nodes_from(faulty_nodes)
 
-        edges = set(chimera.edges)
-        faulty_edges = sample(edges,
-                              max(0, round(edge_fault_rate * len(edges)) -
-                                  (len(original_edge_set) - len(edges))))
+        faulty_edges = original_edge_set - chimera.edges
+        remain_to_delete = edge_fault_rate * len(original_edge_set) - len(faulty_edges)
+        faulty_edges.add(sample(chimera.edges, max(0, round(remain_to_delete))))
         chimera.remove_edges_from(faulty_edges)
 
         self.__dict__.update(chimera.__dict__)
         self.params = (m, l)
         self.faulty_nodes = set(faulty_nodes)
-        self.faulty_edges = original_edge_set - set(chimera.edges)
+        self.faulty_edges = set(faulty_edges)
         self.internal = chimera
 
     def subgraph(self, nodes):
