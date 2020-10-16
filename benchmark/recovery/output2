@@ -1,0 +1,4268 @@
+graph type: d_regular
+density : medium
+size:  65
+Optimal: 1040
+Updated best cost: 1040
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1583, 'walltime': 2.533155918121338}
+size:  66
+Optimal: 1089
+Updated best cost: 1086
+Updated best cost: 1087
+Updated best cost: 1089
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1598, 'walltime': 2.5953989028930664}
+size:  67
+Optimal: 1139
+Updated best cost: 1133
+Updated best cost: 1134
+Updated best cost: 1135
+Updated best cost: 1136
+Updated best cost: 1138
+Updated best cost: 1139
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1613, 'walltime': 2.7918028831481934}
+size:  68
+Optimal: 1156
+Updated best cost: 1150
+Updated best cost: 1152
+Updated best cost: 1153
+Updated best cost: 1154
+Updated best cost: 1155
+Updated best cost: 1156
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1628, 'walltime': 5.432568073272705}
+size:  69
+Optimal: 1173
+Updated best cost: 1157
+Updated best cost: 1158
+Updated best cost: 1159
+Updated best cost: 1160
+Updated best cost: 1161
+Updated best cost: 1162
+Updated best cost: 1164
+Updated best cost: 1165
+Updated best cost: 1166
+Updated best cost: 1168
+Updated best cost: 1169
+Updated best cost: 1170
+Updated best cost: 1171
+Updated best cost: 1172
+Updated best cost: 1173
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1642, 'walltime': 29.401610851287842}
+size:  70
+Optimal: 1225
+Updated best cost: 1201
+Updated best cost: 1202
+Updated best cost: 1203
+Updated best cost: 1207
+Updated best cost: 1208
+Updated best cost: 1209
+Updated best cost: 1212
+Updated best cost: 1213
+Updated best cost: 1214
+Updated best cost: 1215
+Updated best cost: 1216
+Updated best cost: 1217
+Updated best cost: 1218
+Updated best cost: 1219
+Updated best cost: 1220
+Updated best cost: 1221
+Updated best cost: 1222
+Updated best cost: 1223
+Updated best cost: 1224
+Updated best cost: 1225
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1656, 'walltime': 53.36889386177063}
+size:  71
+Optimal: 1278
+Updated best cost: 1249
+Updated best cost: 1250
+Updated best cost: 1251
+Updated best cost: 1253
+Updated best cost: 1254
+Updated best cost: 1255
+Updated best cost: 1256
+Updated best cost: 1257
+Updated best cost: 1258
+Updated best cost: 1259
+Updated best cost: 1260
+Updated best cost: 1261
+Updated best cost: 1262
+Updated best cost: 1264
+Updated best cost: 1265
+Updated best cost: 1266
+Updated best cost: 1267
+Updated best cost: 1268
+Updated best cost: 1269
+Updated best cost: 1270
+Updated best cost: 1271
+Updated best cost: 1272
+Updated best cost: 1273
+Updated best cost: 1274
+Updated best cost: 1275
+Updated best cost: 1276
+Updated best cost: 1277
+Updated best cost: 1278
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1670, 'walltime': 98.3822729587555}
+size:  72
+Optimal: 1296
+Updated best cost: 1264
+Updated best cost: 1266
+Updated best cost: 1269
+Updated best cost: 1270
+Updated best cost: 1271
+Updated best cost: 1273
+Updated best cost: 1274
+Updated best cost: 1275
+Updated best cost: 1278
+Updated best cost: 1282
+Updated best cost: 1283
+Updated best cost: 1284
+Updated best cost: 1285
+Updated best cost: 1286
+Updated best cost: 1287
+Updated best cost: 1288
+Updated best cost: 1289
+Updated best cost: 1290
+Updated best cost: 1291
+Updated best cost: 1292
+Updated best cost: 1293
+Updated best cost: 1294
+Updated best cost: 1295
+Updated best cost: 1296
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.5, 'qubits_used': 1684, 'walltime': 122.9234619140625}
+size:  73
+Optimal: 1314
+Updated best cost: 1277
+Updated best cost: 1278
+Updated best cost: 1279
+Updated best cost: 1280
+Updated best cost: 1281
+Updated best cost: 1283
+Updated best cost: 1284
+Updated best cost: 1285
+Updated best cost: 1287
+Updated best cost: 1289
+Updated best cost: 1290
+Updated best cost: 1292
+Updated best cost: 1293
+Updated best cost: 1294
+Updated best cost: 1297
+Updated best cost: 1298
+Updated best cost: 1299
+Updated best cost: 1300
+Updated best cost: 1301
+Updated best cost: 1302
+Updated best cost: 1303
+Updated best cost: 1304
+Updated best cost: 1305
+Updated best cost: 1306
+Updated best cost: 1307
+Updated best cost: 1308
+Updated best cost: 1309
+Updated best cost: 1310
+Updated best cost: 1311
+No solution found
+Embedding not found
+Optimal: 1314
+Updated best cost: 1275
+Updated best cost: 1276
+Updated best cost: 1277
+Updated best cost: 1278
+Updated best cost: 1280
+Updated best cost: 1282
+Updated best cost: 1285
+Updated best cost: 1286
+Updated best cost: 1287
+Updated best cost: 1288
+Updated best cost: 1289
+Updated best cost: 1290
+Updated best cost: 1291
+Updated best cost: 1292
+Updated best cost: 1293
+Updated best cost: 1294
+Updated best cost: 1295
+Updated best cost: 1296
+Updated best cost: 1297
+Updated best cost: 1298
+Updated best cost: 1299
+Updated best cost: 1300
+Updated best cost: 1301
+Updated best cost: 1302
+Updated best cost: 1303
+Updated best cost: 1304
+Updated best cost: 1306
+Updated best cost: 1307
+Updated best cost: 1309
+Updated best cost: 1310
+Updated best cost: 1311
+Updated best cost: 1312
+No solution found
+Embedding not found
+Optimal: 1314
+Updated best cost: 1280
+Updated best cost: 1281
+Updated best cost: 1283
+Updated best cost: 1287
+Updated best cost: 1288
+Updated best cost: 1289
+Updated best cost: 1292
+Updated best cost: 1293
+Updated best cost: 1294
+Updated best cost: 1295
+Updated best cost: 1296
+Updated best cost: 1297
+Updated best cost: 1298
+Updated best cost: 1299
+Updated best cost: 1300
+Updated best cost: 1301
+Updated best cost: 1302
+Updated best cost: 1303
+Updated best cost: 1304
+Updated best cost: 1306
+Updated best cost: 1307
+Updated best cost: 1308
+Updated best cost: 1310
+Updated best cost: 1311
+Updated best cost: 1312
+No solution found
+Embedding not found
+Optimal: 1314
+Updated best cost: 1272
+Updated best cost: 1273
+Updated best cost: 1275
+Updated best cost: 1276
+Updated best cost: 1278
+Updated best cost: 1279
+Updated best cost: 1280
+Updated best cost: 1281
+Updated best cost: 1282
+Updated best cost: 1283
+Updated best cost: 1284
+Updated best cost: 1285
+Updated best cost: 1286
+Updated best cost: 1287
+Updated best cost: 1288
+Updated best cost: 1289
+Updated best cost: 1290
+Updated best cost: 1292
+Updated best cost: 1293
+Updated best cost: 1294
+Updated best cost: 1295
+Updated best cost: 1296
+Updated best cost: 1297
+Updated best cost: 1298
+Updated best cost: 1299
+Updated best cost: 1301
+Updated best cost: 1302
+Updated best cost: 1303
+Updated best cost: 1305
+Updated best cost: 1306
+Updated best cost: 1307
+Updated best cost: 1309
+Updated best cost: 1310
+Updated best cost: 1311
+Updated best cost: 1312
+Updated best cost: 1313
+No solution found
+Embedding not found
+Optimal: 1314
+Updated best cost: 1270
+Updated best cost: 1275
+Updated best cost: 1277
+Updated best cost: 1278
+Updated best cost: 1280
+Updated best cost: 1282
+Updated best cost: 1283
+Updated best cost: 1286
+Updated best cost: 1287
+Updated best cost: 1289
+Updated best cost: 1290
+Updated best cost: 1291
+Updated best cost: 1292
+Updated best cost: 1293
+Updated best cost: 1294
+Updated best cost: 1295
+Updated best cost: 1296
+Updated best cost: 1297
+Updated best cost: 1298
+Updated best cost: 1299
+Updated best cost: 1300
+Updated best cost: 1301
+Updated best cost: 1302
+Updated best cost: 1303
+Updated best cost: 1304
+Updated best cost: 1305
+Updated best cost: 1306
+Updated best cost: 1307
+Updated best cost: 1308
+Updated best cost: 1309
+Updated best cost: 1310
+Updated best cost: 1311
+Updated best cost: 1312
+Updated best cost: 1313
+Updated best cost: 1314
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1697, 'walltime': 198.56217312812805}
+size:  74
+Optimal: 1369
+Updated best cost: 1316
+Updated best cost: 1318
+Updated best cost: 1322
+Updated best cost: 1324
+Updated best cost: 1327
+Updated best cost: 1329
+Updated best cost: 1330
+Updated best cost: 1331
+Updated best cost: 1332
+Updated best cost: 1333
+Updated best cost: 1335
+Updated best cost: 1336
+Updated best cost: 1337
+Updated best cost: 1338
+Updated best cost: 1339
+Updated best cost: 1341
+Updated best cost: 1342
+Updated best cost: 1344
+Updated best cost: 1345
+Updated best cost: 1346
+Updated best cost: 1347
+Updated best cost: 1348
+Updated best cost: 1350
+Updated best cost: 1351
+Updated best cost: 1352
+Updated best cost: 1353
+Updated best cost: 1355
+Updated best cost: 1356
+Updated best cost: 1357
+Updated best cost: 1358
+Updated best cost: 1359
+Updated best cost: 1360
+Updated best cost: 1361
+Updated best cost: 1362
+Updated best cost: 1363
+Updated best cost: 1364
+Updated best cost: 1365
+No solution found
+Embedding not found
+Optimal: 1369
+Updated best cost: 1319
+Updated best cost: 1320
+Updated best cost: 1321
+Updated best cost: 1322
+Updated best cost: 1323
+Updated best cost: 1324
+Updated best cost: 1325
+Updated best cost: 1326
+Updated best cost: 1328
+Updated best cost: 1329
+Updated best cost: 1330
+Updated best cost: 1331
+Updated best cost: 1332
+Updated best cost: 1333
+Updated best cost: 1334
+Updated best cost: 1337
+Updated best cost: 1338
+Updated best cost: 1339
+Updated best cost: 1340
+Updated best cost: 1342
+Updated best cost: 1344
+Updated best cost: 1345
+Updated best cost: 1346
+Updated best cost: 1347
+Updated best cost: 1348
+Updated best cost: 1349
+Updated best cost: 1350
+Updated best cost: 1351
+Updated best cost: 1352
+Updated best cost: 1353
+Updated best cost: 1354
+Updated best cost: 1355
+Updated best cost: 1356
+Updated best cost: 1357
+Updated best cost: 1358
+Updated best cost: 1359
+Updated best cost: 1360
+Updated best cost: 1361
+Updated best cost: 1362
+Updated best cost: 1363
+Updated best cost: 1364
+Updated best cost: 1365
+Updated best cost: 1366
+No solution found
+Embedding not found
+Optimal: 1369
+Updated best cost: 1317
+Updated best cost: 1322
+Updated best cost: 1324
+Updated best cost: 1329
+Updated best cost: 1330
+Updated best cost: 1331
+Updated best cost: 1333
+Updated best cost: 1334
+Updated best cost: 1335
+Updated best cost: 1336
+Updated best cost: 1337
+Updated best cost: 1338
+Updated best cost: 1339
+Updated best cost: 1341
+Updated best cost: 1342
+Updated best cost: 1343
+Updated best cost: 1344
+Updated best cost: 1345
+Updated best cost: 1346
+Updated best cost: 1347
+Updated best cost: 1348
+Updated best cost: 1349
+Updated best cost: 1351
+Updated best cost: 1352
+Updated best cost: 1353
+Updated best cost: 1354
+Updated best cost: 1355
+Updated best cost: 1356
+Updated best cost: 1357
+Updated best cost: 1358
+Updated best cost: 1359
+Updated best cost: 1360
+Updated best cost: 1361
+Updated best cost: 1362
+Updated best cost: 1363
+No solution found
+Embedding not found
+Optimal: 1369
+Updated best cost: 1318
+Updated best cost: 1319
+Updated best cost: 1320
+Updated best cost: 1322
+Updated best cost: 1323
+Updated best cost: 1326
+Updated best cost: 1327
+Updated best cost: 1329
+Updated best cost: 1330
+Updated best cost: 1331
+Updated best cost: 1332
+Updated best cost: 1333
+Updated best cost: 1335
+Updated best cost: 1336
+Updated best cost: 1337
+Updated best cost: 1338
+Updated best cost: 1339
+Updated best cost: 1340
+Updated best cost: 1341
+Updated best cost: 1343
+Updated best cost: 1344
+Updated best cost: 1345
+Updated best cost: 1346
+Updated best cost: 1347
+Updated best cost: 1348
+Updated best cost: 1349
+Updated best cost: 1350
+Updated best cost: 1352
+Updated best cost: 1353
+Updated best cost: 1354
+Updated best cost: 1355
+Updated best cost: 1356
+Updated best cost: 1357
+Updated best cost: 1358
+Updated best cost: 1359
+Updated best cost: 1361
+Updated best cost: 1362
+Updated best cost: 1363
+Updated best cost: 1364
+Updated best cost: 1365
+No solution found
+Embedding not found
+Optimal: 1369
+Updated best cost: 1313
+Updated best cost: 1316
+Updated best cost: 1318
+Updated best cost: 1319
+Updated best cost: 1320
+Updated best cost: 1321
+Updated best cost: 1322
+Updated best cost: 1325
+Updated best cost: 1326
+Updated best cost: 1327
+Updated best cost: 1328
+Updated best cost: 1330
+Updated best cost: 1331
+Updated best cost: 1332
+Updated best cost: 1334
+Updated best cost: 1335
+Updated best cost: 1336
+Updated best cost: 1337
+Updated best cost: 1339
+Updated best cost: 1341
+Updated best cost: 1342
+Updated best cost: 1343
+Updated best cost: 1344
+Updated best cost: 1345
+Updated best cost: 1346
+Updated best cost: 1347
+Updated best cost: 1349
+Updated best cost: 1350
+Updated best cost: 1351
+Updated best cost: 1352
+Updated best cost: 1353
+Updated best cost: 1354
+Updated best cost: 1355
+Updated best cost: 1356
+Updated best cost: 1357
+Updated best cost: 1358
+Updated best cost: 1359
+Updated best cost: 1360
+Updated best cost: 1361
+Updated best cost: 1362
+Updated best cost: 1364
+Updated best cost: 1365
+No solution found
+Embedding not found
+density : high
+size:  65
+Optimal: 1560
+Updated best cost: 1559
+Updated best cost: 1560
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1583, 'walltime': 2.5632829666137695}
+size:  66
+Optimal: 1650
+Updated best cost: 1645
+Updated best cost: 1646
+Updated best cost: 1647
+Updated best cost: 1648
+Updated best cost: 1649
+Updated best cost: 1650
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1598, 'walltime': 3.2335476875305176}
+size:  67
+Optimal: 1675
+Updated best cost: 1669
+Updated best cost: 1670
+Updated best cost: 1671
+Updated best cost: 1672
+Updated best cost: 1673
+Updated best cost: 1674
+Updated best cost: 1675
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1613, 'walltime': 39.95033812522888}
+size:  68
+Optimal: 1734
+Updated best cost: 1720
+Updated best cost: 1722
+Updated best cost: 1723
+Updated best cost: 1725
+Updated best cost: 1727
+Updated best cost: 1728
+Updated best cost: 1729
+Updated best cost: 1730
+Updated best cost: 1731
+Updated best cost: 1732
+Updated best cost: 1733
+Updated best cost: 1734
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1628, 'walltime': 67.3889548778534}
+size:  69
+Optimal: 1794
+Updated best cost: 1773
+Updated best cost: 1774
+Updated best cost: 1776
+Updated best cost: 1777
+Updated best cost: 1778
+Updated best cost: 1779
+Updated best cost: 1780
+Updated best cost: 1782
+Updated best cost: 1783
+Updated best cost: 1784
+Updated best cost: 1785
+Updated best cost: 1786
+Updated best cost: 1787
+Updated best cost: 1788
+Updated best cost: 1789
+Updated best cost: 1790
+Updated best cost: 1791
+Updated best cost: 1792
+No solution found
+Embedding not found
+Optimal: 1794
+Updated best cost: 1772
+Updated best cost: 1773
+Updated best cost: 1774
+Updated best cost: 1776
+Updated best cost: 1777
+Updated best cost: 1779
+Updated best cost: 1780
+Updated best cost: 1781
+Updated best cost: 1782
+Updated best cost: 1783
+Updated best cost: 1784
+Updated best cost: 1785
+Updated best cost: 1786
+Updated best cost: 1787
+Updated best cost: 1788
+Updated best cost: 1789
+Updated best cost: 1790
+Updated best cost: 1791
+Updated best cost: 1792
+No solution found
+Embedding not found
+Optimal: 1794
+Updated best cost: 1770
+Updated best cost: 1771
+Updated best cost: 1772
+Updated best cost: 1775
+Updated best cost: 1776
+Updated best cost: 1777
+Updated best cost: 1778
+Updated best cost: 1779
+Updated best cost: 1780
+Updated best cost: 1781
+Updated best cost: 1782
+Updated best cost: 1783
+Updated best cost: 1784
+Updated best cost: 1785
+Updated best cost: 1786
+Updated best cost: 1787
+Updated best cost: 1788
+Updated best cost: 1789
+Updated best cost: 1790
+Updated best cost: 1791
+Updated best cost: 1792
+Updated best cost: 1793
+No solution found
+Embedding not found
+Optimal: 1794
+Updated best cost: 1772
+Updated best cost: 1773
+Updated best cost: 1774
+Updated best cost: 1776
+Updated best cost: 1777
+Updated best cost: 1778
+Updated best cost: 1779
+Updated best cost: 1780
+Updated best cost: 1782
+Updated best cost: 1783
+Updated best cost: 1784
+Updated best cost: 1785
+Updated best cost: 1786
+Updated best cost: 1787
+Updated best cost: 1788
+Updated best cost: 1789
+Updated best cost: 1790
+Updated best cost: 1791
+Updated best cost: 1792
+Updated best cost: 1793
+No solution found
+Embedding not found
+Optimal: 1794
+Updated best cost: 1771
+Updated best cost: 1772
+Updated best cost: 1773
+Updated best cost: 1774
+Updated best cost: 1776
+Updated best cost: 1778
+Updated best cost: 1779
+Updated best cost: 1780
+Updated best cost: 1781
+Updated best cost: 1782
+Updated best cost: 1783
+Updated best cost: 1784
+Updated best cost: 1785
+Updated best cost: 1786
+Updated best cost: 1787
+Updated best cost: 1788
+Updated best cost: 1789
+Updated best cost: 1790
+Updated best cost: 1791
+Updated best cost: 1792
+No solution found
+Embedding not found
+graph type: erdos_reyni
+density : low
+size:  65
+Optimal: 493
+No solution found
+Embedding not found
+Optimal: 550
+Updated best cost: 550
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1583, 'walltime': 2.4732601642608643}
+size:  66
+Optimal: 506
+Updated best cost: 505
+Updated best cost: 506
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1598, 'walltime': 2.5381550788879395}
+size:  67
+Optimal: 526
+Updated best cost: 524
+Updated best cost: 525
+Updated best cost: 526
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1613, 'walltime': 2.6002461910247803}
+size:  68
+Optimal: 549
+Updated best cost: 546
+Updated best cost: 548
+Updated best cost: 549
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1628, 'walltime': 2.6278698444366455}
+size:  69
+Optimal: 564
+Updated best cost: 557
+Updated best cost: 558
+Updated best cost: 559
+Updated best cost: 562
+Updated best cost: 563
+Updated best cost: 564
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1642, 'walltime': 2.693129062652588}
+size:  70
+Optimal: 579
+Updated best cost: 570
+Updated best cost: 571
+Updated best cost: 573
+Updated best cost: 575
+Updated best cost: 576
+Updated best cost: 577
+Updated best cost: 578
+Updated best cost: 579
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1656, 'walltime': 3.08161997795105}
+size:  71
+Optimal: 596
+Updated best cost: 581
+Updated best cost: 586
+Updated best cost: 587
+Updated best cost: 588
+Updated best cost: 589
+Updated best cost: 590
+Updated best cost: 591
+Updated best cost: 592
+Updated best cost: 593
+Updated best cost: 594
+Updated best cost: 595
+Updated best cost: 596
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1670, 'walltime': 3.711951971054077}
+size:  72
+Optimal: 616
+Updated best cost: 597
+Updated best cost: 598
+Updated best cost: 599
+Updated best cost: 601
+Updated best cost: 602
+Updated best cost: 603
+Updated best cost: 604
+Updated best cost: 605
+Updated best cost: 606
+Updated best cost: 608
+Updated best cost: 610
+Updated best cost: 611
+Updated best cost: 612
+Updated best cost: 613
+Updated best cost: 614
+Updated best cost: 615
+Updated best cost: 616
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.5, 'qubits_used': 1684, 'walltime': 3.8888208866119385}
+size:  73
+Optimal: 632
+Updated best cost: 608
+Updated best cost: 610
+Updated best cost: 613
+Updated best cost: 614
+Updated best cost: 616
+Updated best cost: 618
+Updated best cost: 620
+Updated best cost: 621
+Updated best cost: 622
+Updated best cost: 623
+Updated best cost: 624
+Updated best cost: 625
+Updated best cost: 626
+Updated best cost: 627
+Updated best cost: 628
+Updated best cost: 630
+Updated best cost: 631
+Updated best cost: 632
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1697, 'walltime': 4.183696985244751}
+size:  74
+Optimal: 657
+Updated best cost: 626
+Updated best cost: 627
+Updated best cost: 631
+Updated best cost: 633
+Updated best cost: 634
+Updated best cost: 636
+Updated best cost: 639
+Updated best cost: 640
+Updated best cost: 641
+Updated best cost: 642
+Updated best cost: 643
+Updated best cost: 644
+Updated best cost: 645
+Updated best cost: 646
+Updated best cost: 647
+Updated best cost: 648
+Updated best cost: 649
+Updated best cost: 650
+Updated best cost: 652
+Updated best cost: 653
+Updated best cost: 654
+Updated best cost: 655
+Updated best cost: 656
+Updated best cost: 657
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1710, 'walltime': 4.3943281173706055}
+size:  75
+Optimal: 671
+Updated best cost: 644
+Updated best cost: 645
+Updated best cost: 646
+Updated best cost: 647
+Updated best cost: 648
+Updated best cost: 649
+Updated best cost: 651
+Updated best cost: 653
+Updated best cost: 654
+Updated best cost: 655
+Updated best cost: 656
+Updated best cost: 657
+Updated best cost: 658
+Updated best cost: 659
+Updated best cost: 660
+Updated best cost: 663
+Updated best cost: 664
+Updated best cost: 665
+Updated best cost: 666
+Updated best cost: 667
+Updated best cost: 668
+Updated best cost: 669
+Updated best cost: 670
+Updated best cost: 671
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1723, 'walltime': 20.69389295578003}
+size:  76
+Optimal: 684
+Updated best cost: 654
+Updated best cost: 656
+Updated best cost: 657
+Updated best cost: 659
+Updated best cost: 660
+Updated best cost: 662
+Updated best cost: 663
+Updated best cost: 664
+Updated best cost: 665
+Updated best cost: 667
+Updated best cost: 668
+Updated best cost: 669
+Updated best cost: 670
+Updated best cost: 671
+Updated best cost: 672
+Updated best cost: 673
+Updated best cost: 674
+Updated best cost: 675
+Updated best cost: 676
+Updated best cost: 677
+Updated best cost: 678
+Updated best cost: 679
+Updated best cost: 680
+Updated best cost: 681
+Updated best cost: 682
+Updated best cost: 683
+Updated best cost: 684
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1736, 'walltime': 46.65785217285156}
+size:  77
+Optimal: 696
+Updated best cost: 658
+Updated best cost: 662
+Updated best cost: 664
+Updated best cost: 665
+Updated best cost: 667
+Updated best cost: 669
+Updated best cost: 671
+Updated best cost: 673
+Updated best cost: 674
+Updated best cost: 675
+Updated best cost: 676
+Updated best cost: 677
+Updated best cost: 678
+Updated best cost: 680
+Updated best cost: 681
+Updated best cost: 682
+Updated best cost: 683
+Updated best cost: 684
+Updated best cost: 685
+Updated best cost: 686
+Updated best cost: 687
+Updated best cost: 688
+Updated best cost: 689
+Updated best cost: 690
+Updated best cost: 691
+Updated best cost: 692
+Updated best cost: 693
+Updated best cost: 694
+Updated best cost: 695
+Updated best cost: 696
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1748, 'walltime': 37.17506670951843}
+size:  78
+Optimal: 714
+Updated best cost: 664
+Updated best cost: 665
+Updated best cost: 667
+Updated best cost: 668
+Updated best cost: 670
+Updated best cost: 671
+Updated best cost: 672
+Updated best cost: 675
+Updated best cost: 679
+Updated best cost: 680
+Updated best cost: 681
+Updated best cost: 682
+Updated best cost: 683
+Updated best cost: 684
+Updated best cost: 686
+Updated best cost: 687
+Updated best cost: 689
+Updated best cost: 690
+Updated best cost: 691
+Updated best cost: 694
+Updated best cost: 695
+Updated best cost: 696
+Updated best cost: 697
+Updated best cost: 701
+Updated best cost: 702
+Updated best cost: 703
+Updated best cost: 704
+Updated best cost: 705
+Updated best cost: 706
+Updated best cost: 707
+Updated best cost: 708
+Updated best cost: 709
+Updated best cost: 710
+Updated best cost: 711
+Updated best cost: 712
+Updated best cost: 713
+Updated best cost: 714
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1760, 'walltime': 76.58657217025757}
+size:  79
+Optimal: 734
+Updated best cost: 672
+Updated best cost: 673
+Updated best cost: 674
+Updated best cost: 675
+Updated best cost: 676
+Updated best cost: 681
+Updated best cost: 682
+Updated best cost: 686
+Updated best cost: 688
+Updated best cost: 690
+Updated best cost: 691
+Updated best cost: 692
+Updated best cost: 693
+Updated best cost: 694
+Updated best cost: 695
+Updated best cost: 696
+Updated best cost: 698
+Updated best cost: 699
+Updated best cost: 701
+Updated best cost: 703
+Updated best cost: 704
+Updated best cost: 705
+Updated best cost: 706
+Updated best cost: 708
+Updated best cost: 709
+Updated best cost: 710
+Updated best cost: 711
+Updated best cost: 713
+Updated best cost: 715
+Updated best cost: 716
+Updated best cost: 717
+Updated best cost: 718
+Updated best cost: 719
+Updated best cost: 720
+Updated best cost: 721
+Updated best cost: 722
+Updated best cost: 723
+Updated best cost: 724
+Updated best cost: 725
+Updated best cost: 726
+Updated best cost: 727
+Updated best cost: 728
+Updated best cost: 729
+Updated best cost: 730
+Updated best cost: 731
+Updated best cost: 732
+Updated best cost: 733
+Updated best cost: 734
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1772, 'walltime': 58.81495404243469}
+size:  80
+Optimal: 753
+Updated best cost: 690
+Updated best cost: 691
+Updated best cost: 694
+Updated best cost: 695
+Updated best cost: 696
+Updated best cost: 697
+Updated best cost: 700
+Updated best cost: 702
+Updated best cost: 705
+Updated best cost: 708
+Updated best cost: 709
+Updated best cost: 710
+Updated best cost: 711
+Updated best cost: 715
+Updated best cost: 718
+Updated best cost: 719
+Updated best cost: 720
+Updated best cost: 721
+Updated best cost: 723
+Updated best cost: 725
+Updated best cost: 726
+Updated best cost: 727
+Updated best cost: 728
+Updated best cost: 729
+Updated best cost: 730
+Updated best cost: 731
+Updated best cost: 733
+Updated best cost: 734
+Updated best cost: 735
+Updated best cost: 736
+Updated best cost: 737
+Updated best cost: 738
+Updated best cost: 739
+Updated best cost: 740
+Updated best cost: 741
+Updated best cost: 742
+Updated best cost: 743
+Updated best cost: 744
+Updated best cost: 745
+Updated best cost: 746
+Updated best cost: 747
+Updated best cost: 749
+Updated best cost: 750
+Updated best cost: 751
+Updated best cost: 752
+Updated best cost: 753
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 22.5, 'qubits_used': 1784, 'walltime': 55.898975133895874}
+size:  81
+Optimal: 771
+Updated best cost: 700
+Updated best cost: 704
+Updated best cost: 708
+Updated best cost: 709
+Updated best cost: 710
+Updated best cost: 716
+Updated best cost: 717
+Updated best cost: 718
+Updated best cost: 719
+Updated best cost: 721
+Updated best cost: 723
+Updated best cost: 724
+Updated best cost: 725
+Updated best cost: 729
+Updated best cost: 731
+Updated best cost: 733
+Updated best cost: 734
+Updated best cost: 735
+Updated best cost: 736
+Updated best cost: 739
+Updated best cost: 740
+Updated best cost: 741
+Updated best cost: 742
+Updated best cost: 743
+Updated best cost: 744
+Updated best cost: 745
+Updated best cost: 746
+Updated best cost: 747
+Updated best cost: 748
+Updated best cost: 749
+Updated best cost: 750
+Updated best cost: 751
+Updated best cost: 752
+Updated best cost: 753
+Updated best cost: 754
+Updated best cost: 755
+Updated best cost: 756
+Updated best cost: 757
+Updated best cost: 758
+Updated best cost: 759
+Updated best cost: 760
+Updated best cost: 761
+Updated best cost: 762
+Updated best cost: 763
+Updated best cost: 764
+Updated best cost: 765
+Updated best cost: 766
+Updated best cost: 767
+Updated best cost: 768
+Updated best cost: 769
+Updated best cost: 770
+Updated best cost: 771
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 22.0, 'qubits_used': 1795, 'walltime': 90.38959908485413}
+size:  82
+Optimal: 784
+Updated best cost: 713
+Updated best cost: 716
+Updated best cost: 717
+Updated best cost: 720
+Updated best cost: 726
+Updated best cost: 727
+Updated best cost: 728
+Updated best cost: 729
+Updated best cost: 737
+Updated best cost: 738
+Updated best cost: 740
+Updated best cost: 741
+Updated best cost: 743
+Updated best cost: 744
+Updated best cost: 746
+Updated best cost: 747
+Updated best cost: 748
+Updated best cost: 750
+Updated best cost: 751
+Updated best cost: 752
+Updated best cost: 753
+Updated best cost: 754
+Updated best cost: 755
+Updated best cost: 756
+Updated best cost: 758
+Updated best cost: 759
+Updated best cost: 762
+Updated best cost: 763
+Updated best cost: 764
+Updated best cost: 765
+Updated best cost: 766
+Updated best cost: 768
+Updated best cost: 769
+Updated best cost: 770
+Updated best cost: 771
+Updated best cost: 772
+Updated best cost: 774
+Updated best cost: 775
+Updated best cost: 776
+Updated best cost: 777
+Updated best cost: 778
+Updated best cost: 779
+Updated best cost: 780
+Updated best cost: 781
+Updated best cost: 782
+Updated best cost: 783
+Updated best cost: 784
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 22.0, 'qubits_used': 1806, 'walltime': 90.16244697570801}
+size:  83
+Optimal: 803
+Updated best cost: 718
+Updated best cost: 719
+Updated best cost: 720
+Updated best cost: 721
+Updated best cost: 722
+Updated best cost: 723
+Updated best cost: 726
+Updated best cost: 728
+Updated best cost: 730
+Updated best cost: 731
+Updated best cost: 732
+Updated best cost: 734
+Updated best cost: 735
+Updated best cost: 736
+Updated best cost: 738
+Updated best cost: 739
+Updated best cost: 740
+Updated best cost: 742
+Updated best cost: 743
+Updated best cost: 745
+Updated best cost: 746
+Updated best cost: 747
+Updated best cost: 748
+Updated best cost: 749
+Updated best cost: 750
+Updated best cost: 751
+Updated best cost: 756
+Updated best cost: 757
+Updated best cost: 758
+Updated best cost: 759
+Updated best cost: 760
+Updated best cost: 761
+Updated best cost: 762
+Updated best cost: 763
+Updated best cost: 764
+Updated best cost: 765
+Updated best cost: 767
+Updated best cost: 768
+Updated best cost: 769
+Updated best cost: 770
+Updated best cost: 771
+Updated best cost: 773
+Updated best cost: 774
+Updated best cost: 775
+Updated best cost: 777
+Updated best cost: 778
+Updated best cost: 779
+Updated best cost: 780
+Updated best cost: 781
+Updated best cost: 782
+Updated best cost: 783
+Updated best cost: 784
+Updated best cost: 785
+Updated best cost: 787
+Updated best cost: 788
+Updated best cost: 789
+Updated best cost: 790
+Updated best cost: 791
+Updated best cost: 792
+Updated best cost: 793
+Updated best cost: 794
+Updated best cost: 795
+Updated best cost: 796
+Updated best cost: 797
+Updated best cost: 798
+Updated best cost: 799
+Updated best cost: 800
+Updated best cost: 801
+Updated best cost: 802
+Updated best cost: 803
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 22.0, 'qubits_used': 1817, 'walltime': 110.02485990524292}
+size:  84
+Optimal: 832
+Updated best cost: 731
+Updated best cost: 735
+Updated best cost: 738
+Updated best cost: 740
+Updated best cost: 745
+Updated best cost: 748
+Updated best cost: 750
+Updated best cost: 752
+Updated best cost: 753
+Updated best cost: 756
+Updated best cost: 757
+Updated best cost: 758
+Updated best cost: 759
+Updated best cost: 760
+Updated best cost: 765
+Updated best cost: 766
+Updated best cost: 767
+Updated best cost: 768
+Updated best cost: 769
+Updated best cost: 770
+Updated best cost: 771
+Updated best cost: 772
+Updated best cost: 775
+Updated best cost: 776
+Updated best cost: 777
+Updated best cost: 778
+Updated best cost: 779
+Updated best cost: 780
+Updated best cost: 781
+Updated best cost: 783
+Updated best cost: 784
+Updated best cost: 786
+Updated best cost: 787
+Updated best cost: 789
+Updated best cost: 790
+Updated best cost: 791
+Updated best cost: 792
+Updated best cost: 793
+Updated best cost: 794
+Updated best cost: 795
+Updated best cost: 796
+Updated best cost: 797
+Updated best cost: 798
+Updated best cost: 799
+Updated best cost: 800
+Updated best cost: 801
+Updated best cost: 802
+Updated best cost: 803
+Updated best cost: 804
+Updated best cost: 806
+Updated best cost: 807
+Updated best cost: 808
+Updated best cost: 810
+Updated best cost: 811
+Updated best cost: 812
+Updated best cost: 813
+Updated best cost: 814
+Updated best cost: 815
+Updated best cost: 816
+Updated best cost: 817
+Updated best cost: 818
+Updated best cost: 819
+Updated best cost: 820
+Updated best cost: 821
+Updated best cost: 822
+Updated best cost: 823
+Updated best cost: 824
+Updated best cost: 825
+Updated best cost: 826
+Updated best cost: 827
+Updated best cost: 828
+Updated best cost: 829
+Updated best cost: 830
+Updated best cost: 831
+Updated best cost: 832
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 21.0, 'qubits_used': 1828, 'walltime': 116.90699696540833}
+size:  85
+Optimal: 853
+Updated best cost: 729
+Updated best cost: 730
+Updated best cost: 731
+Updated best cost: 735
+Updated best cost: 736
+Updated best cost: 739
+Updated best cost: 740
+Updated best cost: 743
+Updated best cost: 747
+Updated best cost: 748
+Updated best cost: 750
+Updated best cost: 751
+Updated best cost: 754
+Updated best cost: 756
+Updated best cost: 757
+Updated best cost: 758
+Updated best cost: 760
+Updated best cost: 761
+Updated best cost: 762
+Updated best cost: 763
+Updated best cost: 764
+Updated best cost: 765
+Updated best cost: 768
+Updated best cost: 769
+Updated best cost: 770
+Updated best cost: 771
+Updated best cost: 773
+Updated best cost: 775
+Updated best cost: 776
+Updated best cost: 779
+Updated best cost: 780
+Updated best cost: 782
+Updated best cost: 783
+Updated best cost: 785
+Updated best cost: 786
+Updated best cost: 787
+Updated best cost: 788
+Updated best cost: 790
+Updated best cost: 791
+Updated best cost: 792
+Updated best cost: 793
+Updated best cost: 794
+Updated best cost: 795
+Updated best cost: 796
+Updated best cost: 798
+Updated best cost: 799
+Updated best cost: 800
+Updated best cost: 802
+Updated best cost: 803
+Updated best cost: 805
+Updated best cost: 806
+Updated best cost: 807
+Updated best cost: 809
+Updated best cost: 810
+Updated best cost: 811
+Updated best cost: 812
+Updated best cost: 813
+Updated best cost: 814
+Updated best cost: 815
+Updated best cost: 817
+Updated best cost: 818
+Updated best cost: 819
+Updated best cost: 821
+Updated best cost: 822
+Updated best cost: 823
+Updated best cost: 824
+Updated best cost: 825
+Updated best cost: 826
+Updated best cost: 827
+Updated best cost: 829
+Updated best cost: 831
+Updated best cost: 832
+Updated best cost: 834
+Updated best cost: 835
+Updated best cost: 836
+Updated best cost: 837
+Updated best cost: 838
+Updated best cost: 839
+Updated best cost: 840
+Updated best cost: 841
+Updated best cost: 842
+Updated best cost: 843
+Updated best cost: 844
+Updated best cost: 845
+Updated best cost: 846
+Updated best cost: 847
+Updated best cost: 848
+Updated best cost: 849
+Updated best cost: 850
+No solution found
+Embedding not found
+Optimal: 913
+Updated best cost: 793
+Updated best cost: 795
+Updated best cost: 796
+Updated best cost: 797
+Updated best cost: 798
+Updated best cost: 799
+Updated best cost: 802
+Updated best cost: 804
+Updated best cost: 807
+Updated best cost: 809
+Updated best cost: 811
+Updated best cost: 813
+Updated best cost: 814
+Updated best cost: 815
+Updated best cost: 816
+Updated best cost: 819
+Updated best cost: 820
+Updated best cost: 825
+Updated best cost: 826
+Updated best cost: 827
+Updated best cost: 828
+Updated best cost: 829
+Updated best cost: 836
+Updated best cost: 838
+Updated best cost: 840
+Updated best cost: 843
+Updated best cost: 845
+Updated best cost: 846
+Updated best cost: 847
+Updated best cost: 848
+Updated best cost: 849
+Updated best cost: 850
+Updated best cost: 852
+Updated best cost: 855
+Updated best cost: 856
+Updated best cost: 857
+Updated best cost: 858
+Updated best cost: 860
+Updated best cost: 861
+Updated best cost: 862
+Updated best cost: 863
+Updated best cost: 864
+Updated best cost: 865
+Updated best cost: 866
+Updated best cost: 867
+Updated best cost: 868
+Updated best cost: 869
+Updated best cost: 871
+Updated best cost: 872
+Updated best cost: 873
+Updated best cost: 875
+Updated best cost: 876
+Updated best cost: 877
+Updated best cost: 878
+Updated best cost: 880
+Updated best cost: 881
+Updated best cost: 882
+Updated best cost: 885
+Updated best cost: 887
+Updated best cost: 888
+Updated best cost: 889
+Updated best cost: 890
+Updated best cost: 891
+Updated best cost: 892
+Updated best cost: 893
+Updated best cost: 894
+Updated best cost: 895
+Updated best cost: 896
+Updated best cost: 897
+Updated best cost: 898
+Updated best cost: 899
+Updated best cost: 900
+Updated best cost: 901
+Updated best cost: 902
+Updated best cost: 903
+Updated best cost: 904
+Updated best cost: 905
+Updated best cost: 906
+Updated best cost: 907
+No solution found
+Embedding not found
+Optimal: 886
+Updated best cost: 776
+Updated best cost: 780
+Updated best cost: 781
+Updated best cost: 782
+Updated best cost: 785
+Updated best cost: 787
+Updated best cost: 791
+Updated best cost: 793
+Updated best cost: 794
+Updated best cost: 796
+Updated best cost: 797
+Updated best cost: 801
+Updated best cost: 802
+Updated best cost: 805
+Updated best cost: 806
+Updated best cost: 807
+Updated best cost: 809
+Updated best cost: 810
+Updated best cost: 811
+Updated best cost: 812
+Updated best cost: 814
+Updated best cost: 816
+Updated best cost: 817
+Updated best cost: 821
+Updated best cost: 823
+Updated best cost: 824
+Updated best cost: 825
+Updated best cost: 826
+Updated best cost: 827
+Updated best cost: 828
+Updated best cost: 831
+Updated best cost: 832
+Updated best cost: 833
+Updated best cost: 834
+Updated best cost: 835
+Updated best cost: 838
+Updated best cost: 839
+Updated best cost: 841
+Updated best cost: 842
+Updated best cost: 846
+Updated best cost: 847
+Updated best cost: 848
+Updated best cost: 849
+Updated best cost: 850
+Updated best cost: 851
+Updated best cost: 852
+Updated best cost: 853
+Updated best cost: 854
+Updated best cost: 855
+Updated best cost: 856
+Updated best cost: 857
+Updated best cost: 858
+Updated best cost: 859
+Updated best cost: 862
+Updated best cost: 863
+Updated best cost: 864
+Updated best cost: 865
+Updated best cost: 866
+Updated best cost: 867
+Updated best cost: 868
+Updated best cost: 869
+Updated best cost: 870
+Updated best cost: 871
+Updated best cost: 872
+Updated best cost: 873
+Updated best cost: 874
+Updated best cost: 875
+Updated best cost: 876
+Updated best cost: 877
+Updated best cost: 878
+Updated best cost: 879
+Updated best cost: 880
+Updated best cost: 881
+No solution found
+Embedding not found
+Optimal: 898
+Updated best cost: 787
+Updated best cost: 788
+Updated best cost: 791
+Updated best cost: 794
+Updated best cost: 795
+Updated best cost: 796
+Updated best cost: 797
+Updated best cost: 800
+Updated best cost: 801
+Updated best cost: 804
+Updated best cost: 806
+Updated best cost: 810
+Updated best cost: 812
+Updated best cost: 814
+Updated best cost: 815
+Updated best cost: 817
+Updated best cost: 822
+Updated best cost: 825
+Updated best cost: 828
+Updated best cost: 829
+Updated best cost: 831
+Updated best cost: 833
+Updated best cost: 835
+Updated best cost: 836
+Updated best cost: 837
+Updated best cost: 839
+Updated best cost: 840
+Updated best cost: 842
+Updated best cost: 844
+Updated best cost: 847
+Updated best cost: 848
+Updated best cost: 849
+Updated best cost: 850
+Updated best cost: 851
+Updated best cost: 852
+Updated best cost: 853
+Updated best cost: 854
+Updated best cost: 855
+Updated best cost: 857
+Updated best cost: 858
+Updated best cost: 859
+Updated best cost: 860
+Updated best cost: 861
+Updated best cost: 862
+Updated best cost: 863
+Updated best cost: 864
+Updated best cost: 865
+Updated best cost: 866
+Updated best cost: 867
+Updated best cost: 868
+Updated best cost: 869
+Updated best cost: 870
+Updated best cost: 871
+Updated best cost: 872
+Updated best cost: 873
+Updated best cost: 874
+Updated best cost: 875
+Updated best cost: 876
+Updated best cost: 877
+Updated best cost: 878
+Updated best cost: 879
+Updated best cost: 880
+Updated best cost: 881
+Updated best cost: 882
+Updated best cost: 883
+Updated best cost: 884
+Updated best cost: 885
+Updated best cost: 886
+Updated best cost: 887
+Updated best cost: 888
+Updated best cost: 889
+Updated best cost: 891
+Updated best cost: 892
+Updated best cost: 893
+Updated best cost: 894
+No solution found
+Embedding not found
+Optimal: 868
+Updated best cost: 768
+Updated best cost: 773
+Updated best cost: 775
+Updated best cost: 777
+Updated best cost: 779
+Updated best cost: 780
+Updated best cost: 781
+Updated best cost: 782
+Updated best cost: 784
+Updated best cost: 785
+Updated best cost: 786
+Updated best cost: 787
+Updated best cost: 788
+Updated best cost: 793
+Updated best cost: 794
+Updated best cost: 796
+Updated best cost: 797
+Updated best cost: 798
+Updated best cost: 799
+Updated best cost: 800
+Updated best cost: 801
+Updated best cost: 802
+Updated best cost: 803
+Updated best cost: 806
+Updated best cost: 807
+Updated best cost: 808
+Updated best cost: 809
+Updated best cost: 812
+Updated best cost: 813
+Updated best cost: 814
+Updated best cost: 816
+Updated best cost: 817
+Updated best cost: 818
+Updated best cost: 819
+Updated best cost: 820
+Updated best cost: 822
+Updated best cost: 823
+Updated best cost: 824
+Updated best cost: 825
+Updated best cost: 826
+Updated best cost: 827
+Updated best cost: 828
+Updated best cost: 829
+Updated best cost: 830
+Updated best cost: 831
+Updated best cost: 832
+Updated best cost: 833
+Updated best cost: 835
+Updated best cost: 837
+Updated best cost: 839
+Updated best cost: 840
+Updated best cost: 841
+Updated best cost: 842
+Updated best cost: 843
+Updated best cost: 844
+Updated best cost: 846
+Updated best cost: 847
+Updated best cost: 848
+Updated best cost: 849
+Updated best cost: 850
+Updated best cost: 851
+Updated best cost: 852
+Updated best cost: 853
+Updated best cost: 854
+Updated best cost: 856
+Updated best cost: 857
+Updated best cost: 858
+Updated best cost: 859
+Updated best cost: 860
+Updated best cost: 861
+Updated best cost: 862
+Updated best cost: 863
+Updated best cost: 864
+Updated best cost: 865
+Updated best cost: 866
+No solution found
+Embedding not found
+density : medium
+size:  65
+Optimal: 1030
+No solution found
+Embedding not found
+Optimal: 1048
+Updated best cost: 1047
+Updated best cost: 1048
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1583, 'walltime': 2.501635789871216}
+size:  66
+Optimal: 1062
+Updated best cost: 1058
+Updated best cost: 1059
+Updated best cost: 1060
+Updated best cost: 1061
+Updated best cost: 1062
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1598, 'walltime': 2.6613640785217285}
+size:  67
+Optimal: 1098
+Updated best cost: 1091
+Updated best cost: 1092
+Updated best cost: 1093
+Updated best cost: 1094
+Updated best cost: 1096
+Updated best cost: 1097
+Updated best cost: 1098
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1613, 'walltime': 2.7326772212982178}
+size:  68
+Optimal: 1136
+Updated best cost: 1131
+Updated best cost: 1132
+Updated best cost: 1133
+Updated best cost: 1134
+Updated best cost: 1135
+Updated best cost: 1136
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1628, 'walltime': 3.438730001449585}
+size:  69
+Optimal: 1170
+Updated best cost: 1155
+Updated best cost: 1156
+Updated best cost: 1158
+Updated best cost: 1159
+Updated best cost: 1160
+Updated best cost: 1161
+Updated best cost: 1163
+Updated best cost: 1164
+Updated best cost: 1165
+Updated best cost: 1166
+Updated best cost: 1167
+Updated best cost: 1168
+Updated best cost: 1169
+Updated best cost: 1170
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1642, 'walltime': 2.7978010177612305}
+size:  70
+Optimal: 1205
+Updated best cost: 1188
+Updated best cost: 1191
+Updated best cost: 1192
+Updated best cost: 1193
+Updated best cost: 1194
+Updated best cost: 1197
+Updated best cost: 1198
+Updated best cost: 1199
+Updated best cost: 1200
+Updated best cost: 1201
+Updated best cost: 1202
+Updated best cost: 1203
+Updated best cost: 1204
+Updated best cost: 1205
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1656, 'walltime': 6.634942054748535}
+size:  71
+Optimal: 1242
+Updated best cost: 1217
+Updated best cost: 1218
+Updated best cost: 1220
+Updated best cost: 1221
+Updated best cost: 1222
+Updated best cost: 1224
+Updated best cost: 1228
+Updated best cost: 1229
+Updated best cost: 1230
+Updated best cost: 1231
+Updated best cost: 1232
+Updated best cost: 1233
+Updated best cost: 1235
+Updated best cost: 1236
+Updated best cost: 1237
+Updated best cost: 1238
+Updated best cost: 1239
+Updated best cost: 1240
+Updated best cost: 1241
+Updated best cost: 1242
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1670, 'walltime': 21.40548300743103}
+size:  72
+Optimal: 1282
+Updated best cost: 1251
+Updated best cost: 1252
+Updated best cost: 1253
+Updated best cost: 1254
+Updated best cost: 1255
+Updated best cost: 1256
+Updated best cost: 1258
+Updated best cost: 1260
+Updated best cost: 1262
+Updated best cost: 1263
+Updated best cost: 1264
+Updated best cost: 1266
+Updated best cost: 1268
+Updated best cost: 1270
+Updated best cost: 1271
+Updated best cost: 1272
+Updated best cost: 1273
+Updated best cost: 1275
+Updated best cost: 1276
+Updated best cost: 1277
+Updated best cost: 1278
+Updated best cost: 1279
+Updated best cost: 1280
+Updated best cost: 1281
+Updated best cost: 1282
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.5, 'qubits_used': 1684, 'walltime': 77.34961891174316}
+size:  73
+Optimal: 1318
+Updated best cost: 1276
+Updated best cost: 1280
+Updated best cost: 1283
+Updated best cost: 1284
+Updated best cost: 1287
+Updated best cost: 1290
+Updated best cost: 1293
+Updated best cost: 1294
+Updated best cost: 1296
+Updated best cost: 1297
+Updated best cost: 1298
+Updated best cost: 1300
+Updated best cost: 1301
+Updated best cost: 1302
+Updated best cost: 1303
+Updated best cost: 1304
+Updated best cost: 1306
+Updated best cost: 1307
+Updated best cost: 1308
+Updated best cost: 1309
+Updated best cost: 1310
+Updated best cost: 1311
+Updated best cost: 1312
+Updated best cost: 1313
+Updated best cost: 1314
+Updated best cost: 1315
+Updated best cost: 1316
+Updated best cost: 1317
+Updated best cost: 1318
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1697, 'walltime': 194.87007999420166}
+size:  74
+Optimal: 1357
+Updated best cost: 1310
+Updated best cost: 1311
+Updated best cost: 1313
+Updated best cost: 1315
+Updated best cost: 1317
+Updated best cost: 1318
+Updated best cost: 1319
+Updated best cost: 1321
+Updated best cost: 1323
+Updated best cost: 1325
+Updated best cost: 1326
+Updated best cost: 1327
+Updated best cost: 1328
+Updated best cost: 1329
+Updated best cost: 1332
+Updated best cost: 1333
+Updated best cost: 1334
+Updated best cost: 1335
+Updated best cost: 1336
+Updated best cost: 1338
+Updated best cost: 1339
+Updated best cost: 1340
+Updated best cost: 1341
+Updated best cost: 1342
+Updated best cost: 1343
+Updated best cost: 1344
+Updated best cost: 1345
+Updated best cost: 1346
+Updated best cost: 1347
+Updated best cost: 1348
+Updated best cost: 1349
+Updated best cost: 1350
+Updated best cost: 1351
+Updated best cost: 1352
+Updated best cost: 1353
+Updated best cost: 1354
+Updated best cost: 1355
+Updated best cost: 1356
+Updated best cost: 1357
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1710, 'walltime': 200.75546312332153}
+size:  75
+Optimal: 1388
+Updated best cost: 1331
+Updated best cost: 1333
+Updated best cost: 1334
+Updated best cost: 1336
+Updated best cost: 1337
+Updated best cost: 1338
+Updated best cost: 1342
+Updated best cost: 1343
+Updated best cost: 1344
+Updated best cost: 1345
+Updated best cost: 1347
+Updated best cost: 1348
+Updated best cost: 1350
+Updated best cost: 1352
+Updated best cost: 1354
+Updated best cost: 1355
+Updated best cost: 1357
+Updated best cost: 1358
+Updated best cost: 1361
+Updated best cost: 1362
+Updated best cost: 1363
+Updated best cost: 1364
+Updated best cost: 1365
+Updated best cost: 1366
+Updated best cost: 1367
+Updated best cost: 1368
+Updated best cost: 1369
+Updated best cost: 1370
+Updated best cost: 1371
+Updated best cost: 1372
+Updated best cost: 1373
+Updated best cost: 1375
+Updated best cost: 1376
+Updated best cost: 1377
+Updated best cost: 1378
+Updated best cost: 1379
+Updated best cost: 1380
+Updated best cost: 1381
+Updated best cost: 1382
+No solution found
+Embedding not found
+Optimal: 1395
+Updated best cost: 1331
+Updated best cost: 1332
+Updated best cost: 1336
+Updated best cost: 1337
+Updated best cost: 1338
+Updated best cost: 1339
+Updated best cost: 1343
+Updated best cost: 1344
+Updated best cost: 1345
+Updated best cost: 1347
+Updated best cost: 1348
+Updated best cost: 1349
+Updated best cost: 1350
+Updated best cost: 1351
+Updated best cost: 1352
+Updated best cost: 1353
+Updated best cost: 1354
+Updated best cost: 1356
+Updated best cost: 1357
+Updated best cost: 1358
+Updated best cost: 1359
+Updated best cost: 1360
+Updated best cost: 1361
+Updated best cost: 1362
+Updated best cost: 1363
+Updated best cost: 1364
+Updated best cost: 1365
+Updated best cost: 1366
+Updated best cost: 1367
+Updated best cost: 1368
+Updated best cost: 1369
+Updated best cost: 1370
+Updated best cost: 1371
+Updated best cost: 1372
+Updated best cost: 1374
+Updated best cost: 1375
+Updated best cost: 1376
+Updated best cost: 1377
+Updated best cost: 1378
+Updated best cost: 1379
+Updated best cost: 1380
+Updated best cost: 1381
+Updated best cost: 1382
+Updated best cost: 1383
+Updated best cost: 1384
+Updated best cost: 1385
+Updated best cost: 1386
+Updated best cost: 1387
+Updated best cost: 1388
+Updated best cost: 1389
+Updated best cost: 1390
+No solution found
+Embedding not found
+Optimal: 1411
+Updated best cost: 1348
+Updated best cost: 1350
+Updated best cost: 1354
+Updated best cost: 1357
+Updated best cost: 1358
+Updated best cost: 1359
+Updated best cost: 1360
+Updated best cost: 1362
+Updated best cost: 1363
+Updated best cost: 1364
+Updated best cost: 1365
+Updated best cost: 1366
+Updated best cost: 1367
+Updated best cost: 1368
+Updated best cost: 1370
+Updated best cost: 1371
+Updated best cost: 1372
+Updated best cost: 1373
+Updated best cost: 1374
+Updated best cost: 1375
+Updated best cost: 1376
+Updated best cost: 1378
+Updated best cost: 1379
+Updated best cost: 1380
+Updated best cost: 1381
+Updated best cost: 1382
+Updated best cost: 1383
+Updated best cost: 1384
+Updated best cost: 1385
+Updated best cost: 1386
+Updated best cost: 1387
+Updated best cost: 1388
+Updated best cost: 1389
+Updated best cost: 1390
+Updated best cost: 1391
+Updated best cost: 1392
+Updated best cost: 1394
+Updated best cost: 1396
+Updated best cost: 1397
+Updated best cost: 1399
+Updated best cost: 1400
+Updated best cost: 1401
+Updated best cost: 1402
+Updated best cost: 1403
+Updated best cost: 1404
+Updated best cost: 1405
+Updated best cost: 1406
+Updated best cost: 1407
+Updated best cost: 1408
+Updated best cost: 1409
+No solution found
+Embedding not found
+Optimal: 1419
+Updated best cost: 1350
+Updated best cost: 1351
+Updated best cost: 1354
+Updated best cost: 1355
+Updated best cost: 1356
+Updated best cost: 1358
+Updated best cost: 1359
+Updated best cost: 1360
+Updated best cost: 1361
+Updated best cost: 1362
+Updated best cost: 1364
+Updated best cost: 1366
+Updated best cost: 1367
+Updated best cost: 1371
+Updated best cost: 1372
+Updated best cost: 1373
+Updated best cost: 1376
+Updated best cost: 1377
+Updated best cost: 1378
+Updated best cost: 1379
+Updated best cost: 1381
+Updated best cost: 1382
+Updated best cost: 1383
+Updated best cost: 1384
+Updated best cost: 1385
+Updated best cost: 1386
+Updated best cost: 1389
+Updated best cost: 1390
+Updated best cost: 1391
+Updated best cost: 1392
+Updated best cost: 1395
+Updated best cost: 1396
+Updated best cost: 1397
+Updated best cost: 1399
+Updated best cost: 1400
+Updated best cost: 1401
+Updated best cost: 1403
+Updated best cost: 1404
+Updated best cost: 1405
+Updated best cost: 1406
+Updated best cost: 1407
+Updated best cost: 1408
+Updated best cost: 1409
+Updated best cost: 1410
+Updated best cost: 1411
+Updated best cost: 1412
+Updated best cost: 1414
+No solution found
+Embedding not found
+Optimal: 1408
+Updated best cost: 1339
+Updated best cost: 1340
+Updated best cost: 1341
+Updated best cost: 1342
+Updated best cost: 1344
+Updated best cost: 1346
+Updated best cost: 1348
+Updated best cost: 1349
+Updated best cost: 1350
+Updated best cost: 1353
+Updated best cost: 1354
+Updated best cost: 1357
+Updated best cost: 1359
+Updated best cost: 1360
+Updated best cost: 1361
+Updated best cost: 1363
+Updated best cost: 1365
+Updated best cost: 1366
+Updated best cost: 1367
+Updated best cost: 1368
+Updated best cost: 1369
+Updated best cost: 1370
+Updated best cost: 1371
+Updated best cost: 1372
+Updated best cost: 1373
+Updated best cost: 1374
+Updated best cost: 1376
+Updated best cost: 1377
+Updated best cost: 1378
+Updated best cost: 1379
+Updated best cost: 1380
+Updated best cost: 1381
+Updated best cost: 1382
+Updated best cost: 1383
+Updated best cost: 1384
+Updated best cost: 1385
+Updated best cost: 1386
+Updated best cost: 1387
+Updated best cost: 1388
+Updated best cost: 1389
+Updated best cost: 1391
+Updated best cost: 1392
+Updated best cost: 1393
+Updated best cost: 1394
+Updated best cost: 1395
+Updated best cost: 1396
+Updated best cost: 1397
+Updated best cost: 1398
+Updated best cost: 1399
+Updated best cost: 1400
+Updated best cost: 1401
+Updated best cost: 1402
+Updated best cost: 1403
+No solution found
+Embedding not found
+density : high
+size:  65
+Optimal: 1558
+Updated best cost: 1557
+Updated best cost: 1558
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1583, 'walltime': 2.482045888900757}
+size:  66
+Optimal: 1605
+Updated best cost: 1601
+Updated best cost: 1602
+Updated best cost: 1603
+Updated best cost: 1604
+Updated best cost: 1605
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1598, 'walltime': 2.873976945877075}
+size:  67
+Optimal: 1657
+Updated best cost: 1649
+Updated best cost: 1650
+Updated best cost: 1651
+Updated best cost: 1652
+Updated best cost: 1653
+Updated best cost: 1654
+Updated best cost: 1655
+Updated best cost: 1656
+Updated best cost: 1657
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1613, 'walltime': 29.47696018218994}
+size:  68
+Optimal: 1710
+Updated best cost: 1701
+Updated best cost: 1702
+Updated best cost: 1703
+Updated best cost: 1705
+Updated best cost: 1706
+Updated best cost: 1707
+Updated best cost: 1708
+Updated best cost: 1709
+Updated best cost: 1710
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1628, 'walltime': 90.71238088607788}
+size:  69
+Optimal: 1760
+Updated best cost: 1744
+Updated best cost: 1745
+Updated best cost: 1746
+Updated best cost: 1747
+Updated best cost: 1748
+Updated best cost: 1749
+Updated best cost: 1750
+Updated best cost: 1751
+Updated best cost: 1752
+Updated best cost: 1753
+Updated best cost: 1754
+Updated best cost: 1755
+Updated best cost: 1756
+Updated best cost: 1757
+Updated best cost: 1758
+Updated best cost: 1759
+No solution found
+Embedding not found
+Optimal: 1752
+Updated best cost: 1729
+Updated best cost: 1730
+Updated best cost: 1732
+Updated best cost: 1734
+Updated best cost: 1735
+Updated best cost: 1736
+Updated best cost: 1739
+Updated best cost: 1740
+Updated best cost: 1741
+Updated best cost: 1742
+Updated best cost: 1743
+Updated best cost: 1744
+Updated best cost: 1745
+Updated best cost: 1746
+Updated best cost: 1747
+Updated best cost: 1748
+Updated best cost: 1749
+Updated best cost: 1750
+Updated best cost: 1751
+No solution found
+Embedding not found
+Optimal: 1770
+Updated best cost: 1751
+Updated best cost: 1753
+Updated best cost: 1754
+Updated best cost: 1755
+Updated best cost: 1756
+Updated best cost: 1757
+Updated best cost: 1758
+Updated best cost: 1759
+Updated best cost: 1760
+Updated best cost: 1761
+Updated best cost: 1762
+Updated best cost: 1763
+Updated best cost: 1764
+Updated best cost: 1765
+Updated best cost: 1766
+Updated best cost: 1767
+Updated best cost: 1768
+Updated best cost: 1769
+Updated best cost: 1770
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1642, 'walltime': 148.07004475593567}
+size:  70
+Optimal: 1813
+Updated best cost: 1785
+Updated best cost: 1787
+Updated best cost: 1788
+Updated best cost: 1789
+Updated best cost: 1790
+Updated best cost: 1791
+Updated best cost: 1792
+Updated best cost: 1793
+Updated best cost: 1794
+Updated best cost: 1795
+Updated best cost: 1797
+Updated best cost: 1798
+Updated best cost: 1799
+Updated best cost: 1800
+Updated best cost: 1801
+Updated best cost: 1802
+Updated best cost: 1803
+Updated best cost: 1804
+Updated best cost: 1805
+Updated best cost: 1806
+Updated best cost: 1807
+Updated best cost: 1808
+Updated best cost: 1809
+Updated best cost: 1810
+No solution found
+Embedding not found
+Optimal: 1805
+Updated best cost: 1774
+Updated best cost: 1775
+Updated best cost: 1776
+Updated best cost: 1781
+Updated best cost: 1782
+Updated best cost: 1784
+Updated best cost: 1785
+Updated best cost: 1786
+Updated best cost: 1787
+Updated best cost: 1788
+Updated best cost: 1789
+Updated best cost: 1790
+Updated best cost: 1791
+Updated best cost: 1793
+Updated best cost: 1794
+Updated best cost: 1795
+Updated best cost: 1796
+Updated best cost: 1797
+Updated best cost: 1798
+Updated best cost: 1799
+Updated best cost: 1800
+Updated best cost: 1801
+Updated best cost: 1802
+No solution found
+Embedding not found
+Optimal: 1821
+Updated best cost: 1794
+Updated best cost: 1795
+Updated best cost: 1796
+Updated best cost: 1798
+Updated best cost: 1799
+Updated best cost: 1800
+Updated best cost: 1801
+Updated best cost: 1802
+Updated best cost: 1803
+Updated best cost: 1804
+Updated best cost: 1805
+Updated best cost: 1806
+Updated best cost: 1807
+Updated best cost: 1808
+Updated best cost: 1809
+Updated best cost: 1810
+Updated best cost: 1811
+Updated best cost: 1812
+Updated best cost: 1813
+Updated best cost: 1814
+Updated best cost: 1815
+Updated best cost: 1816
+Updated best cost: 1817
+Updated best cost: 1818
+No solution found
+Embedding not found
+Optimal: 1832
+Updated best cost: 1804
+Updated best cost: 1806
+Updated best cost: 1808
+Updated best cost: 1809
+Updated best cost: 1810
+Updated best cost: 1811
+Updated best cost: 1813
+Updated best cost: 1814
+Updated best cost: 1815
+Updated best cost: 1816
+Updated best cost: 1817
+Updated best cost: 1818
+Updated best cost: 1819
+Updated best cost: 1820
+Updated best cost: 1821
+Updated best cost: 1822
+Updated best cost: 1823
+Updated best cost: 1824
+Updated best cost: 1825
+Updated best cost: 1826
+Updated best cost: 1827
+Updated best cost: 1828
+Updated best cost: 1829
+No solution found
+Embedding not found
+Optimal: 1802
+Updated best cost: 1771
+Updated best cost: 1772
+Updated best cost: 1773
+Updated best cost: 1774
+Updated best cost: 1775
+Updated best cost: 1776
+Updated best cost: 1777
+Updated best cost: 1778
+Updated best cost: 1779
+Updated best cost: 1780
+Updated best cost: 1782
+Updated best cost: 1783
+Updated best cost: 1786
+Updated best cost: 1787
+Updated best cost: 1788
+Updated best cost: 1790
+Updated best cost: 1791
+Updated best cost: 1792
+Updated best cost: 1793
+Updated best cost: 1794
+Updated best cost: 1795
+Updated best cost: 1796
+Updated best cost: 1797
+Updated best cost: 1798
+Updated best cost: 1799
+Updated best cost: 1800
+No solution found
+Embedding not found
+graph type: noisy_bipartite
+density : low
+size:  65
+Optimal: 331
+Updated best cost: 331
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1583, 'walltime': 2.5477449893951416}
+size:  66
+Optimal: 351
+No solution found
+Embedding not found
+Optimal: 382
+Updated best cost: 380
+Updated best cost: 381
+Updated best cost: 382
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1598, 'walltime': 2.764720916748047}
+size:  67
+Optimal: 359
+Updated best cost: 357
+Updated best cost: 358
+Updated best cost: 359
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1613, 'walltime': 2.5991499423980713}
+size:  68
+Optimal: 353
+Updated best cost: 352
+Updated best cost: 353
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1628, 'walltime': 2.6409411430358887}
+size:  69
+Optimal: 377
+Updated best cost: 373
+Updated best cost: 374
+Updated best cost: 375
+Updated best cost: 376
+Updated best cost: 377
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1642, 'walltime': 2.7044830322265625}
+size:  70
+Optimal: 393
+Updated best cost: 387
+Updated best cost: 389
+Updated best cost: 390
+Updated best cost: 391
+Updated best cost: 392
+Updated best cost: 393
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1656, 'walltime': 2.7554681301116943}
+size:  71
+Optimal: 375
+Updated best cost: 363
+Updated best cost: 364
+Updated best cost: 365
+Updated best cost: 367
+Updated best cost: 369
+Updated best cost: 371
+Updated best cost: 372
+Updated best cost: 373
+Updated best cost: 375
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 24.0, 'qubits_used': 1670, 'walltime': 2.80049991607666}
+size:  72
+Optimal: 385
+Updated best cost: 376
+Updated best cost: 377
+Updated best cost: 378
+Updated best cost: 379
+Updated best cost: 380
+Updated best cost: 381
+Updated best cost: 382
+Updated best cost: 383
+Updated best cost: 384
+Updated best cost: 385
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.5, 'qubits_used': 1684, 'walltime': 3.232478141784668}
+size:  73
+Optimal: 426
+Updated best cost: 408
+Updated best cost: 409
+Updated best cost: 413
+Updated best cost: 414
+Updated best cost: 415
+Updated best cost: 416
+Updated best cost: 417
+Updated best cost: 418
+Updated best cost: 419
+Updated best cost: 420
+Updated best cost: 421
+Updated best cost: 422
+Updated best cost: 423
+Updated best cost: 424
+Updated best cost: 425
+Updated best cost: 426
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1697, 'walltime': 3.172668933868408}
+size:  74
+Optimal: 424
+Updated best cost: 414
+Updated best cost: 415
+Updated best cost: 416
+Updated best cost: 417
+Updated best cost: 418
+Updated best cost: 419
+Updated best cost: 420
+Updated best cost: 422
+Updated best cost: 423
+Updated best cost: 424
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1710, 'walltime': 3.152958869934082}
+size:  75
+Optimal: 442
+Updated best cost: 420
+Updated best cost: 421
+Updated best cost: 422
+Updated best cost: 423
+Updated best cost: 424
+Updated best cost: 425
+Updated best cost: 426
+Updated best cost: 428
+Updated best cost: 430
+Updated best cost: 431
+Updated best cost: 432
+Updated best cost: 433
+Updated best cost: 434
+Updated best cost: 435
+Updated best cost: 436
+Updated best cost: 437
+Updated best cost: 438
+Updated best cost: 440
+Updated best cost: 441
+Updated best cost: 442
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1723, 'walltime': 3.901623010635376}
+size:  76
+Optimal: 449
+Updated best cost: 426
+Updated best cost: 428
+Updated best cost: 430
+Updated best cost: 432
+Updated best cost: 433
+Updated best cost: 434
+Updated best cost: 437
+Updated best cost: 438
+Updated best cost: 439
+Updated best cost: 441
+Updated best cost: 442
+Updated best cost: 443
+Updated best cost: 444
+Updated best cost: 445
+Updated best cost: 446
+Updated best cost: 447
+Updated best cost: 448
+Updated best cost: 449
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1736, 'walltime': 3.6458213329315186}
+size:  77
+Optimal: 476
+Updated best cost: 452
+Updated best cost: 453
+Updated best cost: 454
+Updated best cost: 455
+Updated best cost: 456
+Updated best cost: 457
+Updated best cost: 459
+Updated best cost: 460
+Updated best cost: 461
+Updated best cost: 462
+Updated best cost: 463
+Updated best cost: 464
+Updated best cost: 465
+Updated best cost: 466
+Updated best cost: 467
+Updated best cost: 468
+Updated best cost: 469
+Updated best cost: 470
+Updated best cost: 471
+Updated best cost: 473
+Updated best cost: 474
+Updated best cost: 475
+Updated best cost: 476
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1748, 'walltime': 3.5238637924194336}
+size:  78
+Optimal: 478
+Updated best cost: 449
+Updated best cost: 450
+Updated best cost: 451
+Updated best cost: 454
+Updated best cost: 455
+Updated best cost: 457
+Updated best cost: 458
+Updated best cost: 459
+Updated best cost: 460
+Updated best cost: 463
+Updated best cost: 465
+Updated best cost: 466
+Updated best cost: 467
+Updated best cost: 469
+Updated best cost: 470
+Updated best cost: 471
+Updated best cost: 472
+Updated best cost: 474
+Updated best cost: 475
+Updated best cost: 476
+Updated best cost: 477
+Updated best cost: 478
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1760, 'walltime': 11.55279278755188}
+size:  79
+Optimal: 484
+Updated best cost: 442
+Updated best cost: 443
+Updated best cost: 444
+Updated best cost: 445
+Updated best cost: 448
+Updated best cost: 451
+Updated best cost: 452
+Updated best cost: 454
+Updated best cost: 455
+Updated best cost: 457
+Updated best cost: 458
+Updated best cost: 460
+Updated best cost: 462
+Updated best cost: 463
+Updated best cost: 464
+Updated best cost: 465
+Updated best cost: 466
+Updated best cost: 467
+Updated best cost: 468
+Updated best cost: 469
+Updated best cost: 471
+Updated best cost: 472
+Updated best cost: 473
+Updated best cost: 474
+Updated best cost: 476
+Updated best cost: 477
+Updated best cost: 478
+Updated best cost: 479
+Updated best cost: 480
+Updated best cost: 481
+Updated best cost: 482
+Updated best cost: 483
+Updated best cost: 484
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 23.0, 'qubits_used': 1772, 'walltime': 3.9241180419921875}
+size:  80
+Optimal: 498
+Updated best cost: 460
+Updated best cost: 461
+Updated best cost: 462
+Updated best cost: 463
+Updated best cost: 465
+Updated best cost: 466
+Updated best cost: 467
+Updated best cost: 469
+Updated best cost: 471
+Updated best cost: 472
+Updated best cost: 475
+Updated best cost: 476
+Updated best cost: 477
+Updated best cost: 478
+Updated best cost: 479
+Updated best cost: 481
+Updated best cost: 482
+Updated best cost: 483
+Updated best cost: 485
+Updated best cost: 486
+Updated best cost: 487
+Updated best cost: 488
+Updated best cost: 489
+Updated best cost: 490
+Updated best cost: 491
+Updated best cost: 492
+Updated best cost: 493
+Updated best cost: 494
+Updated best cost: 495
+Updated best cost: 496
+Updated best cost: 497
+Updated best cost: 498
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 22.5, 'qubits_used': 1784, 'walltime': 6.090763092041016}
+size:  81
+Optimal: 528
+Updated best cost: 483
+Updated best cost: 484
+Updated best cost: 487
+Updated best cost: 488
+Updated best cost: 489
+Updated best cost: 491
+Updated best cost: 492
+Updated best cost: 495
+Updated best cost: 496
+Updated best cost: 498
+Updated best cost: 499
+Updated best cost: 500
+Updated best cost: 501
+Updated best cost: 505
+Updated best cost: 506
+Updated best cost: 507
+Updated best cost: 508
+Updated best cost: 509
+Updated best cost: 513
+Updated best cost: 514
+Updated best cost: 515
+Updated best cost: 516
+Updated best cost: 517
+Updated best cost: 520
+Updated best cost: 521
+Updated best cost: 522
+Updated best cost: 523
+Updated best cost: 524
+Updated best cost: 525
+Updated best cost: 526
+Updated best cost: 527
+Updated best cost: 528
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 22.0, 'qubits_used': 1795, 'walltime': 13.138222217559814}
+size:  82
+Optimal: 539
+Updated best cost: 491
+Updated best cost: 495
+Updated best cost: 496
+Updated best cost: 497
+Updated best cost: 498
+Updated best cost: 499
+Updated best cost: 501
+Updated best cost: 503
+Updated best cost: 505
+Updated best cost: 506
+Updated best cost: 507
+Updated best cost: 509
+Updated best cost: 510
+Updated best cost: 518
+Updated best cost: 519
+Updated best cost: 520
+Updated best cost: 522
+Updated best cost: 523
+Updated best cost: 524
+Updated best cost: 525
+Updated best cost: 526
+Updated best cost: 527
+Updated best cost: 528
+Updated best cost: 529
+Updated best cost: 530
+Updated best cost: 531
+Updated best cost: 532
+Updated best cost: 533
+Updated best cost: 534
+Updated best cost: 535
+Updated best cost: 536
+Updated best cost: 537
+Updated best cost: 538
+Updated best cost: 539
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 22.0, 'qubits_used': 1806, 'walltime': 8.384795904159546}
+size:  83
+Optimal: 551
+Updated best cost: 490
+Updated best cost: 492
+Updated best cost: 495
+Updated best cost: 496
+Updated best cost: 497
+Updated best cost: 498
+Updated best cost: 502
+Updated best cost: 504
+Updated best cost: 505
+Updated best cost: 506
+Updated best cost: 507
+Updated best cost: 508
+Updated best cost: 509
+Updated best cost: 511
+Updated best cost: 512
+Updated best cost: 513
+Updated best cost: 514
+Updated best cost: 515
+Updated best cost: 516
+Updated best cost: 517
+Updated best cost: 519
+Updated best cost: 520
+Updated best cost: 521
+Updated best cost: 522
+Updated best cost: 523
+Updated best cost: 524
+Updated best cost: 526
+Updated best cost: 527
+Updated best cost: 528
+Updated best cost: 530
+Updated best cost: 531
+Updated best cost: 533
+Updated best cost: 534
+Updated best cost: 535
+Updated best cost: 536
+Updated best cost: 539
+Updated best cost: 540
+Updated best cost: 542
+Updated best cost: 543
+Updated best cost: 544
+Updated best cost: 545
+Updated best cost: 547
+Updated best cost: 549
+Updated best cost: 550
+Updated best cost: 551
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 22.0, 'qubits_used': 1817, 'walltime': 26.415284156799316}
+size:  84
+Optimal: 572
+Updated best cost: 501
+Updated best cost: 504
+Updated best cost: 505
+Updated best cost: 506
+Updated best cost: 510
+Updated best cost: 511
+Updated best cost: 512
+Updated best cost: 515
+Updated best cost: 518
+Updated best cost: 519
+Updated best cost: 520
+Updated best cost: 522
+Updated best cost: 526
+Updated best cost: 527
+Updated best cost: 528
+Updated best cost: 529
+Updated best cost: 530
+Updated best cost: 532
+Updated best cost: 535
+Updated best cost: 536
+Updated best cost: 537
+Updated best cost: 538
+Updated best cost: 539
+Updated best cost: 540
+Updated best cost: 541
+Updated best cost: 543
+Updated best cost: 544
+Updated best cost: 546
+Updated best cost: 553
+Updated best cost: 554
+Updated best cost: 555
+Updated best cost: 556
+Updated best cost: 557
+Updated best cost: 558
+Updated best cost: 559
+Updated best cost: 560
+Updated best cost: 561
+Updated best cost: 562
+Updated best cost: 563
+Updated best cost: 565
+Updated best cost: 566
+Updated best cost: 567
+Updated best cost: 568
+Updated best cost: 569
+Updated best cost: 570
+Updated best cost: 571
+Updated best cost: 572
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 21.5, 'qubits_used': 1828, 'walltime': 34.171813011169434}
+size:  85
+Optimal: 574
+Updated best cost: 495
+Updated best cost: 496
+Updated best cost: 498
+Updated best cost: 499
+Updated best cost: 502
+Updated best cost: 503
+Updated best cost: 504
+Updated best cost: 507
+Updated best cost: 508
+Updated best cost: 509
+Updated best cost: 510
+Updated best cost: 512
+Updated best cost: 514
+Updated best cost: 515
+Updated best cost: 516
+Updated best cost: 518
+Updated best cost: 519
+Updated best cost: 520
+Updated best cost: 521
+Updated best cost: 523
+Updated best cost: 524
+Updated best cost: 525
+Updated best cost: 526
+Updated best cost: 530
+Updated best cost: 532
+Updated best cost: 534
+Updated best cost: 535
+Updated best cost: 536
+Updated best cost: 537
+Updated best cost: 538
+Updated best cost: 539
+Updated best cost: 540
+Updated best cost: 541
+Updated best cost: 542
+Updated best cost: 543
+Updated best cost: 544
+Updated best cost: 545
+Updated best cost: 546
+Updated best cost: 547
+Updated best cost: 550
+Updated best cost: 551
+Updated best cost: 552
+Updated best cost: 553
+Updated best cost: 554
+Updated best cost: 555
+Updated best cost: 556
+Updated best cost: 557
+Updated best cost: 558
+Updated best cost: 559
+Updated best cost: 560
+Updated best cost: 561
+Updated best cost: 562
+Updated best cost: 563
+Updated best cost: 564
+Updated best cost: 565
+Updated best cost: 566
+Updated best cost: 567
+Updated best cost: 568
+Updated best cost: 569
+Updated best cost: 570
+Updated best cost: 571
+Updated best cost: 572
+Updated best cost: 573
+Updated best cost: 574
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 22.0, 'qubits_used': 1838, 'walltime': 47.36064910888672}
+size:  86
+Optimal: 588
+Updated best cost: 503
+Updated best cost: 504
+Updated best cost: 506
+Updated best cost: 508
+Updated best cost: 509
+Updated best cost: 510
+Updated best cost: 511
+Updated best cost: 515
+Updated best cost: 516
+Updated best cost: 521
+Updated best cost: 524
+Updated best cost: 525
+Updated best cost: 526
+Updated best cost: 528
+Updated best cost: 529
+Updated best cost: 530
+Updated best cost: 532
+Updated best cost: 533
+Updated best cost: 535
+Updated best cost: 536
+Updated best cost: 539
+Updated best cost: 540
+Updated best cost: 542
+Updated best cost: 543
+Updated best cost: 549
+Updated best cost: 550
+Updated best cost: 552
+Updated best cost: 553
+Updated best cost: 554
+Updated best cost: 555
+Updated best cost: 557
+Updated best cost: 558
+Updated best cost: 560
+Updated best cost: 561
+Updated best cost: 562
+Updated best cost: 565
+Updated best cost: 566
+Updated best cost: 568
+Updated best cost: 569
+Updated best cost: 570
+Updated best cost: 572
+Updated best cost: 574
+Updated best cost: 575
+Updated best cost: 576
+Updated best cost: 577
+Updated best cost: 578
+Updated best cost: 579
+Updated best cost: 580
+Updated best cost: 581
+Updated best cost: 582
+Updated best cost: 583
+Updated best cost: 584
+Updated best cost: 585
+Updated best cost: 586
+Updated best cost: 587
+Updated best cost: 588
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 21.0, 'qubits_used': 1848, 'walltime': 15.586638927459717}
+size:  87
+Optimal: 609
+Updated best cost: 504
+Updated best cost: 506
+Updated best cost: 509
+Updated best cost: 510
+Updated best cost: 512
+Updated best cost: 513
+Updated best cost: 514
+Updated best cost: 515
+Updated best cost: 516
+Updated best cost: 519
+Updated best cost: 520
+Updated best cost: 521
+Updated best cost: 524
+Updated best cost: 528
+Updated best cost: 530
+Updated best cost: 533
+Updated best cost: 535
+Updated best cost: 537
+Updated best cost: 538
+Updated best cost: 541
+Updated best cost: 543
+Updated best cost: 545
+Updated best cost: 546
+Updated best cost: 547
+Updated best cost: 548
+Updated best cost: 549
+Updated best cost: 550
+Updated best cost: 552
+Updated best cost: 553
+Updated best cost: 555
+Updated best cost: 559
+Updated best cost: 560
+Updated best cost: 561
+Updated best cost: 562
+Updated best cost: 564
+Updated best cost: 565
+Updated best cost: 567
+Updated best cost: 568
+Updated best cost: 569
+Updated best cost: 570
+Updated best cost: 572
+Updated best cost: 574
+Updated best cost: 575
+Updated best cost: 576
+Updated best cost: 578
+Updated best cost: 580
+Updated best cost: 581
+Updated best cost: 584
+Updated best cost: 586
+Updated best cost: 587
+Updated best cost: 588
+Updated best cost: 589
+Updated best cost: 590
+Updated best cost: 591
+Updated best cost: 592
+Updated best cost: 594
+Updated best cost: 595
+Updated best cost: 597
+Updated best cost: 598
+Updated best cost: 599
+Updated best cost: 600
+Updated best cost: 601
+Updated best cost: 602
+Updated best cost: 603
+Updated best cost: 604
+Updated best cost: 605
+Updated best cost: 606
+Updated best cost: 607
+Updated best cost: 608
+Updated best cost: 609
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 21.0, 'qubits_used': 1858, 'walltime': 31.10655689239502}
+size:  88
+Optimal: 625
+Updated best cost: 520
+Updated best cost: 524
+Updated best cost: 527
+Updated best cost: 528
+Updated best cost: 530
+Updated best cost: 531
+Updated best cost: 532
+Updated best cost: 536
+Updated best cost: 537
+Updated best cost: 539
+Updated best cost: 540
+Updated best cost: 541
+Updated best cost: 542
+Updated best cost: 545
+Updated best cost: 546
+Updated best cost: 547
+Updated best cost: 548
+Updated best cost: 549
+Updated best cost: 551
+Updated best cost: 552
+Updated best cost: 553
+Updated best cost: 554
+Updated best cost: 560
+Updated best cost: 561
+Updated best cost: 564
+Updated best cost: 566
+Updated best cost: 571
+Updated best cost: 572
+Updated best cost: 576
+Updated best cost: 577
+Updated best cost: 578
+Updated best cost: 579
+Updated best cost: 580
+Updated best cost: 581
+Updated best cost: 583
+Updated best cost: 584
+Updated best cost: 586
+Updated best cost: 588
+Updated best cost: 589
+Updated best cost: 590
+Updated best cost: 591
+Updated best cost: 592
+Updated best cost: 593
+Updated best cost: 594
+Updated best cost: 595
+Updated best cost: 597
+Updated best cost: 598
+Updated best cost: 599
+Updated best cost: 600
+Updated best cost: 601
+Updated best cost: 602
+Updated best cost: 604
+Updated best cost: 607
+Updated best cost: 608
+Updated best cost: 610
+Updated best cost: 611
+Updated best cost: 612
+Updated best cost: 613
+Updated best cost: 614
+Updated best cost: 615
+Updated best cost: 616
+Updated best cost: 618
+Updated best cost: 619
+Updated best cost: 620
+Updated best cost: 621
+Updated best cost: 622
+Updated best cost: 623
+Updated best cost: 624
+Updated best cost: 625
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 21.0, 'qubits_used': 1868, 'walltime': 69.10043716430664}
+size:  89
+Optimal: 638
+Updated best cost: 527
+Updated best cost: 529
+Updated best cost: 530
+Updated best cost: 531
+Updated best cost: 534
+Updated best cost: 535
+Updated best cost: 536
+Updated best cost: 537
+Updated best cost: 538
+Updated best cost: 541
+Updated best cost: 543
+Updated best cost: 545
+Updated best cost: 548
+Updated best cost: 549
+Updated best cost: 550
+Updated best cost: 551
+Updated best cost: 552
+Updated best cost: 553
+Updated best cost: 554
+Updated best cost: 557
+Updated best cost: 561
+Updated best cost: 562
+Updated best cost: 563
+Updated best cost: 564
+Updated best cost: 565
+Updated best cost: 566
+Updated best cost: 568
+Updated best cost: 569
+Updated best cost: 570
+Updated best cost: 572
+Updated best cost: 573
+Updated best cost: 574
+Updated best cost: 575
+Updated best cost: 577
+Updated best cost: 578
+Updated best cost: 579
+Updated best cost: 580
+Updated best cost: 582
+Updated best cost: 583
+Updated best cost: 584
+Updated best cost: 586
+Updated best cost: 587
+Updated best cost: 588
+Updated best cost: 589
+Updated best cost: 590
+Updated best cost: 591
+Updated best cost: 592
+Updated best cost: 593
+Updated best cost: 595
+Updated best cost: 596
+Updated best cost: 599
+Updated best cost: 600
+Updated best cost: 601
+Updated best cost: 602
+Updated best cost: 603
+Updated best cost: 604
+Updated best cost: 605
+Updated best cost: 608
+Updated best cost: 609
+Updated best cost: 611
+Updated best cost: 612
+Updated best cost: 613
+Updated best cost: 614
+Updated best cost: 615
+Updated best cost: 616
+Updated best cost: 618
+Updated best cost: 619
+Updated best cost: 620
+Updated best cost: 622
+Updated best cost: 623
+Updated best cost: 624
+Updated best cost: 626
+Updated best cost: 629
+Updated best cost: 630
+Updated best cost: 631
+Updated best cost: 632
+Updated best cost: 633
+Updated best cost: 634
+Updated best cost: 635
+Updated best cost: 636
+Updated best cost: 637
+Updated best cost: 638
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 21.0, 'qubits_used': 1877, 'walltime': 63.64560508728027}
+size:  90
+Optimal: 655
+Updated best cost: 545
+Updated best cost: 546
+Updated best cost: 550
+Updated best cost: 557
+Updated best cost: 558
+Updated best cost: 560
+Updated best cost: 561
+Updated best cost: 562
+Updated best cost: 563
+Updated best cost: 565
+Updated best cost: 566
+Updated best cost: 567
+Updated best cost: 568
+Updated best cost: 569
+Updated best cost: 570
+Updated best cost: 571
+Updated best cost: 572
+Updated best cost: 573
+Updated best cost: 575
+Updated best cost: 576
+Updated best cost: 577
+Updated best cost: 578
+Updated best cost: 579
+Updated best cost: 581
+Updated best cost: 584
+Updated best cost: 587
+Updated best cost: 588
+Updated best cost: 590
+Updated best cost: 591
+Updated best cost: 592
+Updated best cost: 593
+Updated best cost: 594
+Updated best cost: 595
+Updated best cost: 596
+Updated best cost: 597
+Updated best cost: 599
+Updated best cost: 602
+Updated best cost: 603
+Updated best cost: 604
+Updated best cost: 605
+Updated best cost: 608
+Updated best cost: 609
+Updated best cost: 610
+Updated best cost: 611
+Updated best cost: 612
+Updated best cost: 613
+Updated best cost: 614
+Updated best cost: 615
+Updated best cost: 616
+Updated best cost: 617
+Updated best cost: 618
+Updated best cost: 619
+Updated best cost: 620
+Updated best cost: 623
+Updated best cost: 624
+Updated best cost: 626
+Updated best cost: 627
+Updated best cost: 628
+Updated best cost: 629
+Updated best cost: 631
+Updated best cost: 632
+Updated best cost: 633
+Updated best cost: 634
+Updated best cost: 635
+Updated best cost: 636
+Updated best cost: 637
+Updated best cost: 638
+Updated best cost: 639
+Updated best cost: 640
+Updated best cost: 641
+Updated best cost: 642
+Updated best cost: 643
+Updated best cost: 644
+Updated best cost: 645
+Updated best cost: 646
+Updated best cost: 647
+Updated best cost: 648
+Updated best cost: 649
+Updated best cost: 650
+Updated best cost: 651
+Updated best cost: 652
+Updated best cost: 653
+Updated best cost: 654
+Updated best cost: 655
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 19.5, 'qubits_used': 1886, 'walltime': 111.35832500457764}
+size:  91
+Optimal: 680
+Updated best cost: 556
+Updated best cost: 557
+Updated best cost: 558
+Updated best cost: 565
+Updated best cost: 566
+Updated best cost: 568
+Updated best cost: 569
+Updated best cost: 571
+Updated best cost: 572
+Updated best cost: 578
+Updated best cost: 580
+Updated best cost: 581
+Updated best cost: 583
+Updated best cost: 584
+Updated best cost: 585
+Updated best cost: 587
+Updated best cost: 591
+Updated best cost: 592
+Updated best cost: 594
+Updated best cost: 595
+Updated best cost: 596
+Updated best cost: 599
+Updated best cost: 600
+Updated best cost: 604
+Updated best cost: 605
+Updated best cost: 606
+Updated best cost: 607
+Updated best cost: 610
+Updated best cost: 612
+Updated best cost: 616
+Updated best cost: 617
+Updated best cost: 618
+Updated best cost: 619
+Updated best cost: 621
+Updated best cost: 622
+Updated best cost: 624
+Updated best cost: 625
+Updated best cost: 626
+Updated best cost: 628
+Updated best cost: 630
+Updated best cost: 631
+Updated best cost: 632
+Updated best cost: 633
+Updated best cost: 634
+Updated best cost: 635
+Updated best cost: 636
+Updated best cost: 639
+Updated best cost: 640
+Updated best cost: 641
+Updated best cost: 643
+Updated best cost: 645
+Updated best cost: 646
+Updated best cost: 650
+Updated best cost: 651
+Updated best cost: 652
+Updated best cost: 653
+Updated best cost: 655
+Updated best cost: 656
+Updated best cost: 657
+Updated best cost: 658
+Updated best cost: 659
+Updated best cost: 660
+Updated best cost: 661
+Updated best cost: 662
+Updated best cost: 663
+Updated best cost: 664
+Updated best cost: 665
+Updated best cost: 666
+Updated best cost: 667
+Updated best cost: 668
+Updated best cost: 669
+Updated best cost: 670
+Updated best cost: 671
+Updated best cost: 672
+Updated best cost: 673
+Updated best cost: 674
+Updated best cost: 675
+Updated best cost: 676
+Updated best cost: 677
+Updated best cost: 678
+Updated best cost: 679
+Updated best cost: 680
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 20.0, 'qubits_used': 1895, 'walltime': 87.0518000125885}
+size:  92
+Optimal: 725
+Updated best cost: 585
+Updated best cost: 587
+Updated best cost: 588
+Updated best cost: 589
+Updated best cost: 590
+Updated best cost: 591
+Updated best cost: 596
+Updated best cost: 600
+Updated best cost: 601
+Updated best cost: 602
+Updated best cost: 603
+Updated best cost: 604
+Updated best cost: 608
+Updated best cost: 609
+Updated best cost: 613
+Updated best cost: 615
+Updated best cost: 616
+Updated best cost: 617
+Updated best cost: 619
+Updated best cost: 620
+Updated best cost: 622
+Updated best cost: 623
+Updated best cost: 625
+Updated best cost: 626
+Updated best cost: 627
+Updated best cost: 628
+Updated best cost: 630
+Updated best cost: 631
+Updated best cost: 632
+Updated best cost: 633
+Updated best cost: 634
+Updated best cost: 637
+Updated best cost: 638
+Updated best cost: 639
+Updated best cost: 640
+Updated best cost: 641
+Updated best cost: 643
+Updated best cost: 646
+Updated best cost: 648
+Updated best cost: 653
+Updated best cost: 657
+Updated best cost: 658
+Updated best cost: 659
+Updated best cost: 660
+Updated best cost: 662
+Updated best cost: 663
+Updated best cost: 664
+Updated best cost: 665
+Updated best cost: 667
+Updated best cost: 668
+Updated best cost: 669
+Updated best cost: 674
+Updated best cost: 676
+Updated best cost: 677
+Updated best cost: 678
+Updated best cost: 682
+Updated best cost: 683
+Updated best cost: 686
+Updated best cost: 688
+Updated best cost: 690
+Updated best cost: 691
+Updated best cost: 692
+Updated best cost: 693
+Updated best cost: 695
+Updated best cost: 698
+Updated best cost: 699
+Updated best cost: 700
+Updated best cost: 701
+Updated best cost: 702
+Updated best cost: 703
+Updated best cost: 704
+Updated best cost: 705
+Updated best cost: 706
+Updated best cost: 707
+Updated best cost: 709
+Updated best cost: 711
+Updated best cost: 712
+Updated best cost: 713
+Updated best cost: 714
+Updated best cost: 715
+Updated best cost: 716
+Updated best cost: 717
+Updated best cost: 718
+Updated best cost: 719
+Updated best cost: 720
+Updated best cost: 721
+Updated best cost: 722
+Updated best cost: 723
+Updated best cost: 724
+Updated best cost: 725
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 18.5, 'qubits_used': 1904, 'walltime': 97.99378395080566}
+size:  93
+Optimal: 695
+Updated best cost: 542
+Updated best cost: 543
+Updated best cost: 547
+Updated best cost: 549
+Updated best cost: 551
+Updated best cost: 553
+Updated best cost: 554
+Updated best cost: 557
+Updated best cost: 558
+Updated best cost: 559
+Updated best cost: 562
+Updated best cost: 564
+Updated best cost: 566
+Updated best cost: 567
+Updated best cost: 568
+Updated best cost: 569
+Updated best cost: 574
+Updated best cost: 575
+Updated best cost: 576
+Updated best cost: 579
+Updated best cost: 581
+Updated best cost: 582
+Updated best cost: 585
+Updated best cost: 586
+Updated best cost: 587
+Updated best cost: 590
+Updated best cost: 592
+Updated best cost: 593
+Updated best cost: 594
+Updated best cost: 597
+Updated best cost: 598
+Updated best cost: 603
+Updated best cost: 604
+Updated best cost: 605
+Updated best cost: 608
+Updated best cost: 610
+Updated best cost: 611
+Updated best cost: 612
+Updated best cost: 613
+Updated best cost: 617
+Updated best cost: 619
+Updated best cost: 620
+Updated best cost: 625
+Updated best cost: 626
+Updated best cost: 628
+Updated best cost: 629
+Updated best cost: 630
+Updated best cost: 632
+Updated best cost: 633
+Updated best cost: 634
+Updated best cost: 635
+Updated best cost: 636
+Updated best cost: 637
+Updated best cost: 639
+Updated best cost: 643
+Updated best cost: 644
+Updated best cost: 645
+Updated best cost: 646
+Updated best cost: 647
+Updated best cost: 648
+Updated best cost: 649
+Updated best cost: 651
+Updated best cost: 652
+Updated best cost: 653
+Updated best cost: 654
+Updated best cost: 655
+Updated best cost: 656
+Updated best cost: 657
+Updated best cost: 658
+Updated best cost: 661
+Updated best cost: 662
+Updated best cost: 664
+Updated best cost: 665
+Updated best cost: 666
+Updated best cost: 667
+Updated best cost: 668
+Updated best cost: 669
+Updated best cost: 670
+Updated best cost: 671
+Updated best cost: 672
+Updated best cost: 673
+Updated best cost: 674
+Updated best cost: 676
+Updated best cost: 677
+Updated best cost: 678
+Updated best cost: 679
+Updated best cost: 681
+Updated best cost: 682
+Updated best cost: 683
+Updated best cost: 685
+Updated best cost: 687
+Updated best cost: 688
+Updated best cost: 689
+Updated best cost: 690
+Updated best cost: 691
+Updated best cost: 692
+Updated best cost: 693
+Updated best cost: 694
+Updated best cost: 695
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 19.0, 'qubits_used': 1912, 'walltime': 110.19282603263855}
+size:  94
+Optimal: 713
+Updated best cost: 569
+Updated best cost: 570
+Updated best cost: 572
+Updated best cost: 575
+Updated best cost: 576
+Updated best cost: 577
+Updated best cost: 578
+Updated best cost: 580
+Updated best cost: 581
+Updated best cost: 582
+Updated best cost: 584
+Updated best cost: 586
+Updated best cost: 587
+Updated best cost: 588
+Updated best cost: 589
+Updated best cost: 590
+Updated best cost: 593
+Updated best cost: 595
+Updated best cost: 597
+Updated best cost: 599
+Updated best cost: 600
+Updated best cost: 602
+Updated best cost: 606
+Updated best cost: 607
+Updated best cost: 608
+Updated best cost: 609
+Updated best cost: 610
+Updated best cost: 611
+Updated best cost: 612
+Updated best cost: 614
+Updated best cost: 615
+Updated best cost: 616
+Updated best cost: 617
+Updated best cost: 618
+Updated best cost: 621
+Updated best cost: 622
+Updated best cost: 623
+Updated best cost: 625
+Updated best cost: 626
+Updated best cost: 628
+Updated best cost: 629
+Updated best cost: 630
+Updated best cost: 631
+Updated best cost: 632
+Updated best cost: 633
+Updated best cost: 636
+Updated best cost: 637
+Updated best cost: 639
+Updated best cost: 640
+Updated best cost: 641
+Updated best cost: 642
+Updated best cost: 643
+Updated best cost: 645
+Updated best cost: 646
+Updated best cost: 647
+Updated best cost: 648
+Updated best cost: 649
+Updated best cost: 650
+Updated best cost: 655
+Updated best cost: 656
+Updated best cost: 657
+Updated best cost: 658
+Updated best cost: 659
+Updated best cost: 662
+Updated best cost: 664
+Updated best cost: 666
+Updated best cost: 668
+Updated best cost: 669
+Updated best cost: 670
+Updated best cost: 671
+Updated best cost: 672
+Updated best cost: 673
+Updated best cost: 674
+Updated best cost: 675
+Updated best cost: 676
+Updated best cost: 677
+Updated best cost: 680
+Updated best cost: 681
+Updated best cost: 682
+Updated best cost: 684
+Updated best cost: 685
+Updated best cost: 686
+Updated best cost: 687
+Updated best cost: 688
+Updated best cost: 689
+Updated best cost: 690
+Updated best cost: 691
+Updated best cost: 692
+Updated best cost: 693
+Updated best cost: 694
+Updated best cost: 695
+Updated best cost: 696
+Updated best cost: 697
+Updated best cost: 698
+Updated best cost: 699
+Updated best cost: 700
+Updated best cost: 701
+Updated best cost: 703
+Updated best cost: 704
+Updated best cost: 705
+Updated best cost: 706
+Updated best cost: 707
+Updated best cost: 708
+Updated best cost: 709
+Updated best cost: 710
+Updated best cost: 711
+Updated best cost: 712
+Updated best cost: 713
+Solution found
+Embedding found
+{'max_chain_length': 32, 'median_chain_length': 17.5, 'qubits_used': 1920, 'walltime': 209.03791189193726}
+size:  95
+Optimal: 726
+Updated best cost: 555
+Updated best cost: 556
+Updated best cost: 560
+Updated best cost: 565
+Updated best cost: 567
+Updated best cost: 568
+Updated best cost: 569
+Updated best cost: 571
+Updated best cost: 572
+Updated best cost: 573
+Updated best cost: 574
+Updated best cost: 576
+Updated best cost: 578
+Updated best cost: 579
+Updated best cost: 581
+Updated best cost: 585
+Updated best cost: 586
+Updated best cost: 588
+Updated best cost: 589
+Updated best cost: 590
+Updated best cost: 593
+Updated best cost: 594
+Updated best cost: 596
+Updated best cost: 598
+Updated best cost: 599
+Updated best cost: 600
+Updated best cost: 604
+Updated best cost: 605
+Updated best cost: 606
+Updated best cost: 608
+Updated best cost: 609
+Updated best cost: 610
+Updated best cost: 613
+Updated best cost: 616
+Updated best cost: 617
+Updated best cost: 618
+Updated best cost: 619
+Updated best cost: 621
+Updated best cost: 622
+Updated best cost: 623
+Updated best cost: 625
+Updated best cost: 627
+Updated best cost: 629
+Updated best cost: 630
+Updated best cost: 632
+Updated best cost: 633
+Updated best cost: 634
+Updated best cost: 635
+Updated best cost: 636
+Updated best cost: 638
+Updated best cost: 639
+Updated best cost: 640
+Updated best cost: 642
+Updated best cost: 643
+Updated best cost: 644
+Updated best cost: 645
+Updated best cost: 646
+Updated best cost: 647
+Updated best cost: 648
+Updated best cost: 649
+Updated best cost: 650
+Updated best cost: 651
+Updated best cost: 652
+Updated best cost: 653
+Updated best cost: 654
+Updated best cost: 656
+Updated best cost: 658
+Updated best cost: 659
+Updated best cost: 661
+Updated best cost: 663
+Updated best cost: 664
+Updated best cost: 665
+Updated best cost: 666
+Updated best cost: 667
+Updated best cost: 668
+Updated best cost: 669
+Updated best cost: 673
+Updated best cost: 674
+Updated best cost: 675
+Updated best cost: 676
+Updated best cost: 677
+Updated best cost: 679
+Updated best cost: 680
+Updated best cost: 681
+Updated best cost: 683
+Updated best cost: 684
+Updated best cost: 685
+Updated best cost: 686
+Updated best cost: 687
+Updated best cost: 688
+Updated best cost: 689
+Updated best cost: 690
+Updated best cost: 691
+Updated best cost: 692
+Updated best cost: 693
+Updated best cost: 694
+Updated best cost: 695
+Updated best cost: 696
+Updated best cost: 697
+Updated best cost: 698
+Updated best cost: 699
+Updated best cost: 700
+Updated best cost: 701
+Updated best cost: 702
+Updated best cost: 703
+Updated best cost: 704
+Updated best cost: 705
+Updated best cost: 706
+Updated best cost: 707
+Updated best cost: 708
+Updated best cost: 709
+Updated best cost: 710
+Updated best cost: 712
+Updated best cost: 713
+Updated best cost: 714
+Updated best cost: 715
+Updated best cost: 716
+Updated best cost: 717
+Updated best cost: 718
+Updated best cost: 719
+Updated best cost: 720
+Updated best cost: 722
+Updated best cost: 723
+No solution found
+Embedding not found
+Optimal: 767
+Updated best cost: 598
+Updated best cost: 601
+Updated best cost: 606
+Updated best cost: 607
+Updated best cost: 608
+Updated best cost: 610
+Updated best cost: 611
+Updated best cost: 614
+Updated best cost: 615
+Updated best cost: 616
+Updated best cost: 617
+Updated best cost: 618
+Updated best cost: 620
+Updated best cost: 623
+Updated best cost: 624
+Updated best cost: 629
+Updated best cost: 632
+Updated best cost: 634
+Updated best cost: 642
+Updated best cost: 643
+Updated best cost: 648
+Updated best cost: 651
+Updated best cost: 652
+Updated best cost: 653
+Updated best cost: 654
+Updated best cost: 658
+Updated best cost: 659
+Updated best cost: 660
+Updated best cost: 665
+Updated best cost: 666
+Updated best cost: 667
+Updated best cost: 668
+Updated best cost: 669
+Updated best cost: 671
+Updated best cost: 672
+Updated best cost: 673
+Updated best cost: 675
+Updated best cost: 677
+Updated best cost: 681
+Updated best cost: 683
+Updated best cost: 684
+Updated best cost: 685
+Updated best cost: 686
+Updated best cost: 687
+Updated best cost: 688
+Updated best cost: 690
+Updated best cost: 691
+Updated best cost: 692
+Updated best cost: 693
+Updated best cost: 697
+Updated best cost: 698
+Updated best cost: 700
+Updated best cost: 701
+Updated best cost: 702
+Updated best cost: 706
+Updated best cost: 707
+Updated best cost: 708
+Updated best cost: 709
+Updated best cost: 711
+Updated best cost: 712
+Updated best cost: 713
+Updated best cost: 715
+Updated best cost: 717
+Updated best cost: 721
+Updated best cost: 722
+Updated best cost: 723
+Updated best cost: 724
+Updated best cost: 726
+Updated best cost: 727
+Updated best cost: 731
+Updated best cost: 732
+Updated best cost: 733
+Updated best cost: 734
+Updated best cost: 735
+Updated best cost: 736
+Updated best cost: 737
+Updated best cost: 738
+Updated best cost: 739
+Updated best cost: 740
+Updated best cost: 741
+Updated best cost: 742
+Updated best cost: 743
+Updated best cost: 744
+Updated best cost: 745
+Updated best cost: 746
+Updated best cost: 747
+Updated best cost: 748
+Updated best cost: 749
+Updated best cost: 750
+Updated best cost: 751
+Updated best cost: 752
+Updated best cost: 753
+Updated best cost: 754
+Updated best cost: 755
+Updated best cost: 756
+Updated best cost: 757
+Updated best cost: 758
+Updated best cost: 759
+Updated best cost: 760
+Updated best cost: 761
+Updated best cost: 762
+No solution found
+Embedding not found
+Optimal: 807
+Updated best cost: 638
+Updated best cost: 641
+Updated best cost: 642
+Updated best cost: 644
+Updated best cost: 645
+Updated best cost: 646
+Updated best cost: 647
+Updated best cost: 650
+Updated best cost: 651
+Updated best cost: 652
+Updated best cost: 659
+Updated best cost: 660
+Updated best cost: 662
+Updated best cost: 664
+Updated best cost: 666
+Updated best cost: 667
+Updated best cost: 668
+Updated best cost: 670
+Updated best cost: 671
+Updated best cost: 676
+Updated best cost: 679
+Updated best cost: 680
+Updated best cost: 681
+Updated best cost: 682
+Updated best cost: 683
+Updated best cost: 684
+Updated best cost: 686
+Updated best cost: 687
+Updated best cost: 688
+Updated best cost: 693
+Updated best cost: 695
+Updated best cost: 696
+Updated best cost: 699
+Updated best cost: 700
+Updated best cost: 701
+Updated best cost: 702
+Updated best cost: 703
+Updated best cost: 705
+Updated best cost: 706
+Updated best cost: 707
+Updated best cost: 709
+Updated best cost: 711
+Updated best cost: 712
+Updated best cost: 713
+Updated best cost: 714
+Updated best cost: 715
+Updated best cost: 720
+Updated best cost: 721
+Updated best cost: 722
+Updated best cost: 724
+Updated best cost: 726
+Updated best cost: 728
+Updated best cost: 729
+Updated best cost: 730
+Updated best cost: 731
+Updated best cost: 732
+Updated best cost: 733
+Updated best cost: 734
+Updated best cost: 735
+Updated best cost: 739
+Updated best cost: 740
+Updated best cost: 741
+Updated best cost: 742
+Updated best cost: 743
+Updated best cost: 745
+Updated best cost: 746
+Updated best cost: 747
+Updated best cost: 749
+Updated best cost: 750
+Updated best cost: 755
+Updated best cost: 756
+Updated best cost: 757
+Updated best cost: 758
+Updated best cost: 759
+Updated best cost: 760
+Updated best cost: 762
+Updated best cost: 763
+Updated best cost: 764
+Updated best cost: 765
+Updated best cost: 766
+Updated best cost: 767
+Updated best cost: 768
+Updated best cost: 769
+Updated best cost: 770
+Updated best cost: 772
+Updated best cost: 773
+Updated best cost: 774
+Updated best cost: 775
+Updated best cost: 776
+Updated best cost: 777
+Updated best cost: 778
+Updated best cost: 779
+Updated best cost: 780
+Updated best cost: 782
+Updated best cost: 783
+Updated best cost: 784
+Updated best cost: 785
+Updated best cost: 786
+Updated best cost: 787
+Updated best cost: 788
+Updated best cost: 789
+Updated best cost: 790
+Updated best cost: 791
+Updated best cost: 792
+Updated best cost: 793
+Updated best cost: 794
+Updated best cost: 795
+Updated best cost: 796
+Updated best cost: 797
+No solution found
+Embedding not found
+Optimal: 769
+Updated best cost: 602
+Updated best cost: 604
+Updated best cost: 607
+Updated best cost: 608
+Updated best cost: 611
+Updated best cost: 612
+Updated best cost: 613
+Updated best cost: 614
+Updated best cost: 615
+Updated best cost: 616
+Updated best cost: 617
+Updated best cost: 619
+Updated best cost: 620
+Updated best cost: 621
+Updated best cost: 624
+Updated best cost: 625
+Updated best cost: 626
+Updated best cost: 627
+Updated best cost: 629
+Updated best cost: 631
+Updated best cost: 632
+Updated best cost: 635
+Updated best cost: 637
+Updated best cost: 639
+Updated best cost: 640
+Updated best cost: 641
+Updated best cost: 643
+Updated best cost: 645
+Updated best cost: 647
+Updated best cost: 648
+Updated best cost: 650
+Updated best cost: 651
+Updated best cost: 652
+Updated best cost: 653
+Updated best cost: 654
+Updated best cost: 655
+Updated best cost: 656
+Updated best cost: 657
+Updated best cost: 661
+Updated best cost: 663
+Updated best cost: 664
+Updated best cost: 665
+Updated best cost: 667
+Updated best cost: 668
+Updated best cost: 669
+Updated best cost: 670
+Updated best cost: 672
+Updated best cost: 673
+Updated best cost: 676
+Updated best cost: 680
+Updated best cost: 681
+Updated best cost: 682
+Updated best cost: 683
+Updated best cost: 689
+Updated best cost: 691
+Updated best cost: 692
+Updated best cost: 693
+Updated best cost: 694
+Updated best cost: 695
+Updated best cost: 696
+Updated best cost: 697
+Updated best cost: 698
+Updated best cost: 699
+Updated best cost: 701
+Updated best cost: 705
+Updated best cost: 706
+Updated best cost: 707
+Updated best cost: 708
+Updated best cost: 709
+Updated best cost: 710
+Updated best cost: 711
+Updated best cost: 712
+Updated best cost: 713
+Updated best cost: 714
+Updated best cost: 715
+Updated best cost: 716
+Updated best cost: 717
+Updated best cost: 718
+Updated best cost: 719
+Updated best cost: 722
+Updated best cost: 723
+Updated best cost: 724
+Updated best cost: 725
+Updated best cost: 726
+Updated best cost: 728
+Updated best cost: 730
+Updated best cost: 731
+Updated best cost: 732
+Updated best cost: 733
+Updated best cost: 734
+Updated best cost: 735
+Updated best cost: 736
+Updated best cost: 737
+Updated best cost: 738
+Updated best cost: 739
+Updated best cost: 740
+Updated best cost: 741
+Updated best cost: 742
+Updated best cost: 743
+Updated best cost: 744
+Updated best cost: 745
+Updated best cost: 746
+Updated best cost: 748
+Updated best cost: 749
+Updated best cost: 750
+Updated best cost: 751
+Updated best cost: 752
+Updated best cost: 753
+Updated best cost: 754
+Updated best cost: 755
+Updated best cost: 756
+Updated best cost: 757
+Updated best cost: 759
+Updated best cost: 760
+Updated best cost: 761
+Updated best cost: 762
+Updated best cost: 763
+Updated best cost: 764
+Updated best cost: 765
