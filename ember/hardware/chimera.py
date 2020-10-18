@@ -6,8 +6,9 @@ from networkx import Graph
 
 
 class ChimeraGraph(Graph):
-
-    def __init__(self, m, l,
+    def __init__(self,
+                 m,
+                 l,
                  node_fault_rate=0.0,
                  edge_fault_rate=0.0,
                  node_faults: List = None,
@@ -15,16 +16,13 @@ class ChimeraGraph(Graph):
         super().__init__(**attr)
 
         chimera = dnx.chimera_graph(m=m, t=l)
-        original_edge_set = set(chimera.edges)
 
-        nodes = set(chimera.nodes)
-        faulty_nodes = node_faults if node_faults \
-            else sample(nodes, round(node_fault_rate * len(nodes)))
+        faulty_nodes = node_faults if node_faults else sample(
+            chimera.nodes, round(node_fault_rate * len(chimera.nodes)))
         chimera.remove_nodes_from(faulty_nodes)
 
-        faulty_edges = original_edge_set - chimera.edges
-        remain_to_delete = edge_fault_rate * len(original_edge_set) - len(faulty_edges)
-        faulty_edges.add(sample(chimera.edges, max(0, round(remain_to_delete))))
+        faulty_edges = sample(chimera.edges,
+                              round(edge_fault_rate * len(chimera.edges)))
         chimera.remove_edges_from(faulty_edges)
 
         self.__dict__.update(chimera.__dict__)
