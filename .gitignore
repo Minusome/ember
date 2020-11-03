@@ -1,0 +1,12 @@
+.idea/
+.venv/
+*__pycache__*
+
+*.DS_Store
+var/
+test_graphs/
+build/
+ember.egg-info/
+*.ipynb_checkpoints*
+*.vscode*
+*.so
