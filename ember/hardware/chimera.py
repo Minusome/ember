@@ -16,7 +16,7 @@ class ChimeraGraph(Graph):
         """
         Representation of a Chimera host graph.
 
-        We override the D-Wave NetworkX Chimera graph by allowing for faults.
+        Overrides the D-Wave NetworkX Chimera graph by allowing for faults.
 
         Args:
             m: Number of cell rows and cols in Chimera lattice topology

@@ -84,7 +84,7 @@ class BaseModel:
 class ProbabilisticSwapShiftModel(BaseModel):
     """
     Simulated annealing model which finds an embedding by swapping chains or by shifting nodes
-    between chains. Uses pssa.chimera.transform.double_triangle_clique as a guiding pattern.
+    between chains. Uses pssa.hardware.transform.double_triangle_clique as a guiding pattern.
     """
 
     def __init__(self, guest, host: ChimeraGraph):
@@ -237,7 +237,7 @@ class ProbabilisticSwapShiftModel(BaseModel):
 class CliqueOverlapModel(BaseModel):
     """
     Simulated annealing model which finds an embedding by swapping chains or by conversion between
-    I-shaped chains, L-shaped chains and T-Shaped chains. Uses pssa.chimera.transform.clique_overlap
+    I-shaped chains, L-shaped chains and T-Shaped chains. Uses pssa.hardware.transform.overlap_clique
     as a guiding pattern.
     """
 
